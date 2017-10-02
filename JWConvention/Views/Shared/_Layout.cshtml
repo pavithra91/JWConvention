@@ -1,0 +1,191 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>2018 Special Conventions</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="https://jw.azureedge.net/jw2017apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="https://jw.azureedge.net/jw2017favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://jw.azureedge.net/jw2017favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="https://jw.azureedge.net/jw2017manifest.json">
+    <link rel="mask-icon" href="https://jw.azureedge.net/jw2017safari-pinned-tab.svg" color="#699c40">
+
+    <link rel="stylesheet" type="text/css" href="~/jquery.datetimepicker.css" />
+    <link rel="stylesheet" href="~/js/form/css/sky-forms.css" type="text/css" media="all">
+
+    <meta name="theme-color" content="#699c40">
+    <script src="~/SpryAssets/SpryValidationTextField.js"></script>
+    <link href="~/SpryAssets/SpryValidationSelect.css" rel="stylesheet" />
+    <script src="~/SpryAssets/SpryValidationSelect.js"></script>
+    <link href="~/SpryAssets/SpryValidationTextField.css" rel="stylesheet" />
+
+    <script>
+        window.CurrentStyle = { primary: "#b16e27", link: "#b16e27" };
+        window.CurrentVolunteer = [];
+
+        window.locinfo = 'IndexPartial';
+    </script>
+    <link rel="stylesheet" type="text/css" href="~/css/style.css">
+    <link href="~/SpryAssets/SpryValidationTextField.css" rel="stylesheet" type="text/css" />
+    
+    <script src="https://jw.azureedge.net/src/compiled/general.481.js"></script>
+    <script type="text/javascript">
+        function ShowHideDiv(chkPassport) {
+            var dvPassport = document.getElementById("dvPassport");
+            dvPassport.style.display = chkPassport.checked ? "block" : "none";
+        }
+    </script>
+
+    <meta name="description" content="Special conventions of Jehovah's Witnesses">
+
+       @* <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
+    *@
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href='https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css' rel='stylesheet' type='text/css'>
+    <link href='https://cdn.datatables.net/buttons/1.3.1/css/buttons.dataTables.min.css' rel='stylesheet' type='text/css'>
+
+    <link href="~/jquery.datetimepicker.css" rel="stylesheet" />
+
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js" type="text/javascript"></script>
+    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js" type="text/javascript"></script>
+    <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
+
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js" type="text/javascript"></script>
+    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js" type="text/javascript"></script>
+    <script src="https://cdn.datatables.net/buttons/1.3.1/js/dataTables.buttons.min.js" type="text/javascript"></script>
+    <script src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.flash.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js" type="text/javascript"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/pdfmake.min.js" type="text/javascript"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/vfs_fonts.js" type="text/javascript"></script>
+    <script src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.html5.min.js" type="text/javascript"></script>
+    <script src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.print.min.js" type="text/javascript"></script>
+    <script src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.html5.min.js" type="text/javascript"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#example').DataTable({
+                dom: 'Bfrtip',
+                "pagingType": "full_numbers",
+                "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ]
+            });
+        });
+    </script>
+
+    <script src="~/jquery.js"></script>
+    <script src="~/js/Common.js"></script>
+
+    <script src="~/build/jquery.datetimepicker.full.js"></script>
+
+    <script type="text/javascript">
+    var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1");
+    </script>
+</head>
+<body>
+    <div class="fix-transparent"></div>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="https://jw2017.org/">
+                    <img src="~/images/2018-Final-Logo-1.jpg" class="logo" alt="JW2017">
+                </a>
+                <img src="~/images/2018-Final-Logo-3.jpg" class="logo-black" alt="Jehovah's Witnesses Special Conventions">
+                <div class="top-white">
+                    <img src="~/images/2018-Final-Logo-2.jpg" class="logo-white" alt="Jehovah's Witnesses Special Conventions">
+                </div>
+
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="https://www.jw.org/en/">Home</a></li>
+
+                    <li class="dropdown visible-xs">
+                </ul>
+
+            </div>
+            <div id="is_scrollable" style="color:white;text-align:center;display:none"><b class="caret"></b></div>
+        </div>
+    </div>
+    <div class="fix-overflow">
+        <div class="container body-content">
+            <div class="shade left"></div>
+            <div class="shade right"></div>
+            <div class="row">
+                <div class="jwcarousel global">
+                    <div class="list-jwcarousel" style="width: 8832px;">
+                        <ul style="left: -1104px;">
+                            <li>
+                                <img src="~/images/slider/04.png" data-width="1140" data-height="380" style="width: 100%" alt="Cochabamba" data-cm="cochabamba">
+                                <div class="carousel-caption">Sri Lanka<!--cmt═cochabamba--></div>
+                            </li>
+                            <li>
+                                <img src="~/images/slider/01.png" data-width="1140" data-height="380" style="width: 100%" alt="Cochabamba" data-cm="cochabamba">
+                                <div class="carousel-caption">Habarana<!--cmt═cochabamba--></div>
+                            </li>
+                            <li>
+                                <img src="~/images/slider/02.png" data-width="1140" data-height="380" style="width: 100%" alt="Jakarta" data-cm="jakarta">
+                                <div class="carousel-caption">Colombo<!--cmt═jakarta--></div>
+                            </li>
+                            <li>
+                                <img src="~/images/slider/03.png" data-width="1140" data-height="380" style="width: 100%" alt="Milan" data-cm="milan">
+                                <div class="carousel-caption">Minneriya<!--cmt═milan--></div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="alpha-white-color left"></div>
+                    <div class="alpha-white-color right"></div>
+                    <a class="carousel-control left" data-slide="prev">
+                        <span class="icon-prev" onclick="PrevSlide()">
+                            <img src="https://jw.azureedge.net/$root/prevnext.png" alt="Previous" data-cm="cmt═previous">
+                        </span>
+                    </a>
+                    <a class="carousel-control right" data-slide="next">
+                        <span class="icon-next" onclick="NextSlide()">
+                            <img src="https://jw.azureedge.net/$root/prevnext.png" alt="Next" data-cm="cmt═next">
+                        </span>
+                    </a>
+                </div>
+            </div>
+
+            <div>
+                @RenderBody()
+            </div>
+            
+            <div class="spacer hidden-print"></div>
+            <footer class="hidden-print">
+                <div>This is the official website for the 2018 Special Conventions of Jehovah’s Witnesses.<!--cmt═official website for the ╣0╠ special conventions--></div>
+                <div class="copyright">
+                    <div class="inside">
+                        <p>
+                            <span>
+                                <a href="http://www.jw.org/en" target="jworg" style="color:#699c40 !important">jw.org</a>
+                                &nbsp;|&nbsp;
+                            </span>
+                            <a href="https://www.jw.org/finder?docid=1011511&amp;prefer=content" title="Copyright" data-cm="cmt═copyright" target="jworg" style="color:#699c40 !important">Copyright<!--cmt═copyright--></a> © 2017 Watch Tower Bible and Tract Society of Pennsylvania.
+                            <span>
+                                &nbsp;|&nbsp;
+                                <a href="https://www.jw.org/finder?docid=1011511&amp;prefer=content" target="jworg" style="color:#699c40 !important">Terms of Use<!--cmt═terms of use--></a>
+                                &nbsp;|&nbsp;
+                                <a href="https://www.jw.org/en/privacy-policy/" style="color:#699c40 !important">Privacy Policy<!--cmt═privacy policy--></a>
+                            </span>
+                        </p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    @RenderSection("scriptLocation", false)
+    @Html.RenderScripts()
+</body>
+</html>

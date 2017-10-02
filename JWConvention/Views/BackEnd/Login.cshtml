@@ -1,0 +1,69 @@
+﻿@model JWConvention.Models.LoginModel
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div id="main-content">
+
+    <h1>Login</h1>
+    <div class="row">
+
+        @*<div class="form_title">
+            <h3><strong><i class="icon-pencil"></i></strong>Fill the form below</h3>
+            <p>
+                Mussum ipsum cacilds, vidis litro abertis.
+            </p>
+        </div>*@
+        <div class="step">
+
+            <div id="message-contact"></div>
+            @using (Html.BeginForm("UserLogin", "BackEnd", FormMethod.Post))
+            {
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label>User Name</label>
+                            @Html.TextBoxFor(m => Model.UserName, new { @class = "form-control", @name = "UserName", @required = "required", @id = "UserName" })
+                            @*<input type="text" id="datetimepicker2" style="width:98%; height:39px; padding-left:10px; border: thin solid #e5e5e5;">*@
+                        </div>
+                    </div>
+                </div>
+                <!-- End row -->
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label>Password</label>
+                            @Html.TextBoxFor(m => Model.Password, new { @class = "form-control", @name = "Password", @required = "required", @id = "Password", @type = "password" })
+                            @*<input type="password" id="datetimepicker2" style="width:98%; height:39px; padding-left:10px; border: thin solid #e5e5e5;">*@
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-2 col-sm-2">
+                        <div class="form-group">
+                            <input type="submit" value="Submit" class="btn btn-primary" id="submit-contact" style="padding:15px; font:Tahoma, Geneva, sans-serif;">
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <br />
+                <br />
+                <div class="row">
+                    <div class="col-md-6">
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="row city">
+        <div class="col-md-6">
+
+        </div>
+        <div class="col-md-6">
+        </div>
+    </div>
+</div>
+

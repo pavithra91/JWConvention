@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="wlakerstoursdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="JW_GroupID">
+          <Key>
+            <PropertyRef Name="AUTOID" />
+          </Key>
+          <Property Name="AUTOID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GroupID" Type="varchar" MaxLength="50" />
+          <Property Name="AddedBy" Type="varchar" MaxLength="50" />
+          <Property Name="AddedDate" Type="date" />
+        </EntityType>
+        <EntityType Name="JW_Hotels">
+          <Key>
+            <PropertyRef Name="HotelID" />
+          </Key>
+          <Property Name="HotelID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HotelCode" Type="varchar" MaxLength="10" />
+          <Property Name="HotelName" Type="varchar" MaxLength="100" />
+          <Property Name="HotelDescription" Type="varchar" MaxLength="500" />
+          <Property Name="HotelImage" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="JW_Rooms">
+          <Key>
+            <PropertyRef Name="RoomID" />
+          </Key>
+          <Property Name="RoomID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HotelID" Type="int" />
+          <Property Name="RoomType" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="JW_Users">
+          <Key>
+            <PropertyRef Name="AUTOID" />
+          </Key>
+          <Property Name="AUTOID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" />
+          <Property Name="Password" Type="varchar" MaxLength="100" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <Association Name="HotelIDfk_JWHotels">
+          <End Role="JW_Hotels" Type="Self.JW_Hotels" Multiplicity="0..1" />
+          <End Role="JW_Rooms" Type="Self.JW_Rooms" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JW_Hotels">
+              <PropertyRef Name="HotelID" />
+            </Principal>
+            <Dependent Role="JW_Rooms">
+              <PropertyRef Name="HotelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="wlakerstoursdbModelStoreContainer">
+          <EntitySet Name="JW_GroupID" EntityType="Self.JW_GroupID" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JW_Hotels" EntityType="Self.JW_Hotels" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JW_Rooms" EntityType="Self.JW_Rooms" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JW_Users" EntityType="Self.JW_Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="HotelIDfk_JWHotels" Association="Self.HotelIDfk_JWHotels">
+            <End Role="JW_Hotels" EntitySet="JW_Hotels" />
+            <End Role="JW_Rooms" EntitySet="JW_Rooms" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="wlakerstoursdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="JW_GroupID">
+          <Key>
+            <PropertyRef Name="AUTOID" />
+          </Key>
+          <Property Name="AUTOID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GroupID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AddedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AddedDate" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityContainer Name="wlakerstoursdbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="JW_GroupID" EntityType="Self.JW_GroupID" />
+          <EntitySet Name="JW_Users" EntityType="wlakerstoursdbModel.JW_Users" />
+          <EntitySet Name="JW_Hotels" EntityType="wlakerstoursdbModel.JW_Hotels" />
+          <EntitySet Name="JW_Rooms" EntityType="wlakerstoursdbModel.JW_Rooms" />
+          <AssociationSet Name="HotelIDfk_JWHotels" Association="wlakerstoursdbModel.HotelIDfk_JWHotels">
+            <End Role="JW_Hotels" EntitySet="JW_Hotels" />
+            <End Role="JW_Rooms" EntitySet="JW_Rooms" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="JW_Users">
+          <Key>
+            <PropertyRef Name="AUTOID" />
+          </Key>
+          <Property Name="AUTOID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="JW_Hotels">
+          <Key>
+            <PropertyRef Name="HotelID" />
+          </Key>
+          <Property Name="HotelID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HotelCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="HotelName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="HotelDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="HotelImage" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="JW_Rooms" Relationship="wlakerstoursdbModel.HotelIDfk_JWHotels" FromRole="JW_Hotels" ToRole="JW_Rooms" />
+        </EntityType>
+        <EntityType Name="JW_Rooms">
+          <Key>
+            <PropertyRef Name="RoomID" />
+          </Key>
+          <Property Name="RoomID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HotelID" Type="Int32" />
+          <Property Name="RoomType" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="JW_Hotels" Relationship="wlakerstoursdbModel.HotelIDfk_JWHotels" FromRole="JW_Rooms" ToRole="JW_Hotels" />
+        </EntityType>
+        <Association Name="HotelIDfk_JWHotels">
+          <End Type="wlakerstoursdbModel.JW_Hotels" Role="JW_Hotels" Multiplicity="0..1" />
+          <End Type="wlakerstoursdbModel.JW_Rooms" Role="JW_Rooms" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JW_Hotels">
+              <PropertyRef Name="HotelID" />
+            </Principal>
+            <Dependent Role="JW_Rooms">
+              <PropertyRef Name="HotelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="wlakerstoursdbModelStoreContainer" CdmEntityContainer="wlakerstoursdbEntities">
+          <EntitySetMapping Name="JW_GroupID">
+            <EntityTypeMapping TypeName="wlakerstoursdbModel.JW_GroupID">
+              <MappingFragment StoreEntitySet="JW_GroupID">
+                <ScalarProperty Name="AUTOID" ColumnName="AUTOID" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
+                <ScalarProperty Name="AddedDate" ColumnName="AddedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JW_Users">
+            <EntityTypeMapping TypeName="wlakerstoursdbModel.JW_Users">
+              <MappingFragment StoreEntitySet="JW_Users">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="AUTOID" ColumnName="AUTOID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JW_Hotels">
+            <EntityTypeMapping TypeName="wlakerstoursdbModel.JW_Hotels">
+              <MappingFragment StoreEntitySet="JW_Hotels">
+                <ScalarProperty Name="HotelImage" ColumnName="HotelImage" />
+                <ScalarProperty Name="HotelDescription" ColumnName="HotelDescription" />
+                <ScalarProperty Name="HotelName" ColumnName="HotelName" />
+                <ScalarProperty Name="HotelCode" ColumnName="HotelCode" />
+                <ScalarProperty Name="HotelID" ColumnName="HotelID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JW_Rooms">
+            <EntityTypeMapping TypeName="wlakerstoursdbModel.JW_Rooms">
+              <MappingFragment StoreEntitySet="JW_Rooms">
+                <ScalarProperty Name="RoomType" ColumnName="RoomType" />
+                <ScalarProperty Name="HotelID" ColumnName="HotelID" />
+                <ScalarProperty Name="RoomID" ColumnName="RoomID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

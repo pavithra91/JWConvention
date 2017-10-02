@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7d7b9b226d6947a99c9c46c2d0c2a361" Name="Diagram1">
+        <EntityTypeShape EntityType="wlakerstoursdbModel.JW_GroupID" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="wlakerstoursdbModel.JW_Users" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="wlakerstoursdbModel.JW_Hotels" Width="1.5" PointX="0.75" PointY="3.875" />
+        <EntityTypeShape EntityType="wlakerstoursdbModel.JW_Rooms" Width="1.5" PointX="3" PointY="4.125" />
+        <AssociationConnector Association="wlakerstoursdbModel.HotelIDfk_JWHotels" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

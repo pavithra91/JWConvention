@@ -1,0 +1,321 @@
+﻿@model JWConvention.Models.ReservationModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div id="main-content">
+
+    <h1>Booking Details</h1>
+    <div class="row">
+
+        <div class="form_title">
+            <h3><strong><i class="icon-pencil"></i></strong>Fill the form below</h3>
+        </div>
+        <div class="step">
+
+            <div id="message-contact"></div>
+
+            @using (Html.BeginForm("SaveReservation", "Reservation", FormMethod.Post))
+            {
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label>Room Type</label>
+                            <span id="spryselect1">
+                                @Html.DropDownListFor(m => Model._roomType, new SelectList(Model._roomList, "RoomID", "RoomType"), "- Please Select Room Category -", new { @name = "drpRoomType", @class = "form-control", @id = "drpRoomType" })
+                                @*<select name="hotel2" class="form-control">
+                                        <option value="0">Please Select</option>
+                                        <option value="1">Cinnamon Grand Colombo - Deluxe Room</option>
+                                        <option value="2">Cinnamon Red Colombo - Standard Room</option>
+                                        <option>Cinnamon Lakeside Colombo - Deluxe Room</option>
+                                    </select>*@
+                                <span class="selectInvalidMsg">Please select a valid item.</span><span class="selectRequiredMsg">Please select an item.</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label>Package</label>
+                            <span id="spryselect2">
+                                <select name="hotel3" class="form-control">
+                                    <option value="0">Please Select</option>
+                                    <option value="1">7 Night Accomadation</option>
+                                    <option value="2">8 Night Accomadation</option>
+                                    <option>9 Night Accomadation</option>
+                                </select>
+                                <span class="selectInvalidMsg">Please select a valid item.</span><span class="selectRequiredMsg">Please select an item.</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <!-- End row -->
+
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label>From</label>
+                            <span id="sprytextfield1">
+                                <input type="text" id="datetimepicker2" style="width:98%; height:39px; padding-left:10px; border: thin solid #e5e5e5;" />
+                                <span class="textfieldRequiredMsg">A value is required.</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label>To</label>
+                            <span id="sprytextfield2">
+                                <input type="text" id="datetimepicker3" style="width:98%; height:39px; padding-left:10px; border: thin solid #e5e5e5;" />
+                                <span class="textfieldRequiredMsg">A value is required.</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-2 col-sm-2">
+                            <div class="checkbox-inline">
+                                <label>Arrival Tranfer  </label>
+                                <div style="margin-left: 55px;">
+                                    <input name="chkArrival" type="checkbox" value="" />
+                                </div>
+                            </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label>Date</label>
+                            <input type="text" id="datetimepicker7" style="width:98%; height:39px; padding-left:10px; border: thin solid #e5e5e5;">
+                        </div>
+                    </div>
+
+                    <div class="col-md-2 col-sm-2">
+                        <div class="form-group">
+                            <label>Time</label>
+                            <input type="text" id="datetimepicker1" style="width:98%; height:39px; padding-left:10px; border: thin solid #e5e5e5;">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label>Flight Number</label>
+                            <input type="text" class="form-control">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-2 col-sm-2">
+                        <div class="checkbox-inline">
+                            <label>
+                                Departure
+                            </label>
+                            <div style="margin-left: 55px;">
+                                <input name="chkDeparture" type="checkbox" value="" />
+                                </div>
+                            </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label>Date</label>
+                            <input type="text" id="datetimepicker8" style="width:98%; height:35px; padding-left:10px; border: thin solid #e5e5e5;">
+                        </div>
+                    </div>
+
+                    <div class="col-md-2 col-sm-2">
+                        <div class="form-group">
+                            <label>Time</label>
+                            <input type="text" id="datetimepicker5" style="width:98%; height:35px; padding-left:10px; border: thin solid #e5e5e5;">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label>Flight Number</label>
+                            <input type="text" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="form-group" style="background-color:#EBEBEB;">
+                        <table width="99%" border="0" align="center" bgcolor="#E5E5E5">
+                            <tr>
+                                <td width="29%"><img src="@Model._hotel.HotelImage" width="284" height="192" /></td>
+                                <td width="71%" valign="top" style="text-align:justify; padding:15px;">
+                                    @Model._hotel.HotelDescription
+                                </td>
+                            </tr>
+                        </table>
+
+
+                    </div>
+                </div>
+                <br />
+
+
+                <br />
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Message</label>
+                            <textarea rows="5" id="message_contact" name="message_contact" class="form-control" placeholder="Write your message" style="height:200px;"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <label for="chkPassport">
+                            Additional Accommodation &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="checkbox" id="chkPassport" onclick="ShowHideDiv(this)" />
+                        </label>
+                    </div>
+
+                    <br /><br />
+
+                    <div id="dvPassport" style="display: none">
+                        <div class="row">
+                            <div class="col-md-2 col-sm-2">
+                                <div class="form-group">
+                                    <label>Date</label>
+                                    <input type="text" id="datetimepicker9" style="width:98%; height:35px; padding-left:10px; border: thin solid #e5e5e5;">
+                                </div>
+                            </div>
+                            <div class="col-md-2 col-sm-2">
+                                <div class="form-group">
+                                    <label>Hotel</label>
+                                    <select name="hotel" class="form-control">
+                                        <option value="0">Please Select</option>
+                                        <option value="1">Cinnamon Grand Colombo</option>
+                                        <option value="2">Cinnamon Red Colombo</option>
+                                        <option>Cinnamon Lakeside Colombo</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-2 col-sm-2">
+                                <div class="form-group">
+                                    <label>Room</label>
+                                    <select name="hotel" class="form-control">
+                                        <option value="0">Please Select</option>
+                                        <option value="1">Standard</option>
+                                        <option value="2">Deluxe</option>
+                                        <option>Superior</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-2 col-sm-2">
+                                <div class="form-group">
+                                    <label>Basis</label>
+                                    <select name="hotel" class="form-control">
+                                        <option value="0">Full Board</option>
+                                        <option value="1">Half Board</option>
+                                        <option value="2">Room Only</option>
+
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-2 col-sm-2">
+                                <div class="form-group">
+                                    <label>Nights</label>
+                                    <select name="hotel" class="form-control">
+                                        <option value="0">Please Select</option>
+                                        <option value="1">01</option>
+                                        <option value="2">02</option>
+                                        <option>03</option>
+                                    </select>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-2 col-sm-2">
+                                <div class="form-group">
+                                    <label>No of Rooms</label>
+                                    <select name="hotel" class="form-control">
+                                        <option value="0">Please Select</option>
+                                        <option value="1">01</option>
+                                        <option value="2">02</option>
+                                        <option>03</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group" style="padding-top:30px;">
+
+                                <input type="submit" value="Submit" class="btn btn-primary" id="submit-contact">
+                            </div>
+                        </div>
+                        <br />
+                        </div>
+
+                        <div class="form-group">
+                            <table width="100%" border="1">
+                                <tr align="center">
+                                    <td>Date</td>
+                                    <td>Hotel</td>
+                                    <td>Room Type</td>
+                                    <td>Basis</td>
+                                    <td>Nights</td>
+                                    <td>No of Rooms</td>
+                                    <td>Action</td>
+                                </tr>
+                                <tr>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                            </table>
+                        </div>
+                   </div>
+                   
+
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="submit" value="Submit" class="btn btn-primary" id="submit-contact">
+                    </div>
+                </div>
+            }
+                
+        </div>
+    </div>
+
+
+
+    <div class="row city">
+        <div class="col-md-6">
+
+        </div>
+        <div class="col-md-6">
+
+        </div>
+
+
+
+    </div>
+</div>
+
+
+@section scriptLocation{    
+
+@*<script src="build/jquery.datetimepicker.full.js"></script>*@
+
+<script src="~/scripts/Reservation/Index.js"></script>
+
+}
+

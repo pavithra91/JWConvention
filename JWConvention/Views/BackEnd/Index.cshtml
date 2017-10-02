@@ -1,0 +1,96 @@
+﻿@model JWConvention.Models.GroupModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="main-content">
+
+    <h1>Group ID Update</h1>
+    <div class="row">
+        <div class="form_title">
+            <div class="row">
+
+            </div>
+            <h3><strong><i class="icon-pencil"></i></strong>Please Enter Group ID below</h3>
+        </div>
+        <div class="step">
+
+       <div id="message-contact"></div>
+            @using (Html.BeginForm("SaveGroupId", "BackEnd", FormMethod.Post))
+            {
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Index Number </label>
+
+
+                            <span id="sprytextfield1">
+                                <label for="index"></label>
+                                @Html.TextBoxFor(m => Model.GroupID, new { @class = "form-control", @name = "groupId", @required = "required", @id = "groupId" })
+                                <span class="textfieldRequiredMsg">A value is required.</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group" style="padding-top: 23px;">
+                            <input type="submit" value="Submit" class="btn btn-primary" id="submit-contact">
+                        </div>                        
+                    </div>
+                </div>
+
+                <div class="row"></div>
+
+                <div class="row">
+                        <table id="dtGroupIdList" class="display" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>Group ID</th>
+                                    <th>Added By</th>
+                                    <th>Added Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var items in Model.groupList)
+                                {
+                                    <tr>
+                                        <td>
+                                            @items.GroupID
+                                        </td>
+                                        <td>
+                                            @items.AddedBy
+                                        </td>
+                                        <td>
+                                            @items.AddedDate.GetValueOrDefault().ToShortDateString()
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+@section scriptLocation{
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" />
+<script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#dtGroupIdList').DataTable({
+                dom: 'Bfrtip',
+                "pagingType": "full_numbers",
+                "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ]
+            });
+        });
+</script>
+    }
+
+
+
