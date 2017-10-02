@@ -15,5 +15,22 @@ namespace JWConvention.Models
         public DateTime _toDate { get; set; }
         public bool _isArrival { get; set; }
         public bool _isDeparture { get; set; }
+
+        public string _hotelCode { get; set; }
+
+        public DelegateModel _delegate { get; set; }
+    }
+
+    public class DelegateModel
+    {
+        public string GroupId { get; set; }
+        public string Title { get; set; }
+        public string Name { get; set; }
+        public string PassportNo { get; set; }
+        public string Nationality { get; set; }
+        public string Country { get; set; }
+        public string DelegateAddress { get; set; }
+        public string ContactNo { get; set; }
+        public string EmailAddress { get; set; }
     }
 }

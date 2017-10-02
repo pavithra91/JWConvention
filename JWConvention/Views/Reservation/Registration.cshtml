@@ -1,0 +1,161 @@
+﻿@model JWConvention.Models.ReservationModel
+@{
+    ViewBag.Title = "Registration";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.HiddenFor(m=>m._hotelCode, Model._hotelCode)
+
+<div id="main-content">
+    <h1>Delegate Details</h1>
+    <div class="row">
+        <div class="form_title">
+            <h4><strong><i class="icon-pencil"></i></strong>Fill the form below</h4>
+        </div>
+        <div class="step">
+            <div id="message-contact"></div>
+
+            @using (Html.BeginForm("RegisterDelegate", "Reservation", FormMethod.Post))
+            {
+                <div class="row">
+
+                    <div class="col-md-2 col-sm-2">
+                        <div class="form-group">
+                            <label>Group ID</label>
+                            <span id="sprytextfield2">
+                                @Html.TextBoxFor(m => Model._delegate.GroupId, new { @name = "txtGroupId", @placeholder = "Group ID", @class = "form-control", @id = "txtGroupId" })
+                                @*<input type="text" style="width:98%; height:39px; padding-left:10px; border: thin solid #e5e5e5;" />*@
+                                <span class="textfieldRequiredMsg">A value is required.</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2 col-sm-2">
+                        <div class="form-group">
+                            <label> Title</label><span id="spryselect1">
+                                <label for="title"></label>
+                                <select name="title" id="title" class="form-control" style="width:98%; height:39px; padding-left:10px; border: thin solid #e5e5e5;">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="2">2</option>
+                                    <option value="2">2</option>
+                                </select>
+                                <span class="selectRequiredMsg">Please select an item.</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-md-7 col-sm-7">
+                        <div class="form-group">
+                            <label>Name</label>
+                            <span id="sprytextfield1">
+                                @Html.TextBoxFor(m => Model._delegate.Name, new { @name = "txtName", @placeholder = "Delegate Name", @class = "form-control", @id = "txtName" })
+                                @*<input type="text" style="width:98%; height:39px; padding-left:10px; border: thin solid #e5e5e5;">*@
+                                <span class="textfieldRequiredMsg">A value is required.</span>
+                            </span>
+                                </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label>Passport No</label>
+                            <span id="sprytextfield3">
+                                @Html.TextBoxFor(m => Model._delegate.PassportNo, new { @name = "txtPassportNo", @placeholder = "Passport No", @class = "form-control", @id = "txtPassportNo" })
+                                <span class="textfieldRequiredMsg">A value is required.</span>
+                            </span>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label>Nationality</label>
+                            <span id="sprytextfield4">
+                                @Html.TextBoxFor(m => Model._delegate.Nationality, new { @name = "txtNationality", @placeholder = "Nationality", @class = "form-control", @id = "txtNationality" })
+                                <span class="textfieldRequiredMsg">A value is required.</span>
+                            </span>
+                        </div>
+                    </div>                    
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label>Country</label>
+                            <span id="sprytextfield5">
+                                <input type="text" style="width:98%; height:39px; padding-left:10px; border: thin solid #e5e5e5;" />
+                                <span class="textfieldRequiredMsg">A value is required.</span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label>Address</label>
+                            <span id="sprytextfield6">
+                                @Html.TextBoxFor(m => Model._delegate.DelegateAddress, new { @name = "txtAddress", @placeholder = "Address", @class = "form-control", @id = "txtAddress" })
+                                @*<input type="text" style="width:98%; height:39px; padding-left:10px; border: thin solid #e5e5e5;" />*@
+                                <span class="textfieldRequiredMsg">A value is required.</span>
+                            </span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label>Contact No</label>
+                            <span id="sprytextfield7">
+                                @Html.TextBoxFor(m => Model._delegate.ContactNo, new { @name = "txtContactNo", @placeholder = "Contact No", @class = "form-control", @id = "txtContactNo" })
+                                <span class="textfieldRequiredMsg">A value is required.</span>
+                             </span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label>E-mail Address</label>
+                            <span id="sprytextfield8">
+                                @Html.TextBoxFor(m => Model._delegate.EmailAddress, new { @name = "txtEmailAddress", @placeholder = "Email Address", @class = "form-control", @id = "txtEmailAddress" })
+                                <span class="textfieldRequiredMsg">A value is required.</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <br />
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="submit" value="Submit" class="btn btn-primary" id="submit-contact">
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="row city">
+        <div class="col-md-6">
+
+        </div>
+        <div class="col-md-6">
+
+        </div>
+    </div>
+</div>
+
+@section scriptLocation{    
+    <script type="text/javascript">
+var sprytextfield2 = new Spry.Widget.ValidationTextField("sprytextfield2");
+var spryselect1 = new Spry.Widget.ValidationSelect("spryselect1");
+var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1");
+var sprytextfield3 = new Spry.Widget.ValidationTextField("sprytextfield3");
+var sprytextfield4 = new Spry.Widget.ValidationTextField("sprytextfield4");
+var sprytextfield5 = new Spry.Widget.ValidationTextField("sprytextfield5");
+var sprytextfield6 = new Spry.Widget.ValidationTextField("sprytextfield6");
+var sprytextfield7 = new Spry.Widget.ValidationTextField("sprytextfield7");
+var sprytextfield8 = new Spry.Widget.ValidationTextField("sprytextfield8");
+</script>
+}
