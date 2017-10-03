@@ -52,7 +52,7 @@ namespace JWConvention.Controllers
             if(_group != null)
             {
                 TempData["ReservationModel"] = objModel;
-                return RedirectToAction("Index", "Reservation", new { HotelCode = "CGC" });
+                return RedirectToAction("Index", "Reservation", new { HotelCode = objModel._hotelCode });
             }
             else
             {

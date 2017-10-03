@@ -57,7 +57,8 @@ $('#datetimepicker1').datetimepicker({
 $('#datetimepicker2').datetimepicker({
     timepicker:false,
     format:'d/m/Y',
-    formatDate:'Y/m/d',
+    formatDate: 'Y/m/d',
+    minDate: '2017/08/05',
 });
 $('#datetimepicker3').datetimepicker({
     timepicker: false,

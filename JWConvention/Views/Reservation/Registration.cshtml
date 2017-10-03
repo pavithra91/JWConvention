@@ -4,7 +4,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@Html.HiddenFor(m=>m._hotelCode, Model._hotelCode)
 
 <div id="main-content">
     <h1>Delegate Details</h1>
@@ -17,6 +16,8 @@
 
             @using (Html.BeginForm("RegisterDelegate", "Reservation", FormMethod.Post))
             {
+                @Html.HiddenFor(m => m._hotelCode, new { @value = Model._hotelCode })
+
                 <div class="row">
 
                     <div class="col-md-2 col-sm-2">

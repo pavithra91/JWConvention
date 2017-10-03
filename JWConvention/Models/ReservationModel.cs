@@ -8,6 +8,7 @@ namespace JWConvention.Models
     public class ReservationModel
     {
         public List<JW_Rooms> _roomList { get; set; }
+        public List<JW_Hotels> _hotelList { get; set; }
         public JW_Hotels _hotel { get; set; }
         public string _roomType { get; set; }
         public string _packageType { get; set; }
