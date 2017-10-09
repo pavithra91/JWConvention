@@ -8,28 +8,37 @@
 <div id="main-content">
 
     <h1>Booking Details</h1>
-    <div class="row">
 
+@using (Html.BeginForm())
+{
+
+    @Html.HiddenFor(m => Model.BookingID);
+
+    <div class="row">
         <div class="form_title">
             <h3><strong><i class="icon-pencil"></i></strong>Fill the form below</h3>
         </div>
         <div class="step">
 
             <div id="message-contact"></div>
-
-            @using (Html.BeginForm("SaveReservation", "Reservation", FormMethod.Post))
-            {
                 <div class="row">
                     <div class="col-md-6 col-sm-6">
                         <div class="form-group">
                             <label>Package</label>
                             <span id="spryselect2">
-                                <select name="drpPackages" id="drpPackages" class="form-control">
+
+                                @Html.DropDownListFor(m => Model._packageType, new SelectList(new List<Object> {
+                                   new { value = 0 , text = "7 Night Accomadation"  },
+                                   new { value = 1 , text = "8 Night Accomadation" },
+                                   new { value = 2 , text = "9 Night Accomadation"  },
+                                   new { value = 3 , text = "10 Night Accomadation"  }}, "value", "text"), "- Please Select Package -", new { @name = "drpPackages", @class = "form-control", @id = "drpPackages" })
+
+                                @*<select name="drpPackages" id="drpPackages" class="form-control">
                                     <option value="0">Please Select</option>
                                     <option value="1">7 Night Accomadation</option>
                                     <option value="2">8 Night Accomadation</option>
                                     <option value="3">9 Night Accomadation</option>
-                                </select>
+                                </select>*@
                                 <span class="selectInvalidMsg">Please select a valid item.</span><span class="selectRequiredMsg">Please select an item.</span>
                             </span>
                         </div>
@@ -42,12 +51,6 @@
                             <label>Room Catagory</label>
                             <span id="spryselect1">
                                 @Html.DropDownListFor(m => Model._roomType, new SelectList(Model._roomList, "RoomID", "RoomType"), "- Please Select Room Category -", new { @name = "drpRoomType", @class = "form-control", @id = "drpRoomType" })
-                                @*<select name="hotel2" class="form-control">
-                                        <option value="0">Please Select</option>
-                                        <option value="1">Cinnamon Grand Colombo - Deluxe Room</option>
-                                        <option value="2">Cinnamon Red Colombo - Standard Room</option>
-                                        <option>Cinnamon Lakeside Colombo - Deluxe Room</option>
-                                    </select>*@
                                 <span class="selectInvalidMsg">Please select a valid item.</span><span class="selectRequiredMsg">Please select an item.</span>
                             </span>
                         </div>
@@ -57,12 +60,10 @@
                         <div class="form-group">
                             <label>Occupancy</label>
                             <span id="spryselect1">
-                                <select name="drpOccupancy" id="drpOccupancy" class="form-control">
-                                    <option value="0">Please Select</option>
-                                    <option value="1">Single</option>
-                                    <option value="2">Double</option>
-                                    <option value="3">Triple</option>
-                                </select>
+                                @Html.DropDownListFor(m => Model._Occupancy, new SelectList(new List<Object> {
+                                   new { value = 0 , text = "Single"  },
+                                   new { value = 1 , text = "Double" },
+                                   new { value = 2 , text = "Triple"} }, "value", "text"), "- Please Select Room Category -", new { @name = "drpOccupancy", @class = "form-control", @id = "drpOccupancy" })
                                 <span class="selectInvalidMsg">Please select a valid item.</span><span class="selectRequiredMsg">Please select an item.</span>
                             </span>
                         </div>
@@ -72,12 +73,10 @@
                         <div class="form-group">
                             <label>Bed Perferance</label>
                             <span id="spryselect2">
-                                <select name="drpPerferences" id="drpPerferences" class="form-control">
-                                    <option value="0">Please Select</option>
-                                    <option value="1">Double</option>
-                                    <option value="2">Twin</option>
 
-                                </select>
+                                @Html.DropDownListFor(m => Model._Occupancy, new SelectList(new List<Object> {
+                                   new { value = 0 , text = "Double"  },
+                                   new { value = 1 , text = "Twin" } }, "value", "text"), "- Please Select Bed Perferance -", new { @name = "drpPerferences", @class = "form-control", @id = "drpPerferences" })
                                 <span class="selectInvalidMsg">Please select a valid item.</span><span class="selectRequiredMsg">Please select an item.</span>
                             </span>
                         </div>
@@ -91,7 +90,6 @@
                             <label>From</label>
                             <span id="sprytextfield1">
                                 @Html.TextBoxFor(m => Model._fromDate, new { @name = "datetimepicker2", @class = "form-control", value = "", @id = "datetimepicker2" })
-                                @*<input type="text" id="datetimepicker2" style="width:98%; height:39px; padding-left:10px; border: thin solid #e5e5e5;" />*@
                                 <span class="textfieldRequiredMsg">A value is required.</span>
                             </span>
                         </div>
@@ -100,8 +98,7 @@
                         <div class="form-group">
                             <label>To</label>
                             <span id="sprytextfield2">
-                                @Html.TextBoxFor(m => Model._toDate, new { @name = "datetimepicker3", @class = "form-control", value = "", @id = "datetimepicker3" })
-                                @*<input type="text" id="datetimepicker3" style="width:98%; height:39px; padding-left:10px; border: thin solid #e5e5e5;" />*@
+                                @Html.TextBoxFor(m => Model._toDate, new { @name = "datetimepicker3", @readonly = "readonly", @class = "form-control", value = "", @id = "datetimepicker3" })
                                 <span class="textfieldRequiredMsg">A value is required.</span>
                             </span>
                         </div>
@@ -120,21 +117,21 @@
                     <div class="col-md-6 col-sm-6">
                         <div class="form-group">
                             <label>Date</label>
-                            <input type="text" id="datetimepicker7" style="width:98%; height:39px; padding-left:10px; border: thin solid #e5e5e5;">
+                            @Html.TextBoxFor(m => Model._ArrivalDate, new { @name = "datetimepicker7", @class = "form-control", value = "", @style = "width:98%; height:39px; padding-left:10px; border: thin solid #e5e5e5;", @id = "datetimepicker7" })
                         </div>
                     </div>
 
                     <div class="col-md-2 col-sm-2">
                         <div class="form-group">
                             <label>Time</label>
-                            <input type="text" id="datetimepicker1" style="width:98%; height:39px; padding-left:10px; border: thin solid #e5e5e5;">
+                            @Html.TextBoxFor(m => Model._ArrivalTime, new { @name = "datetimepicker1", @class = "form-control", value = "", @style = "width:98%; height:35px; padding-left:10px; border: thin solid #e5e5e5;", @id = "datetimepicker1" })
                         </div>
                     </div>
 
                     <div class="col-md-6 col-sm-6">
                         <div class="form-group">
                             <label>Flight Number</label>
-                            <input type="text" class="form-control">
+                            @Html.TextBoxFor(m => Model._ArrivalFlightNumber, new { @name = "txtArrivalFlightNumber", @class = "form-control", value = "", @id = "txtArrivalFlightNumber" })
                         </div>
                     </div>
                 </div>
@@ -153,21 +150,21 @@
                     <div class="col-md-6 col-sm-6">
                         <div class="form-group">
                             <label>Date</label>
-                            <input type="text" id="datetimepicker8" style="width:98%; height:35px; padding-left:10px; border: thin solid #e5e5e5;">
+                            @Html.TextBoxFor(m => Model._DepartureDate, new { @name = "datetimepicker8", @class = "form-control", value = "", @style = "width:98%; height:39px; padding-left:10px; border: thin solid #e5e5e5;", @id = "datetimepicker8" })                         
                         </div>
                     </div>
 
                     <div class="col-md-2 col-sm-2">
                         <div class="form-group">
                             <label>Time</label>
-                            <input type="text" id="datetimepicker5" style="width:98%; height:35px; padding-left:10px; border: thin solid #e5e5e5;">
+                            @Html.TextBoxFor(m => Model._DepartureTime, new { @name = "datetimepicker5", @class = "form-control", value = "", @style = "width:98%; height:35px; padding-left:10px; border: thin solid #e5e5e5;", @id = "datetimepicker5" })
                         </div>
                     </div>
 
                     <div class="col-md-6 col-sm-6">
                         <div class="form-group">
                             <label>Flight Number</label>
-                            <input type="text" class="form-control">
+                            @Html.TextBoxFor(m => Model._DepartureFlightNumber, new { @name = "txtDepartureFlightNumber", @class = "form-control", value = "", @id = "txtDepartureFlightNumber" })
                         </div>
                     </div>
                 </div>
@@ -195,12 +192,14 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label>Message</label>
-                            <textarea rows="5" id="message_contact" name="message_contact" class="form-control" placeholder="Write your message" style="height:200px;"></textarea>
+                            @Html.TextAreaFor(m => Model.Remarks, new { @name = "txtRemarks", @rows = "5", @class = "form-control", value = "", @id = "txtRemarks", @placeholder = "Write your message", @style = "height:200px;" })
                         </div>
                     </div>
                 </div>
 
                 <div class="row">
+                        @*@{ Html.RenderPartial("_AdditionalAccomerdation", Model);  }*@
+
                     <div class="col-md-6 col-sm-6">
                         <label for="chkPassport">
                             Additional Accommodation &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -215,53 +214,38 @@
                             <div class="col-md-2 col-sm-2">
                                 <div class="form-group">
                                     <label>Date</label>
-                                    <input type="text" id="datetimepicker9" style="width:98%; height:35px; padding-left:10px; border: thin solid #e5e5e5;">
+                                    @Html.TextBoxFor(m => Model._additional._addtionalDate, new { @name = "datetimepicker9", @class = "form-control", value = "", @style = "width:98%; height:35px; padding-left:10px; border: thin solid #e5e5e5;", @id = "datetimepicker9" })
                                 </div>
                             </div>
                             <div class="col-md-2 col-sm-2">
                                 <div class="form-group">
                                     <label>Hotel</label>
-                                    @Html.DropDownListFor(m => Model._roomType, new SelectList(Model._hotelList, "HotelID", "HotelName"), "- Please Select Hotel Category -", new { @name = "drpAddtionalHotels", @class = "form-control", @id = "drpAddtionalHotels" })
-                                    @*<select name="hotel" class="form-control">
-                                        <option value="0">Please Select</option>
-                                        <option value="1">Cinnamon Grand Colombo</option>
-                                        <option value="2">Cinnamon Red Colombo</option>
-                                        <option>Cinnamon Lakeside Colombo</option>
-                                    </select>*@
+                                    @Html.DropDownListFor(m => Model._additional._addtionalHotel, new SelectList(Model._hotelList, "HotelID", "HotelName"), "- Please Select Hotel Category -", new { @name = "drpAddtionalHotels", @class = "form-control", @id = "drpAddtionalHotels" })
                                 </div>
                             </div>
                             <div class="col-md-2 col-sm-2">
                                 <div class="form-group">
                                     <label>Room</label>
-                                    <select name="hotel" class="form-control">
-                                        <option value="0">Please Select</option>
-                                        <option value="1">Standard</option>
-                                        <option value="2">Deluxe</option>
-                                        <option>Superior</option>
-                                    </select>
+                                    @Html.DropDownListFor(m => Model._additional._addtionalRoom, new SelectList(Model._roomList, "RoomID", "RoomType"), "- Please Select Room Category -", new { @name = "drpAddtionalRooms", @class = "form-control", @id = "drpAddtionalRooms" })
                                 </div>
                             </div>
                             <div class="col-md-2 col-sm-2">
                                 <div class="form-group">
                                     <label>Basis</label>
-                                    <select name="hotel" class="form-control">
-                                        <option value="0">Full Board</option>
-                                        <option value="1">Half Board</option>
-                                        <option value="2">Room Only</option>
-
-                                    </select>
+                                    @Html.DropDownListFor(m => Model._additional._addtionalBasis, new SelectList(new List<Object> {
+                                   new { value = 0 , text = "Half Board"  },
+                                   new { value = 1 , text = "Full Board" },
+                                   new { value = 2 , text = "Room Only"  }}, "value", "text"), "- Please Select Board Basis -", new { @name = "drpAddtionalBasis", @class = "form-control", @id = "drpAddtionalBasis" })
                                 </div>
                             </div>
 
                             <div class="col-md-2 col-sm-2">
                                 <div class="form-group">
                                     <label>Nights</label>
-                                    <select name="hotel" class="form-control">
-                                        <option value="0">Please Select</option>
-                                        <option value="1">01</option>
-                                        <option value="2">02</option>
-                                        <option>03</option>
-                                    </select>
+                                    @Html.DropDownListFor(m => Model._additional._addtionalNoOfNights, new SelectList(new List<Object> {
+                                   new { value = 0 , text = "01"  },
+                                   new { value = 1 , text = "02" },
+                                   new { value = 2 , text = "03"  }}, "value", "text"), "- Please Select No of Nights -", new { @name = "drpAddtionalNoOfNights", @class = "form-control", @id = "drpAddtionalNoOfNights" })
                                 </div>
                             </div>
 
@@ -269,65 +253,57 @@
                             <div class="col-md-2 col-sm-2">
                                 <div class="form-group">
                                     <label>No of Rooms</label>
-                                    <select name="hotel" class="form-control">
-                                        <option value="0">Please Select</option>
-                                        <option value="1">01</option>
-                                        <option value="2">02</option>
-                                        <option>03</option>
-                                    </select>
+                                    @Html.DropDownListFor(m => Model._additional._addtionalNoOfRooms, new SelectList(new List<Object> {
+                                   new { value = 0 , text = "01"  },
+                                   new { value = 1 , text = "02" },
+                                   new { value = 2 , text = "03"  }}, "value", "text"), "- Please Select No of Rooms -", new { @name = "drpAddtionalNoOfRooms", @class = "form-control", @id = "drpAddtionalNoOfRooms" })
                                 </div>
                             </div>
 
                             <div class="form-group" style="padding-top:30px;">
-
-                                <input type="submit" value="Submit" class="btn btn-primary" id="submit-contact">
+                                <input type="submit" name="cancel" value="Cancel" formaction="SaveAdditionalRoom" formmethod="post" />
                             </div>
                         </div>
                         <br />
-                        </div>
+                    </div>
 
-                        <div class="form-group">
-                            <table width="100%" border="1">
-                                <tr align="center">
-                                    <td>Date</td>
-                                    <td>Hotel</td>
-                                    <td>Room Type</td>
-                                    <td>Basis</td>
-                                    <td>Nights</td>
-                                    <td>No of Rooms</td>
-                                    <td>Action</td>
-                                </tr>
+                    <div class="form-group">
+                        <table width="100%" border="1">
+                            <tr align="center">
+                                <td>Date</td>
+                                <td>Hotel</td>
+                                <td>Room Type</td>
+                                <td>Basis</td>
+                                <td>Nights</td>
+                                <td>No of Rooms</td>
+                                <td>Action</td>
+                            </tr>
+                            
+                            @foreach (var item in Model._additionalList)
+                            {
                                 <tr>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                </tr>
-                                <tr>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
+                                    <td>@item._addtionalDate</td>
+                                    <td>@item._addtionalHotel</td>
+                                    <td>@item._addtionalRoom</td>
+                                    <td>@item._addtionalBasis</td>
+                                    <td>@item._addtionalNoOfNights</td>
+                                    <td>@item._addtionalNoOfRooms</td>
                                     <td>&nbsp;</td>
                                 </tr>
-                            </table>
-                        </div>
+                            }
+
+                        </table>
+                    </div>
+
                    </div>
                    
 
 
                 <div class="row">
                     <div class="col-md-6">
-                        <input type="submit" value="Submit" class="btn btn-primary" id="submit-contact">
+                        <input type="submit" name="save" value="Save" formaction="SaveReservation" formmethod="post" />
                     </div>
-                </div>
-            }
-                
+                </div>               
         </div>
     </div>
 
@@ -344,6 +320,7 @@
 
 
     </div>
+}
 </div>
 
 
@@ -369,42 +346,53 @@
             }
         });
 
-        debugger;
         $("#drpPackages").change(function () {
             var PackageID = $('#drpPackages').val();
-            debugger;
             if (PackageID == 1)
             {
-                debugger;
                 $('#datetimepicker2').datetimepicker({
-                    minDate: '2017/10/05',
-                    startDate: '2017/10/05',
+                    minDate: '2018/06/30',
+                    startDate: '2018/06/30',
+                    maxDate: '2018/07/03',
                 });
 
                 $('#datetimepicker3').datetimepicker({
-                    maxDate: '2017/10/05',
+                    maxDate: '2018/07/03',
                 });
             }
             else if (PackageID == 2)
             {
                 $('#datetimepicker2').datetimepicker({
-                    minDate: '2017/11/12',
-                    startDate: '2017/10/05',
+                    minDate: '2018/06/29',
+                    startDate: '2018/06/29',
+                    maxDate: '2018/07/03',
                 });
 
                 $('#datetimepicker3').datetimepicker({
-                    maxDate: '2017/10/05',
+                    maxDate: '2018/10/05',
                 });
             }
             else if(PackageID == 3)
             {
                 $('#datetimepicker2').datetimepicker({
-                    minDate: '2017/11/12',
-                    startDate: '2017/10/05',
+                    minDate: '2018/06/28',
+                    startDate: '2018/06/28',
+                    maxDate: '2018/07/03',
                 });
 
                 $('#datetimepicker3').datetimepicker({
-                    maxDate: '2017/10/05',
+                    maxDate: '2018/10/05',
+                });
+            }
+            else if (PackageID == 4) {
+                $('#datetimepicker2').datetimepicker({
+                    minDate: '2018/06/27',
+                    startDate: '2018/06/27',
+                    maxDate: '2018/07/03',
+                });
+
+                $('#datetimepicker3').datetimepicker({
+                    maxDate: '2018/10/05',
                 });
             }
         });
@@ -412,7 +400,38 @@
 
 
 
+        $("#datetimepicker2").change(function () {
+            debugger;
+            var startDate = $('#datetimepicker2').val();
+            
+            var PackageID = $('#drpPackages').val();
 
+            if (PackageID == 1){
+                var nextDay = new Date(startDate);
+                nextDay.setDate(nextDay.getDate() + 7)
+
+
+                $('#datetimepicker3').val(nextDay.toString());
+            }
+            else if(PackageID == 2){
+                var nextDay = new Date(startDate);
+                nextDay.setDate(nextDay.getDate() + 8)
+
+                $('#datetimepicker3').val(nextDay.toString);
+            }
+            else if (PackageID == 3) {
+                var nextDay = new Date(startDate);
+                nextDay.setDate(nextDay.getDate() + 9)
+
+                $('#datetimepicker3').val(nextDay.toString());
+            }
+            else if (PackageID == 4) {
+                var nextDay = new Date(startDate);
+                nextDay.setDate(nextDay.getDate() + 10)
+
+                $('#datetimepicker3').val(nextDay.toString());
+            }
+        });
 
 
     </script>

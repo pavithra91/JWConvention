@@ -5,6 +5,23 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="wlakerstoursdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="JW_AdditionalRoomRates">
+          <Key>
+            <PropertyRef Name="AUTOID" />
+          </Key>
+          <Property Name="AUTOID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoomID" Type="int" />
+          <Property Name="Occupancy" Type="varchar" MaxLength="20" />
+          <Property Name="BoardBasis" Type="varchar" MaxLength="20" />
+          <Property Name="RoomRate" Type="float" />
+        </EntityType>
+        <EntityType Name="JW_BookingID">
+          <Key>
+            <PropertyRef Name="AUTOID" />
+          </Key>
+          <Property Name="AUTOID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BookingID" Type="varchar" MaxLength="20" />
+        </EntityType>
         <EntityType Name="JW_GroupID">
           <Key>
             <PropertyRef Name="AUTOID" />
@@ -21,8 +38,19 @@
           <Property Name="HotelID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="HotelCode" Type="varchar" MaxLength="10" />
           <Property Name="HotelName" Type="varchar" MaxLength="100" />
-          <Property Name="HotelDescription" Type="varchar" MaxLength="500" />
+          <Property Name="HotelDescription" Type="varchar" MaxLength="1000" />
           <Property Name="HotelImage" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="JW_RoomRate">
+          <Key>
+            <PropertyRef Name="AUTOID" />
+          </Key>
+          <Property Name="AUTOID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoomID" Type="int" />
+          <Property Name="Occupancy" Type="varchar" MaxLength="20" />
+          <Property Name="RoomRate" Type="float" />
+          <Property Name="Allotment" Type="int" />
+          <Property Name="RemainingAllotment" Type="int" />
         </EntityType>
         <EntityType Name="JW_Rooms">
           <Key>
@@ -31,6 +59,20 @@
           <Property Name="RoomID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="HotelID" Type="int" />
           <Property Name="RoomType" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="JW_TempReservation">
+          <Key>
+            <PropertyRef Name="AUTOID" />
+          </Key>
+          <Property Name="AUTOID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BookingID" Type="varchar" MaxLength="20" />
+          <Property Name="AdditionalHotel" Type="varchar" MaxLength="100" />
+          <Property Name="AdditionalRoom" Type="varchar" MaxLength="100" />
+          <Property Name="AdditionalOccupancy" Type="varchar" MaxLength="20" />
+          <Property Name="AdditionalBasis" Type="varchar" MaxLength="20" />
+          <Property Name="AdditionalNoofRooms" Type="int" />
+          <Property Name="AdditionalNoofNights" Type="int" />
+          <Property Name="AdditionalDate" Type="date" />
         </EntityType>
         <EntityType Name="JW_Users">
           <Key>
@@ -53,14 +95,50 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="RoomIDfk_AddtionalRates">
+          <End Role="JW_Rooms" Type="Self.JW_Rooms" Multiplicity="0..1" />
+          <End Role="JW_AdditionalRoomRates" Type="Self.JW_AdditionalRoomRates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JW_Rooms">
+              <PropertyRef Name="RoomID" />
+            </Principal>
+            <Dependent Role="JW_AdditionalRoomRates">
+              <PropertyRef Name="RoomID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RoomRateIDfk">
+          <End Role="JW_Rooms" Type="Self.JW_Rooms" Multiplicity="0..1" />
+          <End Role="JW_RoomRate" Type="Self.JW_RoomRate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JW_Rooms">
+              <PropertyRef Name="RoomID" />
+            </Principal>
+            <Dependent Role="JW_RoomRate">
+              <PropertyRef Name="RoomID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="wlakerstoursdbModelStoreContainer">
+          <EntitySet Name="JW_AdditionalRoomRates" EntityType="Self.JW_AdditionalRoomRates" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JW_BookingID" EntityType="Self.JW_BookingID" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="JW_GroupID" EntityType="Self.JW_GroupID" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="JW_Hotels" EntityType="Self.JW_Hotels" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JW_RoomRate" EntityType="Self.JW_RoomRate" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="JW_Rooms" EntityType="Self.JW_Rooms" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JW_TempReservation" EntityType="Self.JW_TempReservation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="JW_Users" EntityType="Self.JW_Users" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="HotelIDfk_JWHotels" Association="Self.HotelIDfk_JWHotels">
             <End Role="JW_Hotels" EntitySet="JW_Hotels" />
             <End Role="JW_Rooms" EntitySet="JW_Rooms" />
+          </AssociationSet>
+          <AssociationSet Name="RoomIDfk_AddtionalRates" Association="Self.RoomIDfk_AddtionalRates">
+            <End Role="JW_Rooms" EntitySet="JW_Rooms" />
+            <End Role="JW_AdditionalRoomRates" EntitySet="JW_AdditionalRoomRates" />
+          </AssociationSet>
+          <AssociationSet Name="RoomRateIDfk" Association="Self.RoomRateIDfk">
+            <End Role="JW_Rooms" EntitySet="JW_Rooms" />
+            <End Role="JW_RoomRate" EntitySet="JW_RoomRate" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -85,6 +163,18 @@
             <End Role="JW_Hotels" EntitySet="JW_Hotels" />
             <End Role="JW_Rooms" EntitySet="JW_Rooms" />
           </AssociationSet>
+          <EntitySet Name="JW_AdditionalRoomRates" EntityType="wlakerstoursdbModel.JW_AdditionalRoomRates" />
+          <EntitySet Name="JW_RoomRate" EntityType="wlakerstoursdbModel.JW_RoomRate" />
+          <AssociationSet Name="RoomIDfk_AddtionalRates" Association="wlakerstoursdbModel.RoomIDfk_AddtionalRates">
+            <End Role="JW_Rooms" EntitySet="JW_Rooms" />
+            <End Role="JW_AdditionalRoomRates" EntitySet="JW_AdditionalRoomRates" />
+          </AssociationSet>
+          <AssociationSet Name="RoomRateIDfk" Association="wlakerstoursdbModel.RoomRateIDfk">
+            <End Role="JW_Rooms" EntitySet="JW_Rooms" />
+            <End Role="JW_RoomRate" EntitySet="JW_RoomRate" />
+          </AssociationSet>
+          <EntitySet Name="JW_TempReservation" EntityType="wlakerstoursdbModel.JW_TempReservation" />
+          <EntitySet Name="JW_BookingID" EntityType="wlakerstoursdbModel.JW_BookingID" />
         </EntityContainer>
         <EntityType Name="JW_Users">
           <Key>
@@ -102,7 +192,7 @@
           <Property Name="HotelID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="HotelCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="HotelName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="HotelDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="HotelDescription" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
           <Property Name="HotelImage" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="JW_Rooms" Relationship="wlakerstoursdbModel.HotelIDfk_JWHotels" FromRole="JW_Hotels" ToRole="JW_Rooms" />
         </EntityType>
@@ -114,6 +204,8 @@
           <Property Name="HotelID" Type="Int32" />
           <Property Name="RoomType" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="JW_Hotels" Relationship="wlakerstoursdbModel.HotelIDfk_JWHotels" FromRole="JW_Rooms" ToRole="JW_Hotels" />
+          <NavigationProperty Name="JW_AdditionalRoomRates" Relationship="wlakerstoursdbModel.RoomIDfk_AddtionalRates" FromRole="JW_Rooms" ToRole="JW_AdditionalRoomRates" />
+          <NavigationProperty Name="JW_RoomRate" Relationship="wlakerstoursdbModel.RoomRateIDfk" FromRole="JW_Rooms" ToRole="JW_RoomRate" />
         </EntityType>
         <Association Name="HotelIDfk_JWHotels">
           <End Type="wlakerstoursdbModel.JW_Hotels" Role="JW_Hotels" Multiplicity="0..1" />
@@ -127,6 +219,74 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="JW_AdditionalRoomRates">
+          <Key>
+            <PropertyRef Name="AUTOID" />
+          </Key>
+          <Property Name="AUTOID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoomID" Type="Int32" />
+          <Property Name="Occupancy" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="BoardBasis" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="RoomRate" Type="Double" />
+          <NavigationProperty Name="JW_Rooms" Relationship="wlakerstoursdbModel.RoomIDfk_AddtionalRates" FromRole="JW_AdditionalRoomRates" ToRole="JW_Rooms" />
+        </EntityType>
+        <EntityType Name="JW_RoomRate">
+          <Key>
+            <PropertyRef Name="AUTOID" />
+          </Key>
+          <Property Name="AUTOID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoomID" Type="Int32" />
+          <Property Name="Occupancy" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="RoomRate" Type="Double" />
+          <Property Name="Allotment" Type="Int32" />
+          <Property Name="RemainingAllotment" Type="Int32" />
+          <NavigationProperty Name="JW_Rooms" Relationship="wlakerstoursdbModel.RoomRateIDfk" FromRole="JW_RoomRate" ToRole="JW_Rooms" />
+        </EntityType>
+        <Association Name="RoomIDfk_AddtionalRates">
+          <End Type="wlakerstoursdbModel.JW_Rooms" Role="JW_Rooms" Multiplicity="0..1" />
+          <End Type="wlakerstoursdbModel.JW_AdditionalRoomRates" Role="JW_AdditionalRoomRates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JW_Rooms">
+              <PropertyRef Name="RoomID" />
+            </Principal>
+            <Dependent Role="JW_AdditionalRoomRates">
+              <PropertyRef Name="RoomID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RoomRateIDfk">
+          <End Type="wlakerstoursdbModel.JW_Rooms" Role="JW_Rooms" Multiplicity="0..1" />
+          <End Type="wlakerstoursdbModel.JW_RoomRate" Role="JW_RoomRate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JW_Rooms">
+              <PropertyRef Name="RoomID" />
+            </Principal>
+            <Dependent Role="JW_RoomRate">
+              <PropertyRef Name="RoomID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="JW_TempReservation">
+          <Key>
+            <PropertyRef Name="AUTOID" />
+          </Key>
+          <Property Name="AUTOID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BookingID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="AdditionalHotel" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="AdditionalRoom" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="AdditionalOccupancy" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="AdditionalBasis" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="AdditionalNoofRooms" Type="Int32" />
+          <Property Name="AdditionalNoofNights" Type="Int32" />
+          <Property Name="AdditionalDate" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="JW_BookingID">
+          <Key>
+            <PropertyRef Name="AUTOID" />
+          </Key>
+          <Property Name="AUTOID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BookingID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -170,6 +330,52 @@
                 <ScalarProperty Name="RoomType" ColumnName="RoomType" />
                 <ScalarProperty Name="HotelID" ColumnName="HotelID" />
                 <ScalarProperty Name="RoomID" ColumnName="RoomID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JW_AdditionalRoomRates">
+            <EntityTypeMapping TypeName="wlakerstoursdbModel.JW_AdditionalRoomRates">
+              <MappingFragment StoreEntitySet="JW_AdditionalRoomRates">
+                <ScalarProperty Name="RoomRate" ColumnName="RoomRate" />
+                <ScalarProperty Name="BoardBasis" ColumnName="BoardBasis" />
+                <ScalarProperty Name="Occupancy" ColumnName="Occupancy" />
+                <ScalarProperty Name="RoomID" ColumnName="RoomID" />
+                <ScalarProperty Name="AUTOID" ColumnName="AUTOID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JW_RoomRate">
+            <EntityTypeMapping TypeName="wlakerstoursdbModel.JW_RoomRate">
+              <MappingFragment StoreEntitySet="JW_RoomRate">
+                <ScalarProperty Name="RemainingAllotment" ColumnName="RemainingAllotment" />
+                <ScalarProperty Name="Allotment" ColumnName="Allotment" />
+                <ScalarProperty Name="RoomRate" ColumnName="RoomRate" />
+                <ScalarProperty Name="Occupancy" ColumnName="Occupancy" />
+                <ScalarProperty Name="RoomID" ColumnName="RoomID" />
+                <ScalarProperty Name="AUTOID" ColumnName="AUTOID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JW_TempReservation">
+            <EntityTypeMapping TypeName="wlakerstoursdbModel.JW_TempReservation">
+              <MappingFragment StoreEntitySet="JW_TempReservation">
+                <ScalarProperty Name="AdditionalDate" ColumnName="AdditionalDate" />
+                <ScalarProperty Name="AdditionalNoofNights" ColumnName="AdditionalNoofNights" />
+                <ScalarProperty Name="AdditionalNoofRooms" ColumnName="AdditionalNoofRooms" />
+                <ScalarProperty Name="AdditionalBasis" ColumnName="AdditionalBasis" />
+                <ScalarProperty Name="AdditionalOccupancy" ColumnName="AdditionalOccupancy" />
+                <ScalarProperty Name="AdditionalRoom" ColumnName="AdditionalRoom" />
+                <ScalarProperty Name="AdditionalHotel" ColumnName="AdditionalHotel" />
+                <ScalarProperty Name="BookingID" ColumnName="BookingID" />
+                <ScalarProperty Name="AUTOID" ColumnName="AUTOID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JW_BookingID">
+            <EntityTypeMapping TypeName="wlakerstoursdbModel.JW_BookingID">
+              <MappingFragment StoreEntitySet="JW_BookingID">
+                <ScalarProperty Name="BookingID" ColumnName="BookingID" />
+                <ScalarProperty Name="AUTOID" ColumnName="AUTOID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

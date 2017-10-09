@@ -14,10 +14,21 @@ namespace JWConvention
     
     public partial class JW_Rooms
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public JW_Rooms()
+        {
+            this.JW_AdditionalRoomRates = new HashSet<JW_AdditionalRoomRates>();
+            this.JW_RoomRate = new HashSet<JW_RoomRate>();
+        }
+    
         public int RoomID { get; set; }
         public Nullable<int> HotelID { get; set; }
         public string RoomType { get; set; }
     
         public virtual JW_Hotels JW_Hotels { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<JW_AdditionalRoomRates> JW_AdditionalRoomRates { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<JW_RoomRate> JW_RoomRate { get; set; }
     }
 }

@@ -10,6 +10,12 @@
         <EntityTypeShape EntityType="wlakerstoursdbModel.JW_Hotels" Width="1.5" PointX="0.75" PointY="3.875" />
         <EntityTypeShape EntityType="wlakerstoursdbModel.JW_Rooms" Width="1.5" PointX="3" PointY="4.125" />
         <AssociationConnector Association="wlakerstoursdbModel.HotelIDfk_JWHotels" />
+        <EntityTypeShape EntityType="wlakerstoursdbModel.JW_AdditionalRoomRates" Width="1.5" PointX="5.25" PointY="6.625" />
+        <EntityTypeShape EntityType="wlakerstoursdbModel.JW_RoomRate" Width="1.5" PointX="5.25" PointY="3.625" />
+        <AssociationConnector Association="wlakerstoursdbModel.RoomIDfk_AddtionalRates" />
+        <AssociationConnector Association="wlakerstoursdbModel.RoomRateIDfk" />
+        <EntityTypeShape EntityType="wlakerstoursdbModel.JW_TempReservation" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="wlakerstoursdbModel.JW_BookingID" Width="1.5" PointX="7.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

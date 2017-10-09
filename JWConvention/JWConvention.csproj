@@ -311,13 +311,25 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>JWdb.edmx</DependentUpon>
     </Compile>
+    <Compile Include="JW_AdditionalRoomRates.cs">
+      <DependentUpon>JWdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="JW_BookingID.cs">
+      <DependentUpon>JWdb.tt</DependentUpon>
+    </Compile>
     <Compile Include="JW_GroupID.cs">
       <DependentUpon>JWdb.tt</DependentUpon>
     </Compile>
     <Compile Include="JW_Hotels.cs">
       <DependentUpon>JWdb.tt</DependentUpon>
     </Compile>
+    <Compile Include="JW_RoomRate.cs">
+      <DependentUpon>JWdb.tt</DependentUpon>
+    </Compile>
     <Compile Include="JW_Rooms.cs">
+      <DependentUpon>JWdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="JW_TempReservation.cs">
       <DependentUpon>JWdb.tt</DependentUpon>
     </Compile>
     <Compile Include="JW_Users.cs">
@@ -356,6 +368,7 @@
     <None Include="Properties\PublishProfiles\jwconvention2018 - Web Deploy.pubxml" />
     <Content Include="Views\Reservation\Index.cshtml" />
     <Content Include="Views\Reservation\Registration.cshtml" />
+    <Content Include="Views\Reservation\_AdditionalAccomerdation.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

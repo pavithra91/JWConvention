@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\Pavithra\Desktop\Development Projects\JWConvention\JWConvention\JWdb.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\pavithraj\Desktop\Development Project\JWConvention\JWConvention\JWdb.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.
