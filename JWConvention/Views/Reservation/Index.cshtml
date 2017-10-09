@@ -26,19 +26,22 @@
                         <div class="form-group">
                             <label>Package</label>
                             <span id="spryselect2">
-
-                                @Html.DropDownListFor(m => Model._packageType, new SelectList(new List<Object> {
+                                @if (Model._packageType == null)
+                                {
+                                    @Html.DropDownListFor(m => Model._packageType, new SelectList(new List<Object> {
                                    new { value = 0 , text = "7 Night Accomadation"  },
                                    new { value = 1 , text = "8 Night Accomadation" },
                                    new { value = 2 , text = "9 Night Accomadation"  },
                                    new { value = 3 , text = "10 Night Accomadation"  }}, "value", "text"), "- Please Select Package -", new { @name = "drpPackages", @class = "form-control", @id = "drpPackages" })
-
-                                @*<select name="drpPackages" id="drpPackages" class="form-control">
-                                    <option value="0">Please Select</option>
-                                    <option value="1">7 Night Accomadation</option>
-                                    <option value="2">8 Night Accomadation</option>
-                                    <option value="3">9 Night Accomadation</option>
-                                </select>*@
+                                }
+                                else
+                                {
+                                    @Html.DropDownListFor(m => Model._packageType, new SelectList(new List<Object> {
+                                   new { value = 0 , text = "7 Night Accomadation"  },
+                                   new { value = 1 , text = "8 Night Accomadation" },
+                                   new { value = 2 , text = "9 Night Accomadation"  },
+                                   new { value = 3 , text = "10 Night Accomadation"  }}, "value", "text"), "- Please Select Package -", new { @name = "drpPackages", @class = "form-control", @id = "drpPackages", @disabled = "disabled" })
+                                }
                                 <span class="selectInvalidMsg">Please select a valid item.</span><span class="selectRequiredMsg">Please select an item.</span>
                             </span>
                         </div>
@@ -50,7 +53,14 @@
                         <div class="form-group">
                             <label>Room Catagory</label>
                             <span id="spryselect1">
+                            @if (Model._roomType == null)
+                            {
                                 @Html.DropDownListFor(m => Model._roomType, new SelectList(Model._roomList, "RoomID", "RoomType"), "- Please Select Room Category -", new { @name = "drpRoomType", @class = "form-control", @id = "drpRoomType" })
+                            }
+                            else
+                            {
+                                @Html.DropDownListFor(m => Model._roomType, new SelectList(Model._roomList, "RoomID", "RoomType"), "- Please Select Room Category -", new { @name = "drpRoomType", @class = "form-control", @id = "drpRoomType", @disabled = "disabled" })
+                            }                                
                                 <span class="selectInvalidMsg">Please select a valid item.</span><span class="selectRequiredMsg">Please select an item.</span>
                             </span>
                         </div>
@@ -60,10 +70,20 @@
                         <div class="form-group">
                             <label>Occupancy</label>
                             <span id="spryselect1">
+                            @if (Model._Occupancy == null)
+                            {
+                                @Html.DropDownListFor(m => Model._Occupancy, new SelectList(new List<Object> {
+                                  new { value = 0 , text = "Single"  },
+                                  new { value = 1 , text = "Double" },
+                                  new { value = 2 , text = "Triple"} }, "value", "text"), "- Please Select Room Category -", new { @name = "drpOccupancy", @class = "form-control", @id = "drpOccupancy" })
+                            }
+                            else
+                            {
                                 @Html.DropDownListFor(m => Model._Occupancy, new SelectList(new List<Object> {
                                    new { value = 0 , text = "Single"  },
                                    new { value = 1 , text = "Double" },
-                                   new { value = 2 , text = "Triple"} }, "value", "text"), "- Please Select Room Category -", new { @name = "drpOccupancy", @class = "form-control", @id = "drpOccupancy" })
+                                   new { value = 2 , text = "Triple"} }, "value", "text"), "- Please Select Room Category -", new { @name = "drpOccupancy", @class = "form-control", @id = "drpOccupancy", @disabled = "disabled" })
+                            }      
                                 <span class="selectInvalidMsg">Please select a valid item.</span><span class="selectRequiredMsg">Please select an item.</span>
                             </span>
                         </div>
@@ -73,10 +93,18 @@
                         <div class="form-group">
                             <label>Bed Perferance</label>
                             <span id="spryselect2">
-
-                                @Html.DropDownListFor(m => Model._Occupancy, new SelectList(new List<Object> {
+                            @if (Model._BedPerferance == null)
+                            {
+                                @Html.DropDownListFor(m => Model._BedPerferance, new SelectList(new List<Object> {
                                    new { value = 0 , text = "Double"  },
                                    new { value = 1 , text = "Twin" } }, "value", "text"), "- Please Select Bed Perferance -", new { @name = "drpPerferences", @class = "form-control", @id = "drpPerferences" })
+                            }
+                            else
+                            {
+                                @Html.DropDownListFor(m => Model._BedPerferance, new SelectList(new List<Object> {
+                                   new { value = 0 , text = "Double"  },
+                                   new { value = 1 , text = "Twin" } }, "value", "text"), "- Please Select Bed Perferance -", new { @name = "drpPerferences", @class = "form-control", @id = "drpPerferences", @disabled = "disabled" })
+                            }
                                 <span class="selectInvalidMsg">Please select a valid item.</span><span class="selectRequiredMsg">Please select an item.</span>
                             </span>
                         </div>
@@ -89,7 +117,14 @@
                         <div class="form-group">
                             <label>From</label>
                             <span id="sprytextfield1">
+                            @if (Model._fromDate == null)
+                            {
                                 @Html.TextBoxFor(m => Model._fromDate, new { @name = "datetimepicker2", @class = "form-control", value = "", @id = "datetimepicker2" })
+                            }
+                            else
+                            {
+                                @Html.TextBoxFor(m => Model._fromDate, new { @name = "datetimepicker2", @class = "form-control", value = "", @id = "datetimepicker2", @disabled = "disabled" })
+                            }
                                 <span class="textfieldRequiredMsg">A value is required.</span>
                             </span>
                         </div>
@@ -98,7 +133,14 @@
                         <div class="form-group">
                             <label>To</label>
                             <span id="sprytextfield2">
-                                @Html.TextBoxFor(m => Model._toDate, new { @name = "datetimepicker3", @readonly = "readonly", @class = "form-control", value = "", @id = "datetimepicker3" })
+                                @if (Model._toDate == null)
+                                {
+                                    @Html.TextBoxFor(m => Model._toDate, new { @name = "datetimepicker3", @readonly = "readonly", @class = "form-control", value = "", @id = "datetimepicker3" })
+                                }
+                                else
+                                {
+                                    @Html.TextBoxFor(m => Model._toDate, new { @name = "datetimepicker3", @readonly = "readonly", @class = "form-control", value = "", @id = "datetimepicker3", @disabled = "disabled" })
+                                }                              
                                 <span class="textfieldRequiredMsg">A value is required.</span>
                             </span>
                         </div>
@@ -278,20 +320,23 @@
                                 <td>No of Rooms</td>
                                 <td>Action</td>
                             </tr>
-                            
-                            @foreach (var item in Model._additionalList)
-                            {
-                                <tr>
-                                    <td>@item._addtionalDate</td>
-                                    <td>@item._addtionalHotel</td>
-                                    <td>@item._addtionalRoom</td>
-                                    <td>@item._addtionalBasis</td>
-                                    <td>@item._addtionalNoOfNights</td>
-                                    <td>@item._addtionalNoOfRooms</td>
-                                    <td>&nbsp;</td>
-                                </tr>
+                            @{
+                                if (Model._additionalList != null)
+                                {
+                                    foreach (var item in Model._additionalList)
+                                    {
+                                        <tr>
+                                            <td>@item._addtionalDate</td>
+                                            <td>@item._addtionalHotel</td>
+                                            <td>@item._addtionalRoom</td>
+                                            <td>@item._addtionalBasis</td>
+                                            <td>@item._addtionalNoOfNights</td>
+                                            <td>@item._addtionalNoOfRooms</td>
+                                            <td>&nbsp;</td>
+                                        </tr>
+                                    }
+                                }
                             }
-
                         </table>
                     </div>
 
