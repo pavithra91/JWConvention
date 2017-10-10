@@ -1,0 +1,156 @@
+﻿@model JWConvention.Models.ReservationModel
+@{
+    ViewBag.Title = "AddtionalAccomerdation";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@using (Html.BeginForm())
+{
+
+    <div class="row">
+        <h5>
+            Please include if addtional accomerdation is required.
+        </h5>
+    </div>
+
+<div class="row">
+    @*@{ Html.RenderPartial("_AdditionalAccomerdation", Model);  }*@
+    @*<div class="col-md-6 col-sm-6">
+        <label for="chkPassport">
+            Additional Accommodation &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="checkbox" id="chkPassport" onclick="ShowHideDiv(this)" />
+        </label>
+    </div>*@
+
+    <br /><br />
+    <div id="dvPassport">
+        <div class="row">
+            <div class="col-md-2 col-sm-2">
+                <div class="form-group">
+                    <label>Date</label>
+                    @Html.TextBoxFor(m => Model._additional._addtionalDate, new { @name = "datetimepicker9", @class = "form-control", value = "", @style = "width:98%; height:35px; padding-left:10px; border: thin solid #e5e5e5;", @id = "datetimepicker9" })
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-2">
+                <div class="form-group">
+                    <label>Hotel</label>
+                    @Html.DropDownListFor(m => Model._additional._addtionalHotel, new SelectList(Model._hotelList, "HotelName", "HotelName"), "- Please Select Hotel Category -", new { @name = "drpAddtionalHotels", @class = "form-control", @id = "drpAddtionalHotels" })
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-2">
+                <div class="form-group">
+                    <label>Room</label>
+                    @Html.DropDownListFor(m => Model._additional._addtionalRoom, new SelectList(Model._roomList, "RoomType", "RoomType"), "- Please Select Room Category -", new { @name = "drpAddtionalRooms", @class = "form-control", @id = "drpAddtionalRooms" })
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-2">
+                <div class="form-group">
+                    <label>Basis</label>
+                    @Html.DropDownListFor(m => Model._additional._addtionalBasis, new SelectList(new List<Object> {
+                                   new { value = "Half Board" , text = "Half Board"  },
+                                   new { value = "Full Board" , text = "Full Board" },
+                                   new { value = "Room Only" , text = "Room Only"  }}, "value", "text"), "- Please Select Board Basis -", new { @name = "drpAddtionalBasis", @class = "form-control", @id = "drpAddtionalBasis" })
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-2">
+                <div class="form-group">
+                    <label>Nights</label>
+                    @Html.DropDownListFor(m => Model._additional._addtionalNoOfNights, new SelectList(new List<Object> {
+                                   new { value = 1 , text = "01"  },
+                                   new { value = 2 , text = "02" },
+                                   new { value = 3 , text = "03"  }}, "value", "text"), "- Please Select No of Nights -", new { @name = "drpAddtionalNoOfNights", @class = "form-control", @id = "drpAddtionalNoOfNights" })
+                </div>
+            </div>
+
+            <div class="col-md-2 col-sm-2">
+                <div class="form-group">
+                    <label>No of Rooms</label>
+                    @Html.DropDownListFor(m => Model._additional._addtionalNoOfRooms, new SelectList(new List<Object> {
+                                   new { value = 1 , text = "01"  },
+                                   new { value = 2 , text = "02" },
+                                   new { value = 3 , text = "03"  }}, "value", "text"), "- Please Select No of Rooms -", new { @name = "drpAddtionalNoOfRooms", @class = "form-control", @id = "drpAddtionalNoOfRooms" })
+                </div>
+            </div>
+            <div class="form-group" style="padding-top:30px;">
+                <input type="submit" name="cancel" value="Add" class="btn btn-primary" formaction="SaveAdditionalRoom" formmethod="post" />
+                <input type="submit" name="skip" value="Skip" class="btn btn-primary" formaction="Summery" formmethod="post" />
+            </div>
+        </div>
+        <br />
+    </div>
+    <div class="form-group">
+        <table width="100%" border="1">
+            <tr align="center">
+                <td>Date</td>
+                <td>Hotel</td>
+                <td>Room Type</td>
+                <td>Basis</td>
+                <td>Nights</td>
+                <td>No of Rooms</td>
+                <td>Action</td>
+            </tr>
+            @{
+                if (Model._additionalList != null)
+                {
+                    foreach (var item in Model._additionalList)
+                    {
+                        <tr>
+                            <td>@item._addtionalDate</td>
+                            <td>@item._addtionalHotel</td>
+                            <td>@item._addtionalRoom</td>
+                            <td>@item._addtionalBasis</td>
+                            <td>@item._addtionalNoOfNights</td>
+                            <td>@item._addtionalNoOfRooms</td>
+                            <td>
+                                @*<a href="@Url.Action("ManageUsers","Account", new { id = item. })" style="margin-left:10px;">
+                                    <i class="fa fa-pencil-square-o"></i>
+                                </a>*@
+                            </td>
+                        </tr>
+                    }
+                }
+            }
+        </table>
+    </div>
+</div>
+
+                }
+
+
+
+@section scriptLocation{   
+    
+<script src="~/scripts/Reservation/Index.js"></script>
+     
+    <script>
+        $("#drpAddtionalHotels").change(function () {
+            var HotelName = $('#drpAddtionalHotels').val();
+            $.ajax({
+                type: 'GET',
+                url: "http://localhost:58536/Service/GetHotelRooms?HotelId=" + HotelName,
+                data: "",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    debugger;
+                    var r = result;
+                    if (result != null) {
+                        var dropMarket = $("[id*=drpAddtionalRooms]");
+                        dropMarket.empty().append('<option selected="selected" value="0">Please select</option>');
+
+                        $.each(result, function () {
+                            dropMarket.append($("<option></option>").val(this['id']).html(this['name']));
+                        });
+
+                    } else {
+                        alert("fail");
+                    }
+                },
+                error: function (req, status, err) {
+                    alert("Error");
+                }
+            });
+        });
+    </script>
+}

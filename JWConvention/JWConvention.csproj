@@ -369,6 +369,8 @@
     <Content Include="Views\Reservation\Index.cshtml" />
     <Content Include="Views\Reservation\Registration.cshtml" />
     <Content Include="Views\Reservation\_AdditionalAccomerdation.cshtml" />
+    <Content Include="Views\Reservation\AddtionalAccomerdation.cshtml" />
+    <Content Include="Views\Reservation\Summery.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
