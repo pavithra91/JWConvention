@@ -131,15 +131,19 @@ namespace JWConvention.Controllers
             ReservationModel objModel = new ReservationModel();
             objModel._hotelCode = HotelCode;
             objModel._delegate = new DelegateModel();
+
+            TempData["ReservationModel"] = objModel;
             return View(objModel);
         }
 
         [HttpPost]
-        public ActionResult RegisterDelegate(ReservationModel objModel)
+        public ActionResult RegisterDelegate(ReservationModel _tempobjModel)
         {
-            JW_GroupID _group = _context.JW_GroupID.Where(w => w.GroupID == objModel._delegate.GroupId).FirstOrDefault();
+            JW_GroupID _group = _context.JW_GroupID.Where(w => w.GroupID == _tempobjModel._delegate.GroupId).FirstOrDefault();
             if(_group != null)
             {
+                ReservationModel objModel = TempData["ReservationModel"] as ReservationModel;
+                objModel._delegate = _tempobjModel._delegate;
                 TempData["ReservationModel"] = objModel;
                 return RedirectToAction("Index", "Reservation", new { HotelCode = objModel._hotelCode });
             }

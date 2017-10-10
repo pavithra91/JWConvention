@@ -1,8 +1,163 @@
-﻿
+﻿@model JWConvention.Models.ReservationModel
 @{
     ViewBag.Title = "Summery";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Summery</h2>
+
+<div id="main-content">
+
+    <h1>Delegate Details</h1>
+    <div class="row">
+
+
+
+        <div class="form_title">
+
+            <p>
+
+            </p>
+        </div>
+        <div class="step">
+
+            <div id="message-contact"></div>
+            <form method="post" action="assets/contact.php" id="contactform">
+                <!-- End row -->
+                <div class="row">
+
+                    <div class="col-md-2 col-sm-2">
+                        <div class="form-group">
+                            <label>Group ID</label>
+                            @Html.TextBoxFor(m => Model._delegate.GroupId, new { @name = "txtGroupId", @class = "form-control", @id = "txtGroupId", @style = "width:98%; height:39px; padding-left:10px; border: thin solid #FFF;", @readonly= "readonly" })
+                            @*<input type="text" style="width:98%; height:39px; padding-left:10px; border: thin solid #FFF;" readonly="readonly" placeholder="sdsdsdsdsd" />*@
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2 col-sm-2">
+                        <div class="form-group">
+                            <label> Title</label>
+
+                            <input type="text" style="width:98%; height:39px; padding-left:10px; border: thin solid #FFF;" readonly="readonly" placeholder="sdsdsdsdsd" />
+                        </div>
+                    </div>
+                    <div class="col-md-7 col-sm-7">
+                        <div class="form-group">
+                            <label>Name</label>
+                            @Html.TextBoxFor(m => Model._delegate.GroupId, new { @name = "txtName", @class = "form-control", @id = "txtName", @style = "width:98%; height:39px; padding-left:10px; border: thin solid #FFF;", @readonly = "readonly" })
+                            @*<input type="text" style="width:98%; height:39px; padding-left:10px; border: thin solid #FFF;" readonly="readonly" placeholder="sdsdsdsdsd" />*@
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label>Email</label>
+                            @Html.TextBoxFor(m => Model._delegate.GroupId, new { @name = "txtEmail", @class = "form-control", @id = "txtEmail", @style = "width:98%; height:39px; padding-left:10px; border: thin solid #FFF;", @readonly = "readonly" })
+                            @*<input type="text" style="width:98%; height:39px; padding-left:10px; border: thin solid #FFF;" readonly="readonly" placeholder="sdsdsdsdsd" />*@
+                        </div>
+                    </div>
+                </div>
+
+
+                <hr />
+
+                <div class="row">
+
+
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label>Hotel</label>
+                            @*@Html.TextBoxFor(m => Model._delegate.GroupId, new { @name = "txtEmail", @class = "form-control", @id = "txtEmail", @style = "width:98%; height:39px; padding-left:10px; border: thin solid #FFF;", @readonly = "readonly" })*@
+                            <input type="text" style="width:98%; height:39px; padding-left:10px; border: thin solid #FFF;" readonly="readonly" placeholder="sdsdsdsdsd" />
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label>Package</label>
+                            <input type="text" style="width:98%; height:39px; padding-left:10px; border: thin solid #FFF;" readonly="readonly" placeholder="sdsdsdsdsd" />
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label>From Date</label>
+                            <input type="text" style="width:98%; height:39px; padding-left:10px; border: thin solid #FFF;" readonly="readonly" placeholder="sdsdsdsdsd" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label>To Date</label>
+                            <input type="text" style="width:98%; height:39px; padding-left:10px; border: thin solid #FFF;" readonly="readonly" placeholder="sdsdsdsdsd" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label>Total Cost</label>
+                            <input type="text" style="width:98%; height:39px; padding-left:10px; border: thin solid #FFF;" readonly="readonly" placeholder="sdsdsdsdsd" />
+                        </div>
+                    </div>
+                </div>
+
+                <hr />
+
+
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label>Additional Accomadation</label>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label>Gride</label>
+
+                        </div>
+                    </div>
+                </div>
+
+                <br />
+                <hr />
+
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label>Total Cost</label>
+                            <input type="text" style="width:98%; height:39px; padding-left:10px; border: thin solid #FFF;" readonly="readonly" placeholder="sdsdsdsdsd" />
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
 
