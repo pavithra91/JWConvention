@@ -8,6 +8,18 @@
 @using (Html.BeginForm())
 {
 
+    @Html.HiddenFor(m => Model.BookingID);
+    @Html.HiddenFor(m => Model._hotelCode);
+    @Html.HiddenFor(m => Model._delegate.GroupId);
+    @Html.HiddenFor(m => Model._delegate.Name);
+    @Html.HiddenFor(m => Model._delegate.ContactNo);
+    @Html.HiddenFor(m => Model._delegate.Country);
+    @Html.HiddenFor(m => Model._delegate.DelegateAddress);
+    @Html.HiddenFor(m => Model._delegate.EmailAddress);
+    @Html.HiddenFor(m => Model._delegate.Nationality);
+    @Html.HiddenFor(m => Model._delegate.PassportNo);
+    @Html.HiddenFor(m => Model._delegate.Title);
+
     <div class="row">
         <h5>
             Please include if addtional accomerdation is required.
@@ -111,6 +123,10 @@
                 }
             }
         </table>
+    </div>
+
+    <div class="form-group" style="padding-top:30px;">
+        <input type="submit" name="Continue" value="Continue" class="btn btn-primary" formaction="PostSummery" formmethod="post" />
     </div>
 </div>
 

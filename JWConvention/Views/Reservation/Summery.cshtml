@@ -13,7 +13,6 @@
 
 
         <div class="form_title">
-
             <p>
 
             </p>
@@ -44,7 +43,7 @@
                     <div class="col-md-7 col-sm-7">
                         <div class="form-group">
                             <label>Name</label>
-                            @Html.TextBoxFor(m => Model._delegate.GroupId, new { @name = "txtName", @class = "form-control", @id = "txtName", @style = "width:98%; height:39px; padding-left:10px; border: thin solid #FFF;", @readonly = "readonly" })
+                            @Html.TextBoxFor(m => Model._delegate.Name, new { @name = "txtName", @class = "form-control", @id = "txtName", @style = "width:98%; height:39px; padding-left:10px; border: thin solid #FFF;", @readonly = "readonly" })
                             @*<input type="text" style="width:98%; height:39px; padding-left:10px; border: thin solid #FFF;" readonly="readonly" placeholder="sdsdsdsdsd" />*@
                         </div>
                     </div>
@@ -58,7 +57,7 @@
                     <div class="col-md-6 col-sm-6">
                         <div class="form-group">
                             <label>Email</label>
-                            @Html.TextBoxFor(m => Model._delegate.GroupId, new { @name = "txtEmail", @class = "form-control", @id = "txtEmail", @style = "width:98%; height:39px; padding-left:10px; border: thin solid #FFF;", @readonly = "readonly" })
+                            @Html.TextBoxFor(m => Model._delegate.EmailAddress, new { @name = "txtEmail", @class = "form-control", @id = "txtEmail", @style = "width:98%; height:39px; padding-left:10px; border: thin solid #FFF;", @readonly = "readonly" })
                             @*<input type="text" style="width:98%; height:39px; padding-left:10px; border: thin solid #FFF;" readonly="readonly" placeholder="sdsdsdsdsd" />*@
                         </div>
                     </div>
