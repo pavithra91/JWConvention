@@ -16,6 +16,8 @@
         <AssociationConnector Association="wlakerstoursdbModel.RoomRateIDfk" />
         <EntityTypeShape EntityType="wlakerstoursdbModel.JW_TempReservation" Width="1.5" PointX="5.375" PointY="0.75" />
         <EntityTypeShape EntityType="wlakerstoursdbModel.JW_BookingID" Width="1.5" PointX="7.375" PointY="0.75" />
+        <EntityTypeShape EntityType="wlakerstoursdbModel.JW_Delegates" Width="1.5" PointX="0.75" PointY="7.75" />
+        <EntityTypeShape EntityType="wlakerstoursdbModel.JW_Reservation" Width="1.5" PointX="2.75" PointY="7.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

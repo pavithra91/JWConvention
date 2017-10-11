@@ -12,16 +12,17 @@ namespace JWConvention
     using System;
     using System.Collections.Generic;
     
-    public partial class JW_RoomRate
+    public partial class JW_Delegates
     {
+        public string BookingID { get; set; }
+        public string Title { get; set; }
+        public string DelegeteName { get; set; }
+        public string Email { get; set; }
+        public string ContactNo { get; set; }
+        public string Address { get; set; }
+        public string Country { get; set; }
+        public string PassportNo { get; set; }
+        public string Nationality { get; set; }
         public int AUTOID { get; set; }
-        public Nullable<int> RoomID { get; set; }
-        public string Occupancy { get; set; }
-        public Nullable<double> RoomRate { get; set; }
-        public Nullable<int> Allotment { get; set; }
-        public Nullable<int> RemainingAllotment { get; set; }
-        public Nullable<int> PackageId { get; set; }
-    
-        public virtual JW_Rooms JW_Rooms { get; set; }
     }
 }

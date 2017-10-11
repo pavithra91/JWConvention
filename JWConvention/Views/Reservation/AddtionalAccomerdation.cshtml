@@ -99,7 +99,7 @@
                 <td>Basis</td>
                 <td>Nights</td>
                 <td>No of Rooms</td>
-                <td>Action</td>
+                @*<td>Action</td>*@
             </tr>
             @{
                 if (Model._additionalList != null)
@@ -113,11 +113,11 @@
                             <td>@item._addtionalBasis</td>
                             <td>@item._addtionalNoOfNights</td>
                             <td>@item._addtionalNoOfRooms</td>
-                            <td>
-                                @*<a href="@Url.Action("ManageUsers","Account", new { id = item. })" style="margin-left:10px;">
+                            @*<td>
+                                <a href="@Url.Action("ManageUsers","Account", new { id = item. })" style="margin-left:10px;">
                                     <i class="fa fa-pencil-square-o"></i>
-                                </a>*@
-                            </td>
+                                </a>
+                            </td>*@
                         </tr>
                     }
                 }
@@ -143,7 +143,7 @@
             var HotelName = $('#drpAddtionalHotels').val();
             $.ajax({
                 type: 'GET',
-                url: "http://localhost:58536/Service/GetHotelRooms?HotelId=" + HotelName,
+                url: "http://jwconvention2018.azurewebsites.net/Service/GetHotelRooms?HotelId=" + HotelName,
                 data: "",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",

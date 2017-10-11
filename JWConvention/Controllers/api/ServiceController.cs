@@ -41,7 +41,9 @@ namespace JWConvention.Controllers.api
                 }
 
                 _fromDate = _fromDate.AddDays(days);
-                return Json(_fromDate.ToShortDateString(), JsonRequestBehavior.AllowGet);
+                string _testDate = _fromDate.ToString("dd/MM/yyyy");
+
+                return Json(_testDate, JsonRequestBehavior.AllowGet);
             }
             catch(Exception ex)
             {

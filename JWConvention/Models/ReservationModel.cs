@@ -13,6 +13,7 @@ namespace JWConvention.Models
         public List<JW_Rooms> _roomList { get; set; }
         public List<JW_Hotels> _hotelList { get; set; }
         public JW_Hotels _hotel { get; set; }
+        public JW_Rooms _room { get; set; }
 
 
         public string _roomType { get; set; }
@@ -34,6 +35,12 @@ namespace JWConvention.Models
         public string Remarks { get; set; }
 
 
+        public float PackageCost { get; set; }
+        public float AdditionalACCost { get; set; }
+        public float TotalCost { get; set; }
+        public bool isAdvancedPayment { get; set; }
+
+
         public string _hotelCode { get; set; }
 
         public DelegateModel _delegate { get; set; }
@@ -53,6 +60,7 @@ namespace JWConvention.Models
         public string _addtionalOccupancy { get; set; }
         public int _addtionalNoOfNights { get; set; }
         public int _addtionalNoOfRooms { get; set; }
+        public float _Cost { get; set; }
     }
 
     public class DelegateModel

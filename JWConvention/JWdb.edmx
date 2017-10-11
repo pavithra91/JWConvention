@@ -22,6 +22,21 @@
           <Property Name="AUTOID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="BookingID" Type="varchar" MaxLength="20" />
         </EntityType>
+        <EntityType Name="JW_Delegates">
+          <Key>
+            <PropertyRef Name="AUTOID" />
+          </Key>
+          <Property Name="BookingID" Type="varchar" MaxLength="20" />
+          <Property Name="Title" Type="varchar" MaxLength="200" />
+          <Property Name="DelegeteName" Type="varchar" MaxLength="150" />
+          <Property Name="Email" Type="varchar" MaxLength="100" />
+          <Property Name="ContactNo" Type="varchar" MaxLength="20" />
+          <Property Name="Address" Type="varchar" MaxLength="500" />
+          <Property Name="Country" Type="varchar" MaxLength="100" />
+          <Property Name="PassportNo" Type="varchar" MaxLength="20" />
+          <Property Name="Nationality" Type="varchar" MaxLength="100" />
+          <Property Name="AUTOID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
         <EntityType Name="JW_GroupID">
           <Key>
             <PropertyRef Name="AUTOID" />
@@ -41,6 +56,28 @@
           <Property Name="HotelDescription" Type="varchar" MaxLength="1000" />
           <Property Name="HotelImage" Type="varchar" MaxLength="200" />
         </EntityType>
+        <EntityType Name="JW_Reservation">
+          <Key>
+            <PropertyRef Name="AUTOID" />
+          </Key>
+          <Property Name="AUTOID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BookingID" Type="varchar" MaxLength="20" />
+          <Property Name="HotelName" Type="varchar" MaxLength="150" />
+          <Property Name="Roomtype" Type="varchar" MaxLength="100" />
+          <Property Name="Occupancy" Type="varchar" MaxLength="100" />
+          <Property Name="BedPreference" Type="varchar" MaxLength="50" />
+          <Property Name="Basis" Type="varchar" MaxLength="50" />
+          <Property Name="CheckInDate" Type="date" />
+          <Property Name="CheckInTime" Type="time" Precision="7" />
+          <Property Name="CheckOutDate" Type="date" />
+          <Property Name="CheckOutTime" Type="time" Precision="7" />
+          <Property Name="IsArrivalTransportRequired" Type="bit" />
+          <Property Name="IsDepartureTransportRequired" Type="bit" />
+          <Property Name="ArrivalFlightNo" Type="varchar" MaxLength="100" />
+          <Property Name="DepartureFlightNo" Type="varchar" MaxLength="100" />
+          <Property Name="IsAdvancePayment" Type="bit" />
+          <Property Name="TotalCost" Type="float" />
+        </EntityType>
         <EntityType Name="JW_RoomRate">
           <Key>
             <PropertyRef Name="AUTOID" />
@@ -51,6 +88,7 @@
           <Property Name="RoomRate" Type="float" />
           <Property Name="Allotment" Type="int" />
           <Property Name="RemainingAllotment" Type="int" />
+          <Property Name="PackageId" Type="int" />
         </EntityType>
         <EntityType Name="JW_Rooms">
           <Key>
@@ -122,8 +160,10 @@
         <EntityContainer Name="wlakerstoursdbModelStoreContainer">
           <EntitySet Name="JW_AdditionalRoomRates" EntityType="Self.JW_AdditionalRoomRates" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="JW_BookingID" EntityType="Self.JW_BookingID" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JW_Delegates" EntityType="Self.JW_Delegates" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="JW_GroupID" EntityType="Self.JW_GroupID" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="JW_Hotels" EntityType="Self.JW_Hotels" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JW_Reservation" EntityType="Self.JW_Reservation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="JW_RoomRate" EntityType="Self.JW_RoomRate" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="JW_Rooms" EntityType="Self.JW_Rooms" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="JW_TempReservation" EntityType="Self.JW_TempReservation" Schema="dbo" store:Type="Tables" />
@@ -175,6 +215,8 @@
           </AssociationSet>
           <EntitySet Name="JW_TempReservation" EntityType="wlakerstoursdbModel.JW_TempReservation" />
           <EntitySet Name="JW_BookingID" EntityType="wlakerstoursdbModel.JW_BookingID" />
+          <EntitySet Name="JW_Delegates" EntityType="wlakerstoursdbModel.JW_Delegates" />
+          <EntitySet Name="JW_Reservation" EntityType="wlakerstoursdbModel.JW_Reservation" />
         </EntityContainer>
         <EntityType Name="JW_Users">
           <Key>
@@ -241,6 +283,7 @@
           <Property Name="Allotment" Type="Int32" />
           <Property Name="RemainingAllotment" Type="Int32" />
           <NavigationProperty Name="JW_Rooms" Relationship="wlakerstoursdbModel.RoomRateIDfk" FromRole="JW_RoomRate" ToRole="JW_Rooms" />
+          <Property Name="PackageId" Type="Int32" />
         </EntityType>
         <Association Name="RoomIDfk_AddtionalRates">
           <End Type="wlakerstoursdbModel.JW_Rooms" Role="JW_Rooms" Multiplicity="0..1" />
@@ -286,6 +329,43 @@
           </Key>
           <Property Name="AUTOID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="BookingID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="JW_Delegates">
+          <Key>
+            <PropertyRef Name="AUTOID" />
+          </Key>
+          <Property Name="BookingID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Title" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="DelegeteName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ContactNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Country" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PassportNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Nationality" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="AUTOID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="JW_Reservation">
+          <Key>
+            <PropertyRef Name="AUTOID" />
+          </Key>
+          <Property Name="AUTOID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BookingID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="HotelName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Roomtype" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Occupancy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="BedPreference" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Basis" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CheckInDate" Type="DateTime" Precision="0" />
+          <Property Name="CheckInTime" Type="Time" Precision="7" />
+          <Property Name="CheckOutDate" Type="DateTime" Precision="0" />
+          <Property Name="CheckOutTime" Type="Time" Precision="7" />
+          <Property Name="IsArrivalTransportRequired" Type="Boolean" />
+          <Property Name="IsDepartureTransportRequired" Type="Boolean" />
+          <Property Name="ArrivalFlightNo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DepartureFlightNo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IsAdvancePayment" Type="Boolean" />
+          <Property Name="TotalCost" Type="Double" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -347,6 +427,7 @@
           <EntitySetMapping Name="JW_RoomRate">
             <EntityTypeMapping TypeName="wlakerstoursdbModel.JW_RoomRate">
               <MappingFragment StoreEntitySet="JW_RoomRate">
+                <ScalarProperty Name="PackageId" ColumnName="PackageId" />
                 <ScalarProperty Name="RemainingAllotment" ColumnName="RemainingAllotment" />
                 <ScalarProperty Name="Allotment" ColumnName="Allotment" />
                 <ScalarProperty Name="RoomRate" ColumnName="RoomRate" />
@@ -374,6 +455,45 @@
           <EntitySetMapping Name="JW_BookingID">
             <EntityTypeMapping TypeName="wlakerstoursdbModel.JW_BookingID">
               <MappingFragment StoreEntitySet="JW_BookingID">
+                <ScalarProperty Name="BookingID" ColumnName="BookingID" />
+                <ScalarProperty Name="AUTOID" ColumnName="AUTOID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JW_Delegates">
+            <EntityTypeMapping TypeName="wlakerstoursdbModel.JW_Delegates">
+              <MappingFragment StoreEntitySet="JW_Delegates">
+                <ScalarProperty Name="AUTOID" ColumnName="AUTOID" />
+                <ScalarProperty Name="Nationality" ColumnName="Nationality" />
+                <ScalarProperty Name="PassportNo" ColumnName="PassportNo" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="DelegeteName" ColumnName="DelegeteName" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="BookingID" ColumnName="BookingID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JW_Reservation">
+            <EntityTypeMapping TypeName="wlakerstoursdbModel.JW_Reservation">
+              <MappingFragment StoreEntitySet="JW_Reservation">
+                <ScalarProperty Name="TotalCost" ColumnName="TotalCost" />
+                <ScalarProperty Name="IsAdvancePayment" ColumnName="IsAdvancePayment" />
+                <ScalarProperty Name="DepartureFlightNo" ColumnName="DepartureFlightNo" />
+                <ScalarProperty Name="ArrivalFlightNo" ColumnName="ArrivalFlightNo" />
+                <ScalarProperty Name="IsDepartureTransportRequired" ColumnName="IsDepartureTransportRequired" />
+                <ScalarProperty Name="IsArrivalTransportRequired" ColumnName="IsArrivalTransportRequired" />
+                <ScalarProperty Name="CheckOutTime" ColumnName="CheckOutTime" />
+                <ScalarProperty Name="CheckOutDate" ColumnName="CheckOutDate" />
+                <ScalarProperty Name="CheckInTime" ColumnName="CheckInTime" />
+                <ScalarProperty Name="CheckInDate" ColumnName="CheckInDate" />
+                <ScalarProperty Name="Basis" ColumnName="Basis" />
+                <ScalarProperty Name="BedPreference" ColumnName="BedPreference" />
+                <ScalarProperty Name="Occupancy" ColumnName="Occupancy" />
+                <ScalarProperty Name="Roomtype" ColumnName="Roomtype" />
+                <ScalarProperty Name="HotelName" ColumnName="HotelName" />
                 <ScalarProperty Name="BookingID" ColumnName="BookingID" />
                 <ScalarProperty Name="AUTOID" ColumnName="AUTOID" />
               </MappingFragment>
