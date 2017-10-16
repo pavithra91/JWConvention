@@ -7,7 +7,7 @@
 
 <div id="main-content">
 
-    <h1>Booking Details</h1>
+    <h1>@Model._hotel.HotelName </h1>
 
 @using (Html.BeginForm("SaveReservation", "Reservation", FormMethod.Post, new { name = "theForm" }))
 {
@@ -25,12 +25,12 @@
 
     <div class="row">
         <div class="form_title">
-            <h3><strong><i class="icon-pencil"></i></strong>Fill the form below</h3>
+            <h3><strong><i class="icon-pencil"></i></strong>Update Reservation Details Below</h3>
         </div>
         <div class="step">
 
             <div id="message-contact"></div>
-                <div class="row">
+                @*<div class="row">
                     <div class="col-md-6 col-sm-6">
                         <div class="form-group">
                             <label>Package</label>
@@ -55,7 +55,7 @@
                             </span>
                         </div>
                     </div>
-                </div>
+                </div>*@
 
                 <div class="row">
                     <div class="col-md-6 col-sm-6">
@@ -144,11 +144,11 @@
                             <span id="sprytextfield2">
                                 @if (Model._toDate == null)
                                 {
-                                    @Html.TextBoxFor(m => Model._toDate, new { @name = "datetimepicker3", @readonly = "readonly", @class = "form-control", @id = "datetimepicker3" })
+                                    @Html.TextBoxFor(m => Model._toDate, new { @name = "datetimepicker3", @class = "form-control", @id = "datetimepicker3" })
                                 }
                                 else
                                 {
-                                    @Html.TextBoxFor(m => Model._toDate, new { @name = "datetimepicker3", @readonly = "readonly", @class = "form-control", @id = "datetimepicker3", @disabled = "disabled" })
+                                    @Html.TextBoxFor(m => Model._toDate, new { @name = "datetimepicker3", @class = "form-control", @id = "datetimepicker3", @disabled = "disabled" })
                                 }                              
                                 <span class="textfieldRequiredMsg">A value is required.</span>
                             </span>
@@ -250,6 +250,44 @@
                     </div>
                 </div>
 
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Total Cost : </label>
+                        <div id="divTotalCost" name="divTotalCost">
+                            <label id="lblTotalCost" name="lblTotalCost"></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Service Includes : </label>
+                        <div id="divBefore" name="divBefore">
+                            <label id="lblBefore" name="lblBefore"></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Payment Method</label>
+                        <div class="radio">
+                            <label><input type="radio" name="rdPaymentMethod">100% Payment</label>
+                        </div>
+                        <div class="radio">
+                            <label><input type="radio" name="rdPaymentMethod">50% Payment</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
                 <div class="row">
                     <div class="col-md-6">
                         <input type="submit" class="btn btn-primary" name="save" value="Save" />
@@ -284,84 +322,26 @@
             }
         });
 
-        $("#drpPackages").change(function () {
-            var PackageID = $('#drpPackages').val();
-            if (PackageID == 1)
-            {
-                $('#datetimepicker2').datetimepicker({
-                    minDate: '2018/07/02',
-                    startDate: '2018/07/02',
-                    maxDate: '2018/07/05',
-                });
 
-                $('#datetimepicker3').datetimepicker({
-                    maxDate: '2018/07/05',
-                });
-            }
-            else if (PackageID == 2)
-            {
-                $('#datetimepicker2').datetimepicker({
-                    minDate: '2018/07/01',
-                    startDate: '2018/07/01',
-                    maxDate: '2018/07/05',
-                });
-
-                $('#datetimepicker3').datetimepicker({
-                    maxDate: '2018/10/05',
-                });
-            }
-            else if(PackageID == 3)
-            {
-                $('#datetimepicker2').datetimepicker({
-                    minDate: '2018/06/30',
-                    startDate: '2018/06/30',
-                    maxDate: '2018/07/05',
-                });
-
-                $('#datetimepicker3').datetimepicker({
-                    maxDate: '2018/10/05',
-                });
-            }
-            else if (PackageID == 4) {
-                $('#datetimepicker2').datetimepicker({
-                    minDate: '2018/06/29',
-                    startDate: '2018/06/29',
-                    maxDate: '2018/07/05',
-                });
-
-                $('#datetimepicker3').datetimepicker({
-                    maxDate: '2018/10/05',
-                });
-            }
-        });
-
-
-
-
-        $("#datetimepicker2").change(function () {
-
+        $("#datetimepicker3").change(function () {
             var startDate = $('#datetimepicker2').val();
-            
-            var PackageID = $('#drpPackages').val();
+            var endDate = $('#datetimepicker3').val();
+            var drpOccupancy = $('#drpOccupancy').val();
 
             $.ajax({
                 type: 'GET',
-                url: "http://jwconvention2018.azurewebsites.net/Service/DateCheck?fromDate=" + startDate + "&packageID=" + PackageID,
+                url: "http://localhost:58536/Service/DateCheck?fromDate=" + startDate + "&endDate=" + endDate + "&Occupancy=" + drpOccupancy,
                 data: "",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (result) {
                     var r = result;
                     debugger;
-                    if (result != null) {
-                        $('#datetimepicker3').val(result);
-
-                    } else {
-                        alert("fail");
-                    }
+                    document.getElementById('lblTotalCost').innerHTML = "USD : " +  r.TotalCost;
+                    document.getElementById('lblBefore').innerHTML = r.BeforeDays + " Additional Nights + " + r.PackageDays + " Night Package + " + r.AfterDays + " Additional Nights";                                       
                 },
                 error: function (req, status, err) {
-                    alert("Error");
+                    //alert("Error");
                 }
             });
         });

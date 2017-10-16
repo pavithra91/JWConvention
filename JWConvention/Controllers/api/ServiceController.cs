@@ -16,34 +16,61 @@ namespace JWConvention.Controllers.api
         }
 
         [HttpGet]
-        public virtual JsonResult DateCheck(string fromDate, string packageID)
+        public virtual JsonResult DateCheck(string fromDate, string endDate)
         {
             try
             {
                 DateTime _fromDate = DateTime.ParseExact(fromDate, "dd/MM/yyyy", null);
+                DateTime _toDate = DateTime.ParseExact(endDate, "dd/MM/yyyy", null);
 
                 int days = 0;
-                if (packageID == "1")
+                double _beforeDays = 0;
+                int _packageDays = 0;
+                double _afterDays = 0;
+                double TotalCost = 0;
+
+                DateTime _StartingDate = DateTime.ParseExact("02/07/2018", "dd/MM/yyyy", null);
+                TimeSpan t = _StartingDate - _fromDate;
+                _beforeDays = t.TotalDays;
+
+                DateTime _7dayPackage = DateTime.ParseExact("08/07/2018", "dd/MM/yyyy", null);
+                DateTime _8dayPackage = DateTime.ParseExact("09/07/2018", "dd/MM/yyyy", null);
+                DateTime _9dayPackage = DateTime.ParseExact("10/07/2018", "dd/MM/yyyy", null);
+                DateTime _10dayPackage = DateTime.ParseExact("11/07/2018", "dd/MM/yyyy", null);
+
+                if (_toDate ==_7dayPackage)
                 {
-                    days = 6;
+                    _packageDays += 7;
+                    _afterDays = (_toDate - _7dayPackage).TotalDays;
+                    TotalCost = (double)_context.JW_RoomRate.Where(w => w.PackageId == 1).FirstOrDefault().RoomRate;
                 }
-                else if (packageID == "2")
+                else if(_toDate > _7dayPackage && _toDate <= _8dayPackage)
                 {
-                    days = 7;
+                    _packageDays += 8;
+                    _afterDays = (_toDate - _8dayPackage).TotalDays;
+                    TotalCost = (double)_context.JW_RoomRate.Where(w => w.PackageId == 2).FirstOrDefault().RoomRate;
                 }
-                else if (packageID == "3")
+                else if (_toDate > _8dayPackage && _toDate <= _9dayPackage)
                 {
-                    days = 8;
+                    _packageDays += 9;
+                    _afterDays = (_toDate - _9dayPackage).TotalDays;
+                    TotalCost = (double)_context.JW_RoomRate.Where(w => w.PackageId == 3).FirstOrDefault().RoomRate;
                 }
-                else if (packageID == "4")
+                else if (_toDate > _9dayPackage && _toDate <= _10dayPackage)
                 {
-                    days = 9;
+                    _packageDays += 10;
+                    _afterDays = (_toDate - _10dayPackage).TotalDays;
+                    TotalCost = (double)_context.JW_RoomRate.Where(w => w.PackageId == 4).FirstOrDefault().RoomRate;
+                }
+                else if(_toDate > _10dayPackage)
+                {
+                    _packageDays += 10;
+                    _afterDays = (_toDate - _10dayPackage).TotalDays;
+                    TotalCost = (double)_context.JW_RoomRate.Where(w => w.PackageId == 4).FirstOrDefault().RoomRate;
                 }
 
-                _fromDate = _fromDate.AddDays(days);
-                string _testDate = _fromDate.ToString("dd/MM/yyyy");
 
-                return Json(_testDate, JsonRequestBehavior.AllowGet);
+                return Json(new {BeforeDays = _beforeDays, PackageDays = _packageDays, AfterDays = _afterDays, TotalCost = TotalCost }, JsonRequestBehavior.AllowGet);
             }
             catch(Exception ex)
             {

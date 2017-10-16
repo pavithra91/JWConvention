@@ -35,10 +35,10 @@ namespace JWConvention.Controllers
 
         public ActionResult Index(string HotelCode)
         {
-            try
-            {
-                //ReservationModel objModel = new ReservationModel(); 
-                ReservationModel objModel = TempData["ReservationModel"] as ReservationModel;
+            //try
+            //{
+                ReservationModel objModel = new ReservationModel(); 
+                //ReservationModel objModel = TempData["ReservationModel"] as ReservationModel;
                 objModel._roomList = new List<JW_Rooms>();
                 objModel._hotelList = new List<JW_Hotels>();
 
@@ -50,77 +50,118 @@ namespace JWConvention.Controllers
                 objModel._hotelList = _context.JW_Hotels.ToList();
                 
                 return View(objModel); 
-            }
-            catch(Exception ex)
-            {
-                return null;
-            }
+            //}
+            //catch(Exception ex)
+            //{
+            //    return null;
+            //}
         }
 
-        public ActionResult AddtionalAccomerdation()
-        {
-            ReservationModel objModel = TempData["ReservationModel"] as ReservationModel;
-            objModel._roomList = new List<JW_Rooms>();
-            objModel._hotelList = new List<JW_Hotels>();
-            objModel._hotelList = _context.JW_Hotels.ToList();
+        //public ActionResult AddtionalAccomerdation()
+        //{
+        //    ReservationModel objModel = TempData["ReservationModel"] as ReservationModel;
+        //    objModel._roomList = new List<JW_Rooms>();
+        //    objModel._hotelList = new List<JW_Hotels>();
+        //    objModel._hotelList = _context.JW_Hotels.ToList();
 
-            TempData["ReservationModel"] = objModel;
+        //    TempData["ReservationModel"] = objModel;
 
-            return View(objModel);
-        }
+        //    return View(objModel);
+        //}
 
-        [HttpPost]
-        public ActionResult SaveAdditionalRoom(ReservationModel ObjModel)
-        {
-            ReservationModel tempModel = TempData["ReservationModel"] as ReservationModel;
+        //[HttpPost]
+        //public ActionResult SaveAdditionalRoom(ReservationModel ObjModel)
+        //{
+        //    ReservationModel tempModel = TempData["ReservationModel"] as ReservationModel;
 
-            var bookingId = _context.JW_BookingID.Where(w => w.BookingID == tempModel.BookingID).FirstOrDefault();
+        //    var bookingId = _context.JW_BookingID.Where(w => w.BookingID == tempModel.BookingID).FirstOrDefault();
 
-            if (bookingId != null)
-            {
-                JW_TempReservation _temp = new JW_TempReservation();
-                _temp.BookingID = bookingId.BookingID;
-                _temp.AdditionalHotel = ObjModel._additional._addtionalHotel;
-                _temp.AdditionalRoom = ObjModel._additional._addtionalRoom;
-                _temp.AdditionalOccupancy = ObjModel._additional._addtionalOccupancy;
-                //_temp.AdditionalDate = ObjModel._additional._addtionalDate;
-                _temp.AdditionalNoofRooms = ObjModel._additional._addtionalNoOfRooms;
-                _temp.AdditionalNoofNights = ObjModel._additional._addtionalNoOfNights;
+        //    if (bookingId != null)
+        //    {
+        //        JW_TempReservation _temp = new JW_TempReservation();
+        //        _temp.BookingID = bookingId.BookingID;
+        //        _temp.AdditionalHotel = ObjModel._additional._addtionalHotel;
+        //        _temp.AdditionalRoom = ObjModel._additional._addtionalRoom;
+        //        _temp.AdditionalOccupancy = ObjModel._additional._addtionalOccupancy;
+        //        //_temp.AdditionalDate = ObjModel._additional._addtionalDate;
+        //        _temp.AdditionalNoofRooms = ObjModel._additional._addtionalNoOfRooms;
+        //        _temp.AdditionalNoofNights = ObjModel._additional._addtionalNoOfNights;
 
-                int roomId = Convert.ToInt32(ObjModel._additional._addtionalRoom);
+        //        int roomId = Convert.ToInt32(ObjModel._additional._addtionalRoom);
 
-                ObjModel._additional._Cost = (float)_context.JW_AdditionalRoomRates.Where(w => w.RoomID == roomId).FirstOrDefault().RoomRate.GetValueOrDefault(0);
+        //        ObjModel._additional._Cost = (float)_context.JW_AdditionalRoomRates.Where(w => w.RoomID == roomId).FirstOrDefault().RoomRate.GetValueOrDefault(0);
 
-                _context.JW_TempReservation.Add(_temp);
-                _context.SaveChanges();
+        //        _context.JW_TempReservation.Add(_temp);
+        //        _context.SaveChanges();
 
-                if (tempModel._additionalList == null)
-                {
-                    tempModel._additionalList = new List<AddtionalAccommodation>();
-                }
+        //        if (tempModel._additionalList == null)
+        //        {
+        //            tempModel._additionalList = new List<AddtionalAccommodation>();
+        //        }
 
-                tempModel._additionalList.Add(ObjModel._additional);
+        //        tempModel._additionalList.Add(ObjModel._additional);
 
-                JW_Hotels _hotel = _context.JW_Hotels.Where(w => w.HotelCode == ObjModel._hotelCode).FirstOrDefault();
-                tempModel._hotel = _hotel;
-                tempModel._hotelCode = ObjModel._hotelCode;
-                tempModel._delegate = ObjModel._delegate;
+        //        JW_Hotels _hotel = _context.JW_Hotels.Where(w => w.HotelCode == ObjModel._hotelCode).FirstOrDefault();
+        //        tempModel._hotel = _hotel;
+        //        tempModel._hotelCode = ObjModel._hotelCode;
+        //        tempModel._delegate = ObjModel._delegate;
 
-                TempData["ReservationModel"] = tempModel;
-            }
+        //        TempData["ReservationModel"] = tempModel;
+        //    }
 
-            return RedirectToAction("AddtionalAccomerdation", "Reservation");
-        }
+        //    return RedirectToAction("AddtionalAccomerdation", "Reservation");
+        //}
 
         [HttpPost]
         public ActionResult SaveReservation(ReservationModel ObjModel)
         {
             TempData["ReservationModel"] = ObjModel;
             ObjModel._hotel = _context.JW_Hotels.Where(w => w.HotelCode == ObjModel._hotelCode).FirstOrDefault();
-            
-            //ObjModel.PackageCost = 
 
-            return RedirectToAction("AddtionalAccomerdation", "Reservation");
+            string BookingID = ObjModel.BookingID;
+            string userName = "ruwan";
+            string Password = "pass#word1";
+            string customerName = ObjModel._delegate.Name;
+            string email = ObjModel._delegate.EmailAddress;
+            string ConventionCode = "JWCON";
+            string Language = "en";
+            string Currency = "USD";
+
+            //JW_Reservation obj = _context.JW_Reservation.Where(w => w.BookingID == BookingID).FirstOrDefault();
+           // if (ObjModel.isAdvancedPayment)
+          //  {
+               // obj.TotalCost = obj.TotalCost / 2;
+          //  }
+
+           // if (obj != null)
+          //  {
+                string url = "http://cvisitipg.azurewebsites.net/Payment/WebPortal";
+                Response.Clear();
+                var sb = new System.Text.StringBuilder();
+                sb.Append("<html>");
+                sb.AppendFormat("<body onload='document.forms[0].submit()'>");
+                sb.AppendFormat("<form action='{0}' method='post'>", url);
+                sb.AppendFormat("<input type='hidden' id='CustomerRef' name='CustomerRef' value='" + BookingID + "'>", BookingID);
+                sb.AppendFormat("<input type='hidden' id='Amount' name='Amount' value='" + 100 + "'>", 100);
+                sb.AppendFormat("<input type='hidden' id='UserName' name='UserName' value='" + userName + "'>", userName);
+                sb.AppendFormat("<input type='hidden' id='Password' name='Password' value='" + Password + "'>", Password);
+                sb.AppendFormat("<input type='hidden' id='customername' name='customername' value='" + customerName + "'>", customerName);
+                sb.AppendFormat("<input type='hidden' id='email' name='email' value='" + email + "'>", email);
+                sb.AppendFormat("<input type='hidden' id='conventioncode' name='conventioncode' value='" + ConventionCode + "'>", ConventionCode);
+                sb.AppendFormat("<input type='hidden' id='language' name='language' value='" + Language + "'>", Language);
+                sb.AppendFormat("<input type='hidden' id='_currency' name='_currency' value='" + Currency + "'>", Currency);
+                sb.Append("</form>");
+                sb.Append("</body>");
+                sb.Append("</html>");
+                //Response.Write(sb.ToString());
+                //Response.End();
+
+                return Content(sb.ToString());
+
+          //  }
+
+          //  return null;
+               // return RedirectToAction("AddtionalAccomerdation", "Reservation");
         }
 
         [HttpPost]
@@ -183,8 +224,8 @@ namespace JWConvention.Controllers
 
         public ActionResult Summery()
         {
-            try
-            {
+            //try
+            //{
                 ReservationModel objModel = TempData["ReservationModel"] as ReservationModel;
                 int roomID = Convert.ToInt32(objModel._roomType);
 
@@ -263,11 +304,11 @@ namespace JWConvention.Controllers
                 _context.SaveChanges();
 
                 return View(objModel);
-            }
-            catch(Exception ex)
-            {
-                return RedirectToAction("Registration", "Reservation", new { HotelCode = "CGC" });
-            }
+            //}
+            //catch(Exception ex)
+            //{
+            //    return RedirectToAction("Registration", "Reservation", new { HotelCode = "CGC" });
+            //}
         }
 
         [HttpPost]

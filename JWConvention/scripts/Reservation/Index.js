@@ -1,5 +1,5 @@
 ﻿var spryselect1 = new Spry.Widget.ValidationSelect("spryselect1", { invalidValue: "0" });
-var spryselect2 = new Spry.Widget.ValidationSelect("spryselect2", { invalidValue: "0" });
+//var spryselect2 = new Spry.Widget.ValidationSelect("spryselect2", { invalidValue: "0" });
 var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1");
 var sprytextfield2 = new Spry.Widget.ValidationTextField("sprytextfield2");
 
@@ -58,12 +58,17 @@ $('#datetimepicker2').datetimepicker({
     timepicker:false,
     format:'d/m/Y',
     formatDate: 'Y/m/d',
-    minDate: '2017/08/05',
+    minDate: '2018/06/25',
+    startDate: '2018/06/25',
+    maxDate: '2018/07/02',
 });
 $('#datetimepicker3').datetimepicker({
     timepicker: false,
     format: 'd/m/Y',
     formatDate: 'Y/m/d',
+    minDate: '2018/07/08',
+    startDate: '2018/07/08',
+    maxDate: '2018/07/15',
 });
 $('#datetimepicker4').datetimepicker();
 $('#open').click(function(){

@@ -77,6 +77,9 @@
           <Property Name="DepartureFlightNo" Type="varchar" MaxLength="100" />
           <Property Name="IsAdvancePayment" Type="bit" />
           <Property Name="TotalCost" Type="float" />
+          <Property Name="NightBefore" Type="int" />
+          <Property Name="Package" Type="int" />
+          <Property Name="NightAfter" Type="int" />
         </EntityType>
         <EntityType Name="JW_RoomRate">
           <Key>
@@ -366,6 +369,9 @@
           <Property Name="DepartureFlightNo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="IsAdvancePayment" Type="Boolean" />
           <Property Name="TotalCost" Type="Double" />
+          <Property Name="NightBefore" Type="Int32" />
+          <Property Name="Package" Type="Int32" />
+          <Property Name="NightAfter" Type="Int32" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -479,6 +485,9 @@
           <EntitySetMapping Name="JW_Reservation">
             <EntityTypeMapping TypeName="wlakerstoursdbModel.JW_Reservation">
               <MappingFragment StoreEntitySet="JW_Reservation">
+                <ScalarProperty Name="NightAfter" ColumnName="NightAfter" />
+                <ScalarProperty Name="Package" ColumnName="Package" />
+                <ScalarProperty Name="NightBefore" ColumnName="NightBefore" />
                 <ScalarProperty Name="TotalCost" ColumnName="TotalCost" />
                 <ScalarProperty Name="IsAdvancePayment" ColumnName="IsAdvancePayment" />
                 <ScalarProperty Name="DepartureFlightNo" ColumnName="DepartureFlightNo" />

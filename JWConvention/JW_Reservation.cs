@@ -31,5 +31,8 @@ namespace JWConvention
         public string DepartureFlightNo { get; set; }
         public Nullable<bool> IsAdvancePayment { get; set; }
         public Nullable<double> TotalCost { get; set; }
+        public Nullable<int> NightBefore { get; set; }
+        public Nullable<int> Package { get; set; }
+        public Nullable<int> NightAfter { get; set; }
     }
 }
