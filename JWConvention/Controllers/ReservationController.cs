@@ -37,8 +37,8 @@ namespace JWConvention.Controllers
         {
             //try
             //{
-                ReservationModel objModel = new ReservationModel(); 
-                //ReservationModel objModel = TempData["ReservationModel"] as ReservationModel;
+                //ReservationModel objModel = new ReservationModel(); 
+                ReservationModel objModel = TempData["ReservationModel"] as ReservationModel;
                 objModel._roomList = new List<JW_Rooms>();
                 objModel._hotelList = new List<JW_Hotels>();
 
@@ -113,7 +113,7 @@ namespace JWConvention.Controllers
         //}
 
         [HttpPost]
-        public ActionResult SaveReservation(ReservationModel ObjModel)
+        public ActionResult SaveReservation(ReservationModel ObjModel, string rdPaymentMethod)
         {
             TempData["ReservationModel"] = ObjModel;
             ObjModel._hotel = _context.JW_Hotels.Where(w => w.HotelCode == ObjModel._hotelCode).FirstOrDefault();
@@ -127,14 +127,111 @@ namespace JWConvention.Controllers
             string Language = "en";
             string Currency = "USD";
 
-            //JW_Reservation obj = _context.JW_Reservation.Where(w => w.BookingID == BookingID).FirstOrDefault();
-           // if (ObjModel.isAdvancedPayment)
-          //  {
-               // obj.TotalCost = obj.TotalCost / 2;
-          //  }
 
-           // if (obj != null)
-          //  {
+            DateTime _fromDate = DateTime.ParseExact(ObjModel._fromDate, "dd/MM/yyyy", null);
+            DateTime _toDate = DateTime.ParseExact(ObjModel._toDate, "dd/MM/yyyy", null);
+
+            double _beforeDays = 0;
+            int _packageDays = 0;
+            double _afterDays = 0;
+            double TotalCost = 0;
+
+            DateTime _StartingDate = DateTime.ParseExact("02/07/2018", "dd/MM/yyyy", null);
+            TimeSpan t = _StartingDate - _fromDate;
+            _beforeDays = t.TotalDays;
+
+            DateTime _7dayPackage = DateTime.ParseExact("08/07/2018", "dd/MM/yyyy", null);
+            DateTime _8dayPackage = DateTime.ParseExact("09/07/2018", "dd/MM/yyyy", null);
+            DateTime _9dayPackage = DateTime.ParseExact("10/07/2018", "dd/MM/yyyy", null);
+            DateTime _10dayPackage = DateTime.ParseExact("11/07/2018", "dd/MM/yyyy", null);
+
+            if (_toDate == _7dayPackage)
+            {
+                _packageDays += 7;
+                _afterDays = (_toDate - _7dayPackage).TotalDays;
+                TotalCost = (double)_context.JW_RoomRate.Where(w => w.PackageId == 1).FirstOrDefault().RoomRate;
+            }
+            else if (_toDate > _7dayPackage && _toDate <= _8dayPackage)
+            {
+                _packageDays += 8;
+                _afterDays = (_toDate - _8dayPackage).TotalDays;
+                TotalCost = (double)_context.JW_RoomRate.Where(w => w.PackageId == 2).FirstOrDefault().RoomRate;
+            }
+            else if (_toDate > _8dayPackage && _toDate <= _9dayPackage)
+            {
+                _packageDays += 9;
+                _afterDays = (_toDate - _9dayPackage).TotalDays;
+                TotalCost = (double)_context.JW_RoomRate.Where(w => w.PackageId == 3).FirstOrDefault().RoomRate;
+            }
+            else if (_toDate > _9dayPackage && _toDate <= _10dayPackage)
+            {
+                _packageDays += 10;
+                _afterDays = (_toDate - _10dayPackage).TotalDays;
+                TotalCost = (double)_context.JW_RoomRate.Where(w => w.PackageId == 4).FirstOrDefault().RoomRate;
+            }
+            else if (_toDate > _10dayPackage)
+            {
+                _packageDays += 10;
+                _afterDays = (_toDate - _10dayPackage).TotalDays;
+                TotalCost = (double)_context.JW_RoomRate.Where(w => w.PackageId == 4).FirstOrDefault().RoomRate;
+            }
+
+            if(_beforeDays > 0)
+            {
+                double cost = _context.JW_AdditionalRoomRates.Where(w=>w.RoomID == )
+            }
+
+            JW_Delegates _delegate = new JW_Delegates();
+            _delegate.BookingID = ObjModel.BookingID;
+            _delegate.ContactNo = ObjModel._delegate.ContactNo;
+            _delegate.Country = ObjModel._delegate.Country;
+            _delegate.DelegeteName = ObjModel._delegate.Name;
+            _delegate.Email = ObjModel._delegate.EmailAddress;
+            _delegate.Nationality = ObjModel._delegate.Nationality;
+            _delegate.PassportNo = ObjModel._delegate.PassportNo;
+            _delegate.Title = ObjModel._delegate.Title;
+            _delegate.Address = ObjModel._delegate.DelegateAddress;
+
+            _context.JW_Delegates.Add(_delegate);
+            _context.SaveChanges();
+
+
+            JW_Reservation _reservation = new JW_Reservation();
+            _reservation.HotelName = ObjModel._hotel.HotelName;
+            _reservation.BookingID = ObjModel.BookingID;
+            _reservation.ArrivalFlightNo = ObjModel._ArrivalFlightNumber;
+            _reservation.DepartureFlightNo = ObjModel._DepartureFlightNumber;
+            //_reservation.CheckInDate = objModel._ArrivalDate;
+            //_reservation.CheckInTime = objModel._ArrivalTime;
+            //_reservation.CheckOutDate = objModel._DepartureDate;
+            //_reservation.CheckOutTime = objModel._DepartureTime;
+            _reservation.IsArrivalTransportRequired = ObjModel._isArrival;
+            _reservation.IsDepartureTransportRequired = ObjModel._isDeparture;
+            _reservation.Roomtype = ObjModel._roomType;
+            _reservation.Occupancy = ObjModel._Occupancy;
+            _reservation.BedPreference = ObjModel._BedPerferance;
+            _reservation.TotalCost = TotalCost;
+            _reservation.NightBefore = Convert.ToInt32(_beforeDays);
+            _reservation.Package = Convert.ToInt32(_packageDays);
+            _reservation.NightAfter = Convert.ToInt32(_afterDays);
+
+            if (rdPaymentMethod == "Half")
+            {
+                _reservation.IsAdvancePayment = true;
+            }
+            else
+            {
+                _reservation.IsAdvancePayment = false;
+            }
+
+            _context.JW_Reservation.Add(_reservation);
+            _context.SaveChanges();
+
+            if (rdPaymentMethod == "Half")
+            {
+                TotalCost = TotalCost / 2;
+            }
+
                 string url = "http://cvisitipg.azurewebsites.net/Payment/WebPortal";
                 Response.Clear();
                 var sb = new System.Text.StringBuilder();
@@ -142,7 +239,7 @@ namespace JWConvention.Controllers
                 sb.AppendFormat("<body onload='document.forms[0].submit()'>");
                 sb.AppendFormat("<form action='{0}' method='post'>", url);
                 sb.AppendFormat("<input type='hidden' id='CustomerRef' name='CustomerRef' value='" + BookingID + "'>", BookingID);
-                sb.AppendFormat("<input type='hidden' id='Amount' name='Amount' value='" + 100 + "'>", 100);
+                sb.AppendFormat("<input type='hidden' id='Amount' name='Amount' value='" + TotalCost + "'>", TotalCost);
                 sb.AppendFormat("<input type='hidden' id='UserName' name='UserName' value='" + userName + "'>", userName);
                 sb.AppendFormat("<input type='hidden' id='Password' name='Password' value='" + Password + "'>", Password);
                 sb.AppendFormat("<input type='hidden' id='customername' name='customername' value='" + customerName + "'>", customerName);
@@ -161,7 +258,7 @@ namespace JWConvention.Controllers
           //  }
 
           //  return null;
-               // return RedirectToAction("AddtionalAccomerdation", "Reservation");
+           // return RedirectToAction("AddtionalAccomerdation", "Reservation");
         }
 
         [HttpPost]

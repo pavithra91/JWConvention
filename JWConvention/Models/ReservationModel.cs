@@ -39,6 +39,8 @@ namespace JWConvention.Models
         public float AdditionalACCost { get; set; }
         public float TotalCost { get; set; }
         public bool isAdvancedPayment { get; set; }
+        public string FullPayment { get; set; }
+        public string HalfPayment { get; set; }
 
 
         public string _hotelCode { get; set; }
