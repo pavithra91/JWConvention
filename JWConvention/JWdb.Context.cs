@@ -35,5 +35,6 @@ namespace JWConvention
         public virtual DbSet<JW_BookingID> JW_BookingID { get; set; }
         public virtual DbSet<JW_Delegates> JW_Delegates { get; set; }
         public virtual DbSet<JW_Reservation> JW_Reservation { get; set; }
+        public virtual DbSet<IPGConfig> IPGConfigs { get; set; }
     }
 }

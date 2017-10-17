@@ -326,10 +326,17 @@
         });
 
 
+        $("#datetimepicker2").change(function () {
+            var startDate = $('#datetimepicker2').val();
+            $('#datetimepicker7').val(startDate);
+        });
+
         $("#datetimepicker3").change(function () {
             var startDate = $('#datetimepicker2').val();
             var endDate = $('#datetimepicker3').val();
             var drpOccupancy = $('#drpOccupancy').val();
+            
+            $('#datetimepicker8').val(endDate);
 
             $.ajax({
                 type: 'GET',

@@ -19,6 +19,7 @@ namespace JWConvention
         public string Occupancy { get; set; }
         public string BoardBasis { get; set; }
         public Nullable<double> RoomRate { get; set; }
+        public Nullable<int> PackageId { get; set; }
     
         public virtual JW_Rooms JW_Rooms { get; set; }
     }

@@ -8,6 +8,7 @@ namespace JWConvention.Models
     public class ReservationModel
     {
         public string BookingID { get; set; }
+        public string GroupIDError { get; set; }
 
 
         public List<JW_Rooms> _roomList { get; set; }

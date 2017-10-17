@@ -1,4 +1,5 @@
-﻿using JWConvention.Models;
+﻿using JWConvention.App_Code;
+using JWConvention.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,12 @@ namespace JWConvention.Controllers
         public ActionResult Registration(string HotelCode)
         {
             ReservationModel objModel = new ReservationModel();
+
+            if (TempData["Error"] != null)
+            {
+                objModel.GroupIDError = "Invalid Promo Code";
+                return View(objModel);
+            }         
 
             JW_BookingID _tempBookingID = new JW_BookingID();
             _context.JW_BookingID.Add(_tempBookingID);
@@ -57,61 +64,6 @@ namespace JWConvention.Controllers
             //}
         }
 
-        //public ActionResult AddtionalAccomerdation()
-        //{
-        //    ReservationModel objModel = TempData["ReservationModel"] as ReservationModel;
-        //    objModel._roomList = new List<JW_Rooms>();
-        //    objModel._hotelList = new List<JW_Hotels>();
-        //    objModel._hotelList = _context.JW_Hotels.ToList();
-
-        //    TempData["ReservationModel"] = objModel;
-
-        //    return View(objModel);
-        //}
-
-        //[HttpPost]
-        //public ActionResult SaveAdditionalRoom(ReservationModel ObjModel)
-        //{
-        //    ReservationModel tempModel = TempData["ReservationModel"] as ReservationModel;
-
-        //    var bookingId = _context.JW_BookingID.Where(w => w.BookingID == tempModel.BookingID).FirstOrDefault();
-
-        //    if (bookingId != null)
-        //    {
-        //        JW_TempReservation _temp = new JW_TempReservation();
-        //        _temp.BookingID = bookingId.BookingID;
-        //        _temp.AdditionalHotel = ObjModel._additional._addtionalHotel;
-        //        _temp.AdditionalRoom = ObjModel._additional._addtionalRoom;
-        //        _temp.AdditionalOccupancy = ObjModel._additional._addtionalOccupancy;
-        //        //_temp.AdditionalDate = ObjModel._additional._addtionalDate;
-        //        _temp.AdditionalNoofRooms = ObjModel._additional._addtionalNoOfRooms;
-        //        _temp.AdditionalNoofNights = ObjModel._additional._addtionalNoOfNights;
-
-        //        int roomId = Convert.ToInt32(ObjModel._additional._addtionalRoom);
-
-        //        ObjModel._additional._Cost = (float)_context.JW_AdditionalRoomRates.Where(w => w.RoomID == roomId).FirstOrDefault().RoomRate.GetValueOrDefault(0);
-
-        //        _context.JW_TempReservation.Add(_temp);
-        //        _context.SaveChanges();
-
-        //        if (tempModel._additionalList == null)
-        //        {
-        //            tempModel._additionalList = new List<AddtionalAccommodation>();
-        //        }
-
-        //        tempModel._additionalList.Add(ObjModel._additional);
-
-        //        JW_Hotels _hotel = _context.JW_Hotels.Where(w => w.HotelCode == ObjModel._hotelCode).FirstOrDefault();
-        //        tempModel._hotel = _hotel;
-        //        tempModel._hotelCode = ObjModel._hotelCode;
-        //        tempModel._delegate = ObjModel._delegate;
-
-        //        TempData["ReservationModel"] = tempModel;
-        //    }
-
-        //    return RedirectToAction("AddtionalAccomerdation", "Reservation");
-        //}
-
         [HttpPost]
         public ActionResult SaveReservation(ReservationModel ObjModel, string rdPaymentMethod)
         {
@@ -120,7 +72,7 @@ namespace JWConvention.Controllers
 
             string BookingID = ObjModel.BookingID;
             string userName = "ruwan";
-            string Password = "pass#word1";
+            string Password = "pass#word3";
             string customerName = ObjModel._delegate.Name;
             string email = ObjModel._delegate.EmailAddress;
             string ConventionCode = "JWCON";
@@ -145,40 +97,55 @@ namespace JWConvention.Controllers
             DateTime _9dayPackage = DateTime.ParseExact("10/07/2018", "dd/MM/yyyy", null);
             DateTime _10dayPackage = DateTime.ParseExact("11/07/2018", "dd/MM/yyyy", null);
 
+            int PackageId = 0;
+
             if (_toDate == _7dayPackage)
             {
                 _packageDays += 7;
                 _afterDays = (_toDate - _7dayPackage).TotalDays;
                 TotalCost = (double)_context.JW_RoomRate.Where(w => w.PackageId == 1).FirstOrDefault().RoomRate;
+                PackageId = 1;
             }
             else if (_toDate > _7dayPackage && _toDate <= _8dayPackage)
             {
                 _packageDays += 8;
                 _afterDays = (_toDate - _8dayPackage).TotalDays;
                 TotalCost = (double)_context.JW_RoomRate.Where(w => w.PackageId == 2).FirstOrDefault().RoomRate;
+                PackageId = 2;
             }
             else if (_toDate > _8dayPackage && _toDate <= _9dayPackage)
             {
                 _packageDays += 9;
                 _afterDays = (_toDate - _9dayPackage).TotalDays;
                 TotalCost = (double)_context.JW_RoomRate.Where(w => w.PackageId == 3).FirstOrDefault().RoomRate;
+                PackageId = 3;
             }
             else if (_toDate > _9dayPackage && _toDate <= _10dayPackage)
             {
                 _packageDays += 10;
                 _afterDays = (_toDate - _10dayPackage).TotalDays;
                 TotalCost = (double)_context.JW_RoomRate.Where(w => w.PackageId == 4).FirstOrDefault().RoomRate;
+                PackageId = 4;
             }
             else if (_toDate > _10dayPackage)
             {
                 _packageDays += 10;
                 _afterDays = (_toDate - _10dayPackage).TotalDays;
                 TotalCost = (double)_context.JW_RoomRate.Where(w => w.PackageId == 4).FirstOrDefault().RoomRate;
+                PackageId = 4;
             }
+
+            int roomType = Convert.ToInt32(ObjModel._roomType);
 
             if(_beforeDays > 0)
             {
-                double cost = _context.JW_AdditionalRoomRates.Where(w=>w.RoomID == )
+                double cost = (double)_context.JW_AdditionalRoomRates.Where(w=>w.RoomID == roomType).FirstOrDefault().RoomRate;
+                TotalCost = TotalCost + (cost * _beforeDays);
+            }
+            if(_afterDays > 0)
+            {
+                double cost = (double)_context.JW_AdditionalRoomRates.Where(w=> w.RoomID == roomType).FirstOrDefault().RoomRate;
+                TotalCost = TotalCost + (cost * _afterDays);
             }
 
             JW_Delegates _delegate = new JW_Delegates();
@@ -232,7 +199,7 @@ namespace JWConvention.Controllers
                 TotalCost = TotalCost / 2;
             }
 
-                string url = "http://cvisitipg.azurewebsites.net/Payment/WebPortal";
+                string url = "http://payment.walkerstours.net/Payment/WebPortal";
                 Response.Clear();
                 var sb = new System.Text.StringBuilder();
                 sb.Append("<html>");
@@ -259,6 +226,76 @@ namespace JWConvention.Controllers
 
           //  return null;
            // return RedirectToAction("AddtionalAccomerdation", "Reservation");
+        }
+
+        public ActionResult Confirmation()
+        {
+            try
+            {
+                //string _result = (Request.Form["_result"]).ToString();
+                //string _orderID = (Request.Form["_orderID"]).ToString();
+                //string _response = (Request.Form["_response"]).ToString();
+                //string _currency = (Request.Form["_currency"]).ToString();
+                //string _conventionCode = (Request.Form["_conventionCode"]).ToString();
+
+                //Encryption _decrypt = new Encryption();
+                //_result = _decrypt.DecryptString(_result, "Result");
+                //_orderID = _decrypt.DecryptString(_orderID, "CustomerRef");
+                //_response = _decrypt.DecryptString(_response, "ResponseString");
+                //_conventionCode = _decrypt.DecryptString(_conventionCode, "ConventionCode");
+
+                string _result = "1";
+                string _orderID = "JW12167";
+                string _response = "";
+                string _currency = "USD";
+                string _conventionCode = "JWCON";
+
+                if (_result == "1")
+                {
+                    string BookingId = _orderID;
+
+                    EmailModel em = new EmailModel();
+                    em.BookingRef = _orderID;
+
+                    IPGConfig _ipgConfig = _context.IPGConfigs.Where(w => w.ConventionCode == _conventionCode).FirstOrDefault();
+
+                    JW_Delegates del = _context.JW_Delegates.Where(w => w.BookingID == BookingId).FirstOrDefault();
+                    JW_Reservation reservation = _context.JW_Reservation.Where(w => w.BookingID == BookingId).FirstOrDefault();
+
+                    if(reservation.IsAdvancePayment == true)
+                    {
+                        em.Amount = Convert.ToDouble(reservation.TotalCost / 2);
+                    }
+                    else
+                    {
+                        em.Amount = Convert.ToDouble(reservation.TotalCost);
+                    }
+                    
+                    em.ClientEmail = del.Email;
+                    em.ClientName = del.DelegeteName;
+                    em.InvoiceNo = _orderID;
+                    em.DateofPayment = DateTime.Today;
+                    em.CheckIn = reservation.CheckInDate.GetValueOrDefault().ToShortDateString();
+                    em.CheckOut = reservation.CheckOutDate.GetValueOrDefault().ToShortDateString();
+                    em.EmailCC = _ipgConfig.EmailCC;
+                    em.EmailBCC = _ipgConfig.EmailBCC;
+                    em.From =  _ipgConfig.EmailFrom;
+                    em.HotelName = reservation.HotelName;
+                    em.RoomCategory = reservation.Roomtype;
+
+                    em.SendEmail(em);
+
+                    return View("PaymentIssue");
+                }
+                else
+                {
+                    return View("PaymentIssue");
+                }
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Test", "Reservation", new { id = ex.Message });
+            }
         }
 
         [HttpPost]
@@ -421,7 +458,9 @@ namespace JWConvention.Controllers
             }
             else
             {
-                return RedirectToAction("Registration", "Reservation");
+                ReservationModel objModel = TempData["ReservationModel"] as ReservationModel;
+                TempData["Error"] = "Invalid Promo Code";
+                return RedirectToAction("Registration", "Reservation", new { HotelCode = objModel._hotelCode });
             }
         }
     }

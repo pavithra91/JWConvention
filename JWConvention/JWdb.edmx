@@ -5,6 +5,28 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="wlakerstoursdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="IPGConfig">
+          <Key>
+            <PropertyRef Name="AUTOID" />
+          </Key>
+          <Property Name="AUTOID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ConventionCode" Type="varchar" MaxLength="10" />
+          <Property Name="ConventionName" Type="nvarchar" MaxLength="100" />
+          <Property Name="PayLogo" Type="nvarchar" MaxLength="300" />
+          <Property Name="EmailLogo" Type="nvarchar" MaxLength="300" />
+          <Property Name="LaguageCode" Type="varchar" MaxLength="10" />
+          <Property Name="Laguage" Type="varchar" MaxLength="15" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsAMEXActive" Type="bit" />
+          <Property Name="IsHSBCActive" Type="bit" />
+          <Property Name="IsCUPActive" Type="bit" />
+          <Property Name="EmailFrom" Type="nvarchar" MaxLength="100" />
+          <Property Name="EmailCC" Type="nvarchar" MaxLength="100" />
+          <Property Name="EmailBCC" Type="nvarchar" MaxLength="100" />
+          <Property Name="RespondType" Type="varchar" MaxLength="10" />
+          <Property Name="Link" Type="varchar" MaxLength="200" />
+        </EntityType>
         <EntityType Name="JW_AdditionalRoomRates">
           <Key>
             <PropertyRef Name="AUTOID" />
@@ -14,6 +36,7 @@
           <Property Name="Occupancy" Type="varchar" MaxLength="20" />
           <Property Name="BoardBasis" Type="varchar" MaxLength="20" />
           <Property Name="RoomRate" Type="float" />
+          <Property Name="PackageId" Type="int" />
         </EntityType>
         <EntityType Name="JW_BookingID">
           <Key>
@@ -161,6 +184,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="wlakerstoursdbModelStoreContainer">
+          <EntitySet Name="IPGConfig" EntityType="Self.IPGConfig" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="JW_AdditionalRoomRates" EntityType="Self.JW_AdditionalRoomRates" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="JW_BookingID" EntityType="Self.JW_BookingID" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="JW_Delegates" EntityType="Self.JW_Delegates" Schema="dbo" store:Type="Tables" />
@@ -220,6 +244,7 @@
           <EntitySet Name="JW_BookingID" EntityType="wlakerstoursdbModel.JW_BookingID" />
           <EntitySet Name="JW_Delegates" EntityType="wlakerstoursdbModel.JW_Delegates" />
           <EntitySet Name="JW_Reservation" EntityType="wlakerstoursdbModel.JW_Reservation" />
+          <EntitySet Name="IPGConfigs" EntityType="wlakerstoursdbModel.IPGConfig" />
         </EntityContainer>
         <EntityType Name="JW_Users">
           <Key>
@@ -274,6 +299,7 @@
           <Property Name="BoardBasis" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="RoomRate" Type="Double" />
           <NavigationProperty Name="JW_Rooms" Relationship="wlakerstoursdbModel.RoomIDfk_AddtionalRates" FromRole="JW_AdditionalRoomRates" ToRole="JW_Rooms" />
+          <Property Name="PackageId" Type="Int32" />
         </EntityType>
         <EntityType Name="JW_RoomRate">
           <Key>
@@ -373,6 +399,28 @@
           <Property Name="Package" Type="Int32" />
           <Property Name="NightAfter" Type="Int32" />
         </EntityType>
+        <EntityType Name="IPGConfig">
+          <Key>
+            <PropertyRef Name="AUTOID" />
+          </Key>
+          <Property Name="AUTOID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ConventionCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ConventionName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PayLogo" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="EmailLogo" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="LaguageCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Laguage" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsAMEXActive" Type="Boolean" />
+          <Property Name="IsHSBCActive" Type="Boolean" />
+          <Property Name="IsCUPActive" Type="Boolean" />
+          <Property Name="EmailFrom" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="EmailCC" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="EmailBCC" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="RespondType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Link" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -422,6 +470,7 @@
           <EntitySetMapping Name="JW_AdditionalRoomRates">
             <EntityTypeMapping TypeName="wlakerstoursdbModel.JW_AdditionalRoomRates">
               <MappingFragment StoreEntitySet="JW_AdditionalRoomRates">
+                <ScalarProperty Name="PackageId" ColumnName="PackageId" />
                 <ScalarProperty Name="RoomRate" ColumnName="RoomRate" />
                 <ScalarProperty Name="BoardBasis" ColumnName="BoardBasis" />
                 <ScalarProperty Name="Occupancy" ColumnName="Occupancy" />
@@ -504,6 +553,29 @@
                 <ScalarProperty Name="Roomtype" ColumnName="Roomtype" />
                 <ScalarProperty Name="HotelName" ColumnName="HotelName" />
                 <ScalarProperty Name="BookingID" ColumnName="BookingID" />
+                <ScalarProperty Name="AUTOID" ColumnName="AUTOID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IPGConfigs">
+            <EntityTypeMapping TypeName="wlakerstoursdbModel.IPGConfig">
+              <MappingFragment StoreEntitySet="IPGConfig">
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="RespondType" ColumnName="RespondType" />
+                <ScalarProperty Name="EmailBCC" ColumnName="EmailBCC" />
+                <ScalarProperty Name="EmailCC" ColumnName="EmailCC" />
+                <ScalarProperty Name="EmailFrom" ColumnName="EmailFrom" />
+                <ScalarProperty Name="IsCUPActive" ColumnName="IsCUPActive" />
+                <ScalarProperty Name="IsHSBCActive" ColumnName="IsHSBCActive" />
+                <ScalarProperty Name="IsAMEXActive" ColumnName="IsAMEXActive" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Laguage" ColumnName="Laguage" />
+                <ScalarProperty Name="LaguageCode" ColumnName="LaguageCode" />
+                <ScalarProperty Name="EmailLogo" ColumnName="EmailLogo" />
+                <ScalarProperty Name="PayLogo" ColumnName="PayLogo" />
+                <ScalarProperty Name="ConventionName" ColumnName="ConventionName" />
+                <ScalarProperty Name="ConventionCode" ColumnName="ConventionCode" />
                 <ScalarProperty Name="AUTOID" ColumnName="AUTOID" />
               </MappingFragment>
             </EntityTypeMapping>

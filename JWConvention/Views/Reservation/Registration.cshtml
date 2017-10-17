@@ -22,12 +22,16 @@
 
                     <div class="col-md-2 col-sm-2">
                         <div class="form-group">
-                            <label>Group ID</label>
+                            <label>Promo Code</label>
                             <span id="sprytextfield2">
                                 @Html.TextBoxFor(m => Model._delegate.GroupId, new { @name = "txtGroupId", @placeholder = "Group ID", @class = "form-control", @id = "txtGroupId" })
                                 @*<input type="text" style="width:98%; height:39px; padding-left:10px; border: thin solid #e5e5e5;" />*@
                                 <span class="textfieldRequiredMsg">A value is required.</span>
                             </span>
+                            @if (Model.GroupIDError != null)
+                            {
+                                <label style="color:red">@Model.GroupIDError</label>
+                            }
                         </div>
                     </div>
                 </div>

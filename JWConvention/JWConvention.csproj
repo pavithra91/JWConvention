@@ -84,6 +84,14 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Postal, Version=1.0.0.0, Culture=neutral, PublicKeyToken=45719375b8b4d528, processorArchitecture=MSIL">
+      <HintPath>..\packages\Postal.Mvc4.1.2.0\lib\net40\Postal.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RazorEngine, Version=3.3.0.0, Culture=neutral, PublicKeyToken=9ee697374c7e744a, processorArchitecture=MSIL">
+      <HintPath>..\packages\RazorEngine.3.3.0\lib\net40\RazorEngine.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -288,6 +296,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Code\Encryption.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\api\ServiceController.cs" />
     <Compile Include="Controllers\BackEndController.cs" />
@@ -296,6 +305,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="HtmlExtensions.cs" />
+    <Compile Include="IPGConfig.cs">
+      <DependentUpon>JWdb.tt</DependentUpon>
+    </Compile>
     <Compile Include="JWdb.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -341,6 +353,7 @@
     <Compile Include="JW_Users.cs">
       <DependentUpon>JWdb.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\EmailModel.cs" />
     <Compile Include="Models\GroupModel.cs" />
     <Compile Include="Models\ReservationModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -376,6 +389,9 @@
     <Content Include="Views\Reservation\Registration.cshtml" />
     <Content Include="Views\Reservation\AddtionalAccomerdation.cshtml" />
     <Content Include="Views\Reservation\Summery.cshtml" />
+    <Content Include="Views\Emails\_ViewStart.cshtml" />
+    <Content Include="Views\Emails\Web.config" />
+    <Content Include="Views\Emails\CustomerInvoice.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
