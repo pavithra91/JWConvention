@@ -1,0 +1,62 @@
+﻿@model JWConvention.Models.InquiryModel
+@{ 
+
+}
+
+@using (Html.BeginForm("SendInquiry", "Tours", FormMethod.Post))
+{
+    @Html.HiddenFor(m => Model.TourName);
+
+    <div class="row"></div>
+    <div class="row">
+        <div class="col-md-2 col-sm-2">
+            <div class="form-group">
+                <label> Title</label><span id="spryselect1">
+                    <label for="title"></label>
+                    <select name="title" id="title" class="form-control" style="width:98%; height:39px; padding-left:10px; border: thin solid #e5e5e5;">
+                        <option value="1">Mr.</option>
+                        <option value="2">Mrs.</option>
+                        <option value="3">Dr.</option>
+                        <option value="4">Rev.</option>
+                    </select>
+                    <span class="selectRequiredMsg">Please select an item.</span>
+                </span>
+            </div>
+        </div>
+        <div class="col-md-7 col-sm-7">
+            <div class="form-group">
+                <label>Full Name</label>
+                @Html.TextBoxFor(m => Model.FullName, new { @name = "txtFullName", @placeholder = "Full Name", @class = "form-control", @id = "txtFullName", @style = "width:98%; height:39px; padding-left:10px; border: thin solid #e5e5e5;" })
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-sm-6">
+            <div class="form-group">
+                <label>Contact No</label>
+                @Html.TextBoxFor(m => Model.ContactNo, new { @name = "txtContactNo", @placeholder = "Contact No", @class = "form-control", @id = "txtContactNo", @style = "width:98%; height:35px; padding-left:10px; border: thin solid #e5e5e5;" })
+            </div>
+        </div>
+
+        <div class="col-md-6 col-sm-6">
+            <div class="form-group">
+                <label>E-mail Address</label>
+                @Html.TextBoxFor(m => Model.Email, new { @name = "txtEmail", @placeholder = "E-mail Address", @class = "form-control", @id = "txtEmail", @style = "width:98%; height:35px; padding-left:10px; border: thin solid #e5e5e5;" })
+            </div>
+        </div>
+
+        <div class="col-md-9 col-sm-9">
+            <div class="form-group">
+                @Html.TextAreaFor(m => Model.Message, new { @name = "txtMessage", @placeholder = "Comment", @class = "form-control", @id = "txtMessage", @cols = "5", @rows = "5", @style = "width:87%; height:105px; padding-left:10px; border: thin solid #e5e5e5;" })
+            </div>
+        </div>
+
+        <br />
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <input type="submit" value="SEND INQUIRY" class="btn_1" id="submit-contact">
+        </div>
+    </div>
+}

@@ -178,6 +178,23 @@
     <Content Include="images\slider\02.png" />
     <Content Include="images\slider\03.png" />
     <Content Include="images\slider\04.png" />
+    <Content Include="images\Tours\bentota.jpg" />
+    <Content Include="images\Tours\Central-Highlands-.jpg" />
+    <Content Include="images\Tours\Colombo-Lovin.jpg" />
+    <Content Include="images\Tours\Exotic-Sri-Lanka.jpg" />
+    <Content Include="images\Tours\highlight.jpg" />
+    <Content Include="images\Tours\hill-comfort.jpg" />
+    <Content Include="images\Tours\Hill-Country-Comfort.jpg" />
+    <Content Include="images\Tours\Into-the-hills.jpg" />
+    <Content Include="images\Tours\Island-Highlights.jpg" />
+    <Content Include="images\Tours\Island-Paradise.jpg" />
+    <Content Include="images\Tours\maldives.jpg" />
+    <Content Include="images\Tours\mirissa.jpg" />
+    <Content Include="images\Tours\paradise.jpg" />
+    <Content Include="images\Tours\quikfix.jpg" />
+    <Content Include="images\Tours\South-Cost-Adventure.jpg" />
+    <Content Include="images\Tours\udawalawe.jpg" />
+    <Content Include="images\Tours\yala.jpg" />
     <Content Include="images\Walkers-logo.jpg" />
     <Content Include="images\Walkers-logo2.jpg" />
     <Content Include="jquery.datetimepicker.css" />
@@ -301,6 +318,7 @@
     <Compile Include="Controllers\api\ServiceController.cs" />
     <Compile Include="Controllers\BackEndController.cs" />
     <Compile Include="Controllers\ReservationController.cs" />
+    <Compile Include="Controllers\ToursController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -392,6 +410,24 @@
     <Content Include="Views\Emails\_ViewStart.cshtml" />
     <Content Include="Views\Emails\Web.config" />
     <Content Include="Views\Emails\CustomerInvoice.cshtml" />
+    <Content Include="Views\Tours\TourSummary.cshtml" />
+    <Content Include="Views\Tours\Colombo_Loving.cshtml" />
+    <Content Include="Views\Emails\Inquiry.cshtml" />
+    <Content Include="Views\Tours\_SendInquiry.cshtml" />
+    <Content Include="Views\Tours\Exotic_Sri_Lanka.cshtml" />
+    <Content Include="Views\Tours\Fly_Swim_Shop.cshtml" />
+    <Content Include="Views\Tours\Heritage_Sri_Lanka.cshtml" />
+    <Content Include="Views\Tours\Into_The_Hills.cshtml" />
+    <Content Include="Views\Tours\South_Coast_Adventure.cshtml" />
+    <Content Include="Views\Tours\Udawalawe_Day_Excursion.cshtml" />
+    <Content Include="Views\Tours\Whale_Watching_Excursion.cshtml" />
+    <Content Include="Views\Tours\Yala_Day_Excursion.cshtml" />
+    <Content Include="Views\Tours\Island_Highlights.cshtml" />
+    <Content Include="Views\Tours\Island_Paradise.cshtml" />
+    <Content Include="Views\Tours\Island_Quick_Fix.cshtml" />
+    <Content Include="Views\Tours\Hill_Country_Comfort.cshtml" />
+    <Content Include="Views\Tours\Central_Highlands.cshtml" />
+    <Content Include="Views\Emails\InquiryCustomer.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

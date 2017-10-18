@@ -1,0 +1,185 @@
+﻿
+@{
+    ViewBag.Title = "TourSummary";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div id="main-content">
+
+    <h1>Pre & Post Guest Sponsored Tours</h1>
+    <div class="row">
+        <div class="step">
+
+
+            <div class="div0">
+                <div class="div1">Seat in Coach Packages <span style="font-size:12px; color:#F90; text-transform:capitalize;">- Seat in Coach packages are tours which have a fixed departure date</span></div>
+
+                <div class="col-md-6 col-sm-6">
+                    <div class="desc" style="text-transform:uppercase; font-weight:bold;">Hill Country Comfort</div>
+                    <div class="days"> 04 Nights – 05 Days</div>
+                    <a target="_blank" href="@Url.Action("Hill_Country_Comfort", "Tours")">
+                        <img src="~/images/Tours/hill-comfort.jpg">
+                    </a>
+                    <div class="desc" style="text-align:justify;">From Colombo Transfer to the Hill Capital, Kandy. En-route visit Pinnawala Elephant Orphanage Peradeniya...</div>
+                    <a href="@Url.Action("Hill_Country_Comfort", "Tours")"><div class="desc" style="background-color:#39F; padding:10px; font-size:14px; color:#FFF; text-transform:uppercase;">Find out More</div></a>
+                </div>
+
+                <div class="col-md-6 col-sm-6">
+                    <div class="desc" style="text-transform:uppercase; font-weight:bold;">Island Highlights</div>
+                    <div class="days">06 Nights – 07 Days</div>
+                    <a target="_blank" href="@Url.Action("Island_Highlights", "Tours")">
+                        <img src="~/images/Tours/highlight.jpg">
+                    </a>
+                    <div class="desc" style="text-align:justify;">This comprehensive tour begins from Colombo where you transfer to Habarana and go on an excursion to the...</div>
+                    <a href="@Url.Action("Island_Highlights", "Tours")"><div class="desc" style="background-color:#39F; padding:10px; font-size:14px; color:#FFF; text-transform:uppercase;">Find out More</div></a>
+                </div>
+
+                <div class="col-md-6 col-sm-6">
+                    <div class="desc" style="text-transform:uppercase; font-weight:bold;">Island Paradise</div>
+                    <div class="days">03 Nights – 04 Days</div>
+                    <a target="_blank" href="@Url.Action("Island_Paradise", "Tours")">
+                        <img src="~/images/Tours/Island-Paradise.jpg">
+                    </a>
+                    <div class="desc" style="text-align:justify;">From Colombo transfer to Nuwara eliya on day one where in the Afternoon, Visit a Tea Plantation & enjoy...</div>
+                    <a href="@Url.Action("Island_Paradise", "Tours")"><div class="desc" style="background-color:#39F; padding:10px; font-size:14px; color:#FFF; text-transform:uppercase;">Find out More</div></a>
+                </div>
+
+                <div class="col-md-6 col-sm-6">
+                    <div class="desc" style="text-transform:uppercase; font-weight:bold;">Island Quick Fix</div>
+                    <div class="days"> 4 nights 5 days</div>
+                    <a target="_blank" href="@Url.Action("Island_Quick_Fix", "Tours")">
+                        <img src="~/images/Tours/quikfix.jpg">
+                    </a>
+                    <div class="desc" style="text-align:justify;">Pick up from Colombo on day one and transfer to the Cultural Triangle. In the afternoon, go on an excursion...s</div>
+                    <a href="@Url.Action("Island_Quick_Fix", "Tours")"><div class="desc" style="background-color:#39F; padding:10px; font-size:14px; color:#FFF; text-transform:uppercase;">Find out More</div></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br /><br />
+
+
+    <div class="row">
+        <div class="step">
+            <div class="div0">
+                <div class="div1">Private Tours</div>
+                <br /><p>Private tours are package tour start dates can be changes to your preference, You need not purchase these packages outright, You have the option of tweaking these packages to your liking</p>
+                <br /><div class="col-md-6 col-sm-6">
+                    <div class="desc" style="text-transform:uppercase; font-weight:bold;">Central Highlands</div>
+                    <div class="days"> 3 nights 4 days</div>
+                    <a target="new" href="@Url.Action("Central_Highlands", "Tours")">
+                        <img src="~/images/Tours/Central-Highlands-.jpg">
+                    </a>
+                    <div class="desc" style="text-align:justify;">Spend four days experiencing the beauty of Sri Lanka’s hill country. This comprehensive tour begins...</div>
+                    <a href="@Url.Action("Central_Highlands", "Tours")"><div class="desc" style="background-color:#39F; padding:10px; font-size:14px; color:#FFF; text-transform:uppercase;">Find out More</div></a>
+                </div>
+
+                <div class="col-md-6 col-sm-6">
+                    <div class="desc" style="text-transform:uppercase; font-weight:bold;">Colombo Lovin</div>
+                    <div class="days"> 3 nights 4 days</div>
+                    <a target="_blank" href="@Url.Action("Colombo_Loving", "Tours")">
+                        <img src="~/images/Tours/Colombo-Lovin.jpg">
+                    </a>
+                    <div class="desc" style="text-align:justify;">This tour begins with 3 nights based in the bustling metropolis of Colombo. On day, one visit the regal city...</div>
+                    <a href="@Url.Action("Colombo_Loving", "Tours")"><div class="desc" style="background-color:#39F; padding:10px; font-size:14px; color:#FFF; text-transform:uppercase;">Find out More</div></a>
+                </div>
+
+                <div class="col-md-6 col-sm-6">
+                    <div class="desc" style="text-transform:uppercase; font-weight:bold;">Exotic Sri Lanka</div>
+                    <div class="days"> 7 nights 8 days</div>
+                    <a target="_blank" href="@Url.Action("Exotic_Sri_Lanka", "Tours")">
+                        <img src="~/images/Tours/Exotic-Sri-Lanka.jpg">
+                    </a>
+                    <div class="desc" style="text-align:justify;">AOn this tour spend the first night in Colombo with a Late evening experience as an optional city tour in....</div>
+                    <a href="@Url.Action("Exotic_Sri_Lanka", "Tours")"><div class="desc" style="background-color:#39F; padding:10px; font-size:14px; color:#FFF; text-transform:uppercase;">Find out More</div></a>
+                </div>
+
+                <div class="col-md-6 col-sm-6">
+                    <div class="desc" style="text-transform:uppercase; font-weight:bold;">Fly, Swim Shop</div>
+                    <div class="days"> 4 nights 5 days</div>
+                    <a target="_blank" href="@Url.Action("Fly_Swim_Shop", "Tours")">
+                        <img src="~/images/Tours/bentota.jpg">
+                    </a>
+                    <div class="desc" style="text-align:justify;">This tour begins via a transfer to to Negombo from Colombo where you can enjoy your evening at leisure....</div>
+                    <a href="@Url.Action("Fly_Swim_Shop", "Tours")"><div class="desc" style="background-color:#39F; padding:10px; font-size:14px; color:#FFF; text-transform:uppercase;">Find out More</div></a>
+                </div>
+
+                <div class="col-md-6 col-sm-6">
+                    <div class="desc" style="text-transform:uppercase; font-weight:bold;">Heritage Sri Lanka</div>
+                    <div class="days"> 4 nights 5 days</div>
+                    <a target="_blank" href="@Url.Action("Heritage_Sri_Lanka", "Tours")">
+                        <img src="~/images/Tours/Island-Highlights.jpg">                       
+                    </a>
+                    <div class="desc" style="text-align:justify;">This comprehensive tour begins in Colombo on day one by going on a city tour in Colombo including...</div>
+                    <a href="@Url.Action("Heritage_Sri_Lanka", "Tours")"><div class="desc" style="background-color:#39F; padding:10px; font-size:14px; color:#FFF; text-transform:uppercase;">Find out More</div></a>
+                </div>
+
+                <div class="col-md-6 col-sm-6">
+                    <div class="desc" style="text-transform:uppercase; font-weight:bold;">Into the Hills</div>
+                    <div class="days"> 4 nights 5 days</div>
+                    <a target="_blank" href="@Url.Action("Into_The_Hills", "Tours")">
+                        <img src="~/images/Tours/Into-the-hills.jpg">
+                    </a>
+                    <div class="desc" style="text-align:justify;">You will be met by our Chauffeur Guide and will be transferred to Kandy, the Hill Capital of Sri Lanka...</div>
+                    <a href="@Url.Action("Into_The_Hills", "Tours")"><div class="desc" style="background-color:#39F; padding:10px; font-size:14px; color:#FFF; text-transform:uppercase;">Find out More</div></a>
+                </div>
+
+
+                <div class="col-md-6 col-sm-6">
+                    <div class="desc" style="text-transform:uppercase; font-weight:bold;">South Cost Adventure</div>
+                    <div class="days"> 2 nights 3 days</div>
+                    <a target="_blank" href="@Url.Action("South_Coast_Adventure", "Tours")">
+                        <img src="~/images/Tours/South-Cost-Adventure.jpg">
+                    </a>
+                    <div class="desc" style="text-align:justify;">On day one you will be picked up from your hotel in Colombo & proceed to Bentota where you can enjoy a...</div>
+                    <a href="@Url.Action("South_Coast_Adventure", "Tours")"><div class="desc" style="background-color:#39F; padding:10px; font-size:14px; color:#FFF; text-transform:uppercase;">Find out More</div></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br /><br />
+
+
+
+    <div class="row">
+        <div class="step">
+
+
+            <div class="div0">
+                <div class="div1">Day Excursions <span style="font-size:12px; color:#F90; text-transform:capitalize;"> &nbsp;&nbsp;- Prices based on minimum 12 people travelling</span></div>
+
+                <div class="col-md-6 col-sm-6">
+                    <div class="desc" style="text-transform:uppercase; font-weight:bold;">Whale Watching Excursion</div>
+                    <div class="days">01 Days</div>
+                    <a target="_blank" href="@Url.Action("Whale_Watching_Excursion", "Tours")">
+                        <img src="~/images/Tours/mirissa.jpg">
+                    </a>
+                    <div class="desc" style="text-align:justify;">Leave for the Mirissa harbour for our first whale watching excursion in search of Blue’s and other cetaceans...</div>
+                    <a href="@Url.Action("Whale_Watching_Excursion", "Tours")"><div class="desc" style="background-color:#39F; padding:10px; font-size:14px; color:#FFF; text-transform:uppercase;">Find out More</div></a>
+                </div>
+
+                <div class="col-md-6 col-sm-6">
+                    <div class="desc" style="text-transform:uppercase; font-weight:bold;">Udawalawe Excursion</div>
+                    <div class="days"> 01 Day</div>
+                    <a target="_blank" href="@Url.Action("Udawalawe_Day_Excursion", "Tours")">
+                        <img src="~/images/Tours/udawalawe.jpg">
+                    </a>
+                    <div class="desc" style="text-align:justify;">Enjoy a morning Jeep safari of the Udawalawe National Park. Thereafter, visit the Elephant Transit Home which...</div>
+                    <a href="@Url.Action("Udawalawe_Day_Excursion", "Tours")"><div class="desc" style="background-color:#39F; padding:10px; font-size:14px; color:#FFF; text-transform:uppercase;">Find out More</div></a>
+                </div>
+
+                <div class="col-md-6 col-sm-6">
+                    <div class="desc" style="text-transform:uppercase; font-weight:bold;">Yala Excursion</div>
+                    <div class="days"> 01 Day</div>
+                    <a target="_blank" href="@Url.Action("Yala_Day_Excursion", "Tours")">
+                        <img src="~/images/Tours/yala.jpg">
+                    </a>
+                    <div class="desc" style="text-align:justify;">Leave hotel and proceed to Yala,  Sri Lanka’s most known national park is popular for Elephant, Leopard, Bear...</div>
+                    <a href="@Url.Action("Yala_Day_Excursion", "Tours")"><div class="desc" style="background-color:#39F; padding:10px; font-size:14px; color:#FFF; text-transform:uppercase;">Find out More</div></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

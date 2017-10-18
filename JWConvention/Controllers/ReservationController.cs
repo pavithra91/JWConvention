@@ -72,7 +72,7 @@ namespace JWConvention.Controllers
 
             string BookingID = ObjModel.BookingID;
             string userName = "ruwan";
-            string Password = "pass#word3";
+            string Password = "pass#word1";
             string customerName = ObjModel._delegate.Name;
             string email = ObjModel._delegate.EmailAddress;
             string ConventionCode = "JWCON";
@@ -283,7 +283,7 @@ namespace JWConvention.Controllers
                     em.HotelName = reservation.HotelName;
                     em.RoomCategory = reservation.Roomtype;
 
-                    em.SendEmail(em);
+                    em.SendEmail(em, "CustomerInvoice");
 
                     return View("PaymentIssue");
                 }

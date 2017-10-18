@@ -16,7 +16,7 @@ namespace JWConvention.Controllers.api
         }
 
         [HttpGet]
-        public virtual JsonResult DateCheck(string fromDate, string endDate)
+        public virtual JsonResult DateCheck(string fromDate, string endDate, string roomID, string Occupancy)
         {
             try
             {
@@ -28,6 +28,8 @@ namespace JWConvention.Controllers.api
                 int _packageDays = 0;
                 double _afterDays = 0;
                 double TotalCost = 0;
+                int Allotment = 0;
+                int RoomId = Convert.ToInt32(roomID);
 
                 DateTime _StartingDate = DateTime.ParseExact("02/07/2018", "dd/MM/yyyy", null);
                 TimeSpan t = _StartingDate - _fromDate;
@@ -42,35 +44,44 @@ namespace JWConvention.Controllers.api
                 {
                     _packageDays += 7;
                     _afterDays = (_toDate - _7dayPackage).TotalDays;
-                    TotalCost = (double)_context.JW_RoomRate.Where(w => w.PackageId == 1).FirstOrDefault().RoomRate;
+                    JW_RoomRate roomDetails = _context.JW_RoomRate.Where(w => w.RoomID == RoomId && w.PackageId == 1 && w.Occupancy == Occupancy).FirstOrDefault();
+                    TotalCost = (double)roomDetails.RoomRate;
+                    Allotment = (int)roomDetails.RemainingAllotment;
                 }
                 else if(_toDate > _7dayPackage && _toDate <= _8dayPackage)
                 {
                     _packageDays += 8;
                     _afterDays = (_toDate - _8dayPackage).TotalDays;
-                    TotalCost = (double)_context.JW_RoomRate.Where(w => w.PackageId == 2).FirstOrDefault().RoomRate;
+                    JW_RoomRate roomDetails = _context.JW_RoomRate.Where(w => w.RoomID == RoomId && w.PackageId == 2 && w.Occupancy == Occupancy).FirstOrDefault();
+                    TotalCost = (double)roomDetails.RoomRate;
+                    Allotment = (int)roomDetails.RemainingAllotment;
                 }
                 else if (_toDate > _8dayPackage && _toDate <= _9dayPackage)
                 {
                     _packageDays += 9;
                     _afterDays = (_toDate - _9dayPackage).TotalDays;
-                    TotalCost = (double)_context.JW_RoomRate.Where(w => w.PackageId == 3).FirstOrDefault().RoomRate;
+                    JW_RoomRate roomDetails = _context.JW_RoomRate.Where(w => w.RoomID == RoomId && w.PackageId == 3 && w.Occupancy == Occupancy).FirstOrDefault();
+                    TotalCost = (double)roomDetails.RoomRate;
+                    Allotment = (int)roomDetails.RemainingAllotment;
                 }
                 else if (_toDate > _9dayPackage && _toDate <= _10dayPackage)
                 {
                     _packageDays += 10;
                     _afterDays = (_toDate - _10dayPackage).TotalDays;
-                    TotalCost = (double)_context.JW_RoomRate.Where(w => w.PackageId == 4).FirstOrDefault().RoomRate;
+                    JW_RoomRate roomDetails = _context.JW_RoomRate.Where(w => w.RoomID == RoomId && w.PackageId == 4 && w.Occupancy == Occupancy).FirstOrDefault();
+                    TotalCost = (double)roomDetails.RoomRate;
+                    Allotment = (int)roomDetails.RemainingAllotment;
                 }
                 else if(_toDate > _10dayPackage)
                 {
                     _packageDays += 10;
                     _afterDays = (_toDate - _10dayPackage).TotalDays;
-                    TotalCost = (double)_context.JW_RoomRate.Where(w => w.PackageId == 4).FirstOrDefault().RoomRate;
+                    JW_RoomRate roomDetails = _context.JW_RoomRate.Where(w => w.RoomID == RoomId && w.PackageId == 4 && w.Occupancy == Occupancy).FirstOrDefault();
+                    TotalCost = (double)roomDetails.RoomRate;
+                    Allotment = (int)roomDetails.RemainingAllotment;
                 }
-
-
-                return Json(new {BeforeDays = _beforeDays, PackageDays = _packageDays, AfterDays = _afterDays, TotalCost = TotalCost }, JsonRequestBehavior.AllowGet);
+                
+                return Json(new {BeforeDays = _beforeDays, PackageDays = _packageDays, AfterDays = _afterDays, TotalCost = TotalCost, Allotment = Allotment }, JsonRequestBehavior.AllowGet);
             }
             catch(Exception ex)
             {

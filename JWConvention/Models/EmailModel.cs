@@ -25,11 +25,18 @@ namespace JWConvention.Models
         public string CheckIn { get; set; }
         public string CheckOut { get; set; }
 
-        public void SendEmail(EmailModel _email)
+
+        // Inquiry
+        public string FullName { get; set; }
+        public string ContactNo { get; set; }
+        public string Message { get; set; }
+        public string TourName { get; set; }
+
+        public void SendEmail(EmailModel _email, string TemplateName)
         {
-            dynamic email = new Postal.Email("CustomerInvoice");
+            dynamic email = new Postal.Email(TemplateName);
             email.To = _email.ClientEmail;
-            email.From = _email.From;
+            email.From = "pavithraj@jkintranet.com";// _email.From;
 
             if (_email.EmailBCC != null)
             {
@@ -56,6 +63,31 @@ namespace JWConvention.Models
             email.ClientEmail = _email.ClientEmail;
             email.ClientName = _email.ClientName;
             email.DateofPayment = _email.DateofPayment.ToShortDateString();
+
+            email.Send();
+        }
+
+        public void SendInquiry(EmailModel _email, string TemplateName)
+        {
+            dynamic email = new Postal.Email(TemplateName);
+            email.To = _email.ClientEmail;
+            email.From = "pavithraj@jkintranet.com";// _email.From;
+
+            if (_email.EmailCC != null)
+            {
+                email.Cc = _email.EmailCC;
+            }
+
+            if (_email.EmailBCC != null)
+            {
+                email.Bcc = _email.EmailBCC;
+            }
+
+            email.FullName = _email.FullName;
+            email.ContactNo = _email.ContactNo;
+            email.Message = _email.Message;
+            email.TourName = _email.TourName;
+            email.Email = _email.ClientEmail;
 
             email.Send();
         }

@@ -26,6 +26,7 @@
           <Property Name="EmailBCC" Type="nvarchar" MaxLength="100" />
           <Property Name="RespondType" Type="varchar" MaxLength="10" />
           <Property Name="Link" Type="varchar" MaxLength="200" />
+          <Property Name="EmailTo" Type="varchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="JW_AdditionalRoomRates">
           <Key>
@@ -420,6 +421,7 @@
           <Property Name="EmailBCC" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="RespondType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="Link" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="EmailTo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -560,6 +562,7 @@
           <EntitySetMapping Name="IPGConfigs">
             <EntityTypeMapping TypeName="wlakerstoursdbModel.IPGConfig">
               <MappingFragment StoreEntitySet="IPGConfig">
+                <ScalarProperty Name="EmailTo" ColumnName="EmailTo" />
                 <ScalarProperty Name="Link" ColumnName="Link" />
                 <ScalarProperty Name="RespondType" ColumnName="RespondType" />
                 <ScalarProperty Name="EmailBCC" ColumnName="EmailBCC" />

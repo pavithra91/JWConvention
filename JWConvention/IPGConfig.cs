@@ -31,5 +31,6 @@ namespace JWConvention
         public string EmailBCC { get; set; }
         public string RespondType { get; set; }
         public string Link { get; set; }
+        public string EmailTo { get; set; }
     }
 }
