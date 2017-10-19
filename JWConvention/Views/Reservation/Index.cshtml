@@ -135,7 +135,6 @@
                                 <label>Arrival Tranfer  </label>
                                 <div style="margin-left: 55px;">
                                     @Html.CheckBoxFor(m=> Model._isArrival, new { @name = "chkArrival", @id = "chkArrival" })
-                                    @*<input name="chkArrival" type="checkbox" value="" />*@
                                 </div>
                             </div>
                     </div>
@@ -169,7 +168,6 @@
                             </label>
                             <div style="margin-left: 55px;">
                                 @Html.CheckBoxFor(m => Model._isDeparture, new { @name = "chkDeparture", @id = "chkDeparture" })
-                                @*<input name="chkDeparture" type="checkbox" value="" />*@
                                 </div>
                             </div>
                     </div>
@@ -205,8 +203,6 @@
                                 </td>
                             </tr>
                         </table>
-
-
                     </div>
                 </div>
                 <br />
@@ -251,15 +247,8 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         <label>Payment Method</label> <br />
-                        <input type="radio" name="rdPaymentMethod" value="Full">100% Payment<br>
-                        <input type="radio" name="rdPaymentMethod" value="Half">50% Payment
-
-                        @*<div class="radio">
-                            <label><input type="radio" name="rdPaymentMethod">100% Payment</label>
-                        </div>
-                        <div class="radio">
-                            <label><input type="radio" name="rdPaymentMethod">50% Payment</label>
-                        </div>*@
+                        <input type="radio" name="rdPaymentMethod" value="Full" checked="checked" style="padding-top:5px;">100% Full Payment<br>
+                        <input type="radio" name="rdPaymentMethod" value="Half" style="padding-top:5px;">50% Advanced Payment
                     </div>
                 </div>
             </div>

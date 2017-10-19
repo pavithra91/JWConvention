@@ -25,16 +25,16 @@ namespace JWConvention
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<JW_GroupID> JW_GroupID { get; set; }
-        public virtual DbSet<JW_Users> JW_Users { get; set; }
-        public virtual DbSet<JW_Hotels> JW_Hotels { get; set; }
-        public virtual DbSet<JW_Rooms> JW_Rooms { get; set; }
+        public virtual DbSet<IPGConfig> IPGConfigs { get; set; }
         public virtual DbSet<JW_AdditionalRoomRates> JW_AdditionalRoomRates { get; set; }
-        public virtual DbSet<JW_RoomRate> JW_RoomRate { get; set; }
-        public virtual DbSet<JW_TempReservation> JW_TempReservation { get; set; }
         public virtual DbSet<JW_BookingID> JW_BookingID { get; set; }
         public virtual DbSet<JW_Delegates> JW_Delegates { get; set; }
+        public virtual DbSet<JW_GroupID> JW_GroupID { get; set; }
+        public virtual DbSet<JW_Hotels> JW_Hotels { get; set; }
         public virtual DbSet<JW_Reservation> JW_Reservation { get; set; }
-        public virtual DbSet<IPGConfig> IPGConfigs { get; set; }
+        public virtual DbSet<JW_RoomRate> JW_RoomRate { get; set; }
+        public virtual DbSet<JW_Rooms> JW_Rooms { get; set; }
+        public virtual DbSet<JW_TempReservation> JW_TempReservation { get; set; }
+        public virtual DbSet<JW_Users> JW_Users { get; set; }
     }
 }

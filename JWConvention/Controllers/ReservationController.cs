@@ -99,52 +99,54 @@ namespace JWConvention.Controllers
 
             int PackageId = 0;
 
+            int roomType = Convert.ToInt32(ObjModel._roomType);
+
             if (_toDate == _7dayPackage)
             {
                 _packageDays += 7;
                 _afterDays = (_toDate - _7dayPackage).TotalDays;
-                TotalCost = (double)_context.JW_RoomRate.Where(w => w.PackageId == 1).FirstOrDefault().RoomRate;
+                TotalCost = (double)_context.JW_RoomRate.Where(w => w.PackageId == 1 && w.RoomID == roomType && w.Occupancy == ObjModel._Occupancy).FirstOrDefault().RoomRate;
                 PackageId = 1;
             }
             else if (_toDate > _7dayPackage && _toDate <= _8dayPackage)
             {
                 _packageDays += 8;
                 _afterDays = (_toDate - _8dayPackage).TotalDays;
-                TotalCost = (double)_context.JW_RoomRate.Where(w => w.PackageId == 2).FirstOrDefault().RoomRate;
+                TotalCost = (double)_context.JW_RoomRate.Where(w => w.PackageId == 2 && w.RoomID == roomType && w.Occupancy == ObjModel._Occupancy).FirstOrDefault().RoomRate;
                 PackageId = 2;
             }
             else if (_toDate > _8dayPackage && _toDate <= _9dayPackage)
             {
                 _packageDays += 9;
                 _afterDays = (_toDate - _9dayPackage).TotalDays;
-                TotalCost = (double)_context.JW_RoomRate.Where(w => w.PackageId == 3).FirstOrDefault().RoomRate;
+                TotalCost = (double)_context.JW_RoomRate.Where(w => w.PackageId == 3 && w.RoomID == roomType && w.Occupancy == ObjModel._Occupancy).FirstOrDefault().RoomRate;
                 PackageId = 3;
             }
             else if (_toDate > _9dayPackage && _toDate <= _10dayPackage)
             {
                 _packageDays += 10;
                 _afterDays = (_toDate - _10dayPackage).TotalDays;
-                TotalCost = (double)_context.JW_RoomRate.Where(w => w.PackageId == 4).FirstOrDefault().RoomRate;
+                TotalCost = (double)_context.JW_RoomRate.Where(w => w.PackageId == 4 && w.RoomID == roomType && w.Occupancy == ObjModel._Occupancy).FirstOrDefault().RoomRate;
                 PackageId = 4;
             }
             else if (_toDate > _10dayPackage)
             {
                 _packageDays += 10;
                 _afterDays = (_toDate - _10dayPackage).TotalDays;
-                TotalCost = (double)_context.JW_RoomRate.Where(w => w.PackageId == 4).FirstOrDefault().RoomRate;
+                TotalCost = (double)_context.JW_RoomRate.Where(w => w.PackageId == 4 && w.RoomID == roomType && w.Occupancy == ObjModel._Occupancy).FirstOrDefault().RoomRate;
                 PackageId = 4;
             }
 
-            int roomType = Convert.ToInt32(ObjModel._roomType);
+            
 
             if(_beforeDays > 0)
             {
-                double cost = (double)_context.JW_AdditionalRoomRates.Where(w=>w.RoomID == roomType).FirstOrDefault().RoomRate;
+                double cost = (double)_context.JW_AdditionalRoomRates.Where(w=>w.RoomID == roomType && w.Occupancy == ObjModel._Occupancy).FirstOrDefault().RoomRate;
                 TotalCost = TotalCost + (cost * _beforeDays);
             }
             if(_afterDays > 0)
             {
-                double cost = (double)_context.JW_AdditionalRoomRates.Where(w=> w.RoomID == roomType).FirstOrDefault().RoomRate;
+                double cost = (double)_context.JW_AdditionalRoomRates.Where(w=> w.RoomID == roomType && w.Occupancy == ObjModel._Occupancy).FirstOrDefault().RoomRate;
                 TotalCost = TotalCost + (cost * _afterDays);
             }
 
@@ -163,18 +165,25 @@ namespace JWConvention.Controllers
             _context.SaveChanges();
 
 
+
+
+            DateTime ArrivalDate = DateTime.ParseExact(ObjModel._ArrivalDate, "dd/MM/yyyy", null);
+            DateTime DepartureDate = DateTime.ParseExact(ObjModel._DepartureDate, "dd/MM/yyyy", null);
+
+
+
             JW_Reservation _reservation = new JW_Reservation();
             _reservation.HotelName = ObjModel._hotel.HotelName;
             _reservation.BookingID = ObjModel.BookingID;
             _reservation.ArrivalFlightNo = ObjModel._ArrivalFlightNumber;
             _reservation.DepartureFlightNo = ObjModel._DepartureFlightNumber;
-            //_reservation.CheckInDate = objModel._ArrivalDate;
-            //_reservation.CheckInTime = objModel._ArrivalTime;
-            //_reservation.CheckOutDate = objModel._DepartureDate;
+            _reservation.CheckInDate = ArrivalDate;
+           // _reservation.CheckInTime = ObjModel._ArrivalTime;
+            _reservation.CheckOutDate = DepartureDate;
             //_reservation.CheckOutTime = objModel._DepartureTime;
             _reservation.IsArrivalTransportRequired = ObjModel._isArrival;
             _reservation.IsDepartureTransportRequired = ObjModel._isDeparture;
-            _reservation.Roomtype = ObjModel._roomType;
+            _reservation.Roomtype = Convert.ToInt32(ObjModel._roomType);
             _reservation.Occupancy = ObjModel._Occupancy;
             _reservation.BedPreference = ObjModel._BedPerferance;
             _reservation.TotalCost = TotalCost;
@@ -199,56 +208,67 @@ namespace JWConvention.Controllers
                 TotalCost = TotalCost / 2;
             }
 
-                string url = "http://payment.walkerstours.net/Payment/WebPortal";
-                Response.Clear();
-                var sb = new System.Text.StringBuilder();
-                sb.Append("<html>");
-                sb.AppendFormat("<body onload='document.forms[0].submit()'>");
-                sb.AppendFormat("<form action='{0}' method='post'>", url);
-                sb.AppendFormat("<input type='hidden' id='CustomerRef' name='CustomerRef' value='" + BookingID + "'>", BookingID);
-                sb.AppendFormat("<input type='hidden' id='Amount' name='Amount' value='" + TotalCost + "'>", TotalCost);
-                sb.AppendFormat("<input type='hidden' id='UserName' name='UserName' value='" + userName + "'>", userName);
-                sb.AppendFormat("<input type='hidden' id='Password' name='Password' value='" + Password + "'>", Password);
-                sb.AppendFormat("<input type='hidden' id='customername' name='customername' value='" + customerName + "'>", customerName);
-                sb.AppendFormat("<input type='hidden' id='email' name='email' value='" + email + "'>", email);
-                sb.AppendFormat("<input type='hidden' id='conventioncode' name='conventioncode' value='" + ConventionCode + "'>", ConventionCode);
-                sb.AppendFormat("<input type='hidden' id='language' name='language' value='" + Language + "'>", Language);
-                sb.AppendFormat("<input type='hidden' id='_currency' name='_currency' value='" + Currency + "'>", Currency);
-                sb.Append("</form>");
-                sb.Append("</body>");
-                sb.Append("</html>");
-                //Response.Write(sb.ToString());
-                //Response.End();
+            Encryption encry = new Encryption();
+            string _amount = encry.EncryptString(TotalCost.ToString(), "Amount");
 
-                return Content(sb.ToString());
+            _reservation.PreHashKey = _amount;
+            _context.Entry(_reservation).State = System.Data.Entity.EntityState.Modified;
+            _context.SaveChanges();
 
-          //  }
+            string url = "http://payment.walkerstours.net/Payment/WebPortal";
 
-          //  return null;
-           // return RedirectToAction("AddtionalAccomerdation", "Reservation");
+            Response.Clear();
+            var sb = new System.Text.StringBuilder();
+            sb.Append("<html>");
+            sb.AppendFormat("<body onload='document.forms[0].submit()'>");
+            sb.AppendFormat("<form action='{0}' method='post'>", url);
+            sb.AppendFormat("<input type='hidden' id='CustomerRef' name='CustomerRef' value='" + BookingID + "'>", BookingID);
+            sb.AppendFormat("<input type='hidden' id='Amount' name='Amount' value='" + TotalCost + "'>", TotalCost);
+            sb.AppendFormat("<input type='hidden' id='UserName' name='UserName' value='" + userName + "'>", userName);
+            sb.AppendFormat("<input type='hidden' id='Password' name='Password' value='" + Password + "'>", Password);
+            sb.AppendFormat("<input type='hidden' id='customername' name='customername' value='" + customerName + "'>", customerName);
+            sb.AppendFormat("<input type='hidden' id='email' name='email' value='" + email + "'>", email);
+            sb.AppendFormat("<input type='hidden' id='conventioncode' name='conventioncode' value='" + ConventionCode + "'>", ConventionCode);
+            sb.AppendFormat("<input type='hidden' id='language' name='language' value='" + Language + "'>", Language);
+            sb.AppendFormat("<input type='hidden' id='_currency' name='_currency' value='" + Currency + "'>", Currency);
+            sb.Append("</form>");
+            sb.Append("</body>");
+            sb.Append("</html>");
+            //Response.Write(sb.ToString());
+            //Response.End();
+
+            return Content(sb.ToString());
+
+            //  }
+
+            //  return null;
+            // return RedirectToAction("AddtionalAccomerdation", "Reservation");
         }
 
         public ActionResult Confirmation()
         {
             try
             {
-                //string _result = (Request.Form["_result"]).ToString();
-                //string _orderID = (Request.Form["_orderID"]).ToString();
-                //string _response = (Request.Form["_response"]).ToString();
-                //string _currency = (Request.Form["_currency"]).ToString();
-                //string _conventionCode = (Request.Form["_conventionCode"]).ToString();
+                string _result = (Request.Form["_result"]).ToString();
+                string _orderID = (Request.Form["_orderID"]).ToString();
+                string _response = (Request.Form["_response"]).ToString();
+                string _currency = (Request.Form["_currency"]).ToString();
+                string _conventionCode = (Request.Form["_conventionCode"]).ToString();
+                string _amount = (Request.Form["_amount"]).ToString();
 
-                //Encryption _decrypt = new Encryption();
-                //_result = _decrypt.DecryptString(_result, "Result");
-                //_orderID = _decrypt.DecryptString(_orderID, "CustomerRef");
-                //_response = _decrypt.DecryptString(_response, "ResponseString");
-                //_conventionCode = _decrypt.DecryptString(_conventionCode, "ConventionCode");
+                Encryption _decrypt = new Encryption();
+                _result = _decrypt.DecryptString(_result, "Result");
+                _orderID = _decrypt.DecryptString(_orderID, "CustomerRef");
+                _response = _decrypt.DecryptString(_response, "ResponseString");
+                _conventionCode = _decrypt.DecryptString(_conventionCode, "ConventionCode");
+                _amount = _decrypt.DecryptString(_amount, "Amount");
 
-                string _result = "1";
-                string _orderID = "JW12167";
-                string _response = "";
-                string _currency = "USD";
-                string _conventionCode = "JWCON";
+                //string _result = "1";
+                //string _orderID = "JW12167";
+                //string _response = "";
+                //string _currency = "USD";
+                //string _conventionCode = "JWCON";
+                //string _amount = "1";
 
                 if (_result == "1")
                 {
@@ -262,30 +282,68 @@ namespace JWConvention.Controllers
                     JW_Delegates del = _context.JW_Delegates.Where(w => w.BookingID == BookingId).FirstOrDefault();
                     JW_Reservation reservation = _context.JW_Reservation.Where(w => w.BookingID == BookingId).FirstOrDefault();
 
-                    if(reservation.IsAdvancePayment == true)
-                    {
-                        em.Amount = Convert.ToDouble(reservation.TotalCost / 2);
-                    }
-                    else
-                    {
-                        em.Amount = Convert.ToDouble(reservation.TotalCost);
-                    }
-                    
+                    reservation.BankRespond = true;
+                    reservation.BankRespondValue = Convert.ToDouble(_amount);
+
+                    Encryption encry = new Encryption();
+                    string hashKey = encry.EncryptString(_amount, "Amount");
+                    reservation.PostHashKey = hashKey;
+
+                    //if (reservation.IsAdvancePayment == true)
+                    //{
+                    //    em.Amount = Convert.ToDouble(reservation.TotalCost / 2);
+                    //}
+                    //else
+                    //{
+                    //    em.Amount = Convert.ToDouble(reservation.TotalCost);
+                    //}
+
+                    em.Amount = Convert.ToDouble(_amount);
+                    em.InvoiceAmount = Convert.ToDouble(reservation.TotalCost);
+
                     em.ClientEmail = del.Email;
                     em.ClientName = del.DelegeteName;
                     em.InvoiceNo = _orderID;
                     em.DateofPayment = DateTime.Today;
-                    em.CheckIn = reservation.CheckInDate.GetValueOrDefault().ToShortDateString();
-                    em.CheckOut = reservation.CheckOutDate.GetValueOrDefault().ToShortDateString();
+                    em.CheckIn = reservation.CheckInDate.GetValueOrDefault().ToString("dd/MMMM/yyyy");
+                    em.CheckOut = reservation.CheckOutDate.GetValueOrDefault().ToString("dd/MMMM/yyyy");
                     em.EmailCC = _ipgConfig.EmailCC;
                     em.EmailBCC = _ipgConfig.EmailBCC;
                     em.From =  _ipgConfig.EmailFrom;
                     em.HotelName = reservation.HotelName;
-                    em.RoomCategory = reservation.Roomtype;
+                    em.RoomCategory = reservation.JW_Rooms.RoomType;
+
+                    string Package = "";
+
+                    if(reservation.NightBefore > 0)
+                    {
+                        Package += reservation.NightBefore + " Nights Prior + ";
+                    }
+
+                    Package += reservation.Package + " Night Package ";
+
+                    if(reservation.NightAfter > 0)
+                    {
+                        Package +=  "+ " + reservation.NightAfter + " Nights (Post Event)";
+                    }
+
+                    em.PackageType = Package;
 
                     em.SendEmail(em, "CustomerInvoice");
 
-                    return View("PaymentIssue");
+                    IQueryable<JW_RoomRate> roomRate = _context.JW_RoomRate.Where(w => w.RoomID == reservation.JW_Rooms.RoomID);
+
+                    foreach(JW_RoomRate item in roomRate)
+                    {
+                        int newAllotment = (int)item.RemainingAllotment;
+                        newAllotment = newAllotment - 1;
+                        item.RemainingAllotment = newAllotment;
+                    }
+
+                    //_context.Entry(stud).State = System.Data.Entity.EntityState.Modified;
+                    _context.SaveChanges();
+
+                    return View("PaymentComplete");
                 }
                 else
                 {
@@ -428,7 +486,7 @@ namespace JWConvention.Controllers
                 //_reservation.CheckOutTime = objModel._DepartureTime;
                 _reservation.IsArrivalTransportRequired = objModel._isArrival;
                 _reservation.IsDepartureTransportRequired = objModel._isDeparture;
-                _reservation.Roomtype = objModel._roomType;
+                _reservation.Roomtype = Convert.ToInt32(objModel._roomType);
                 _reservation.Occupancy = objModel._Occupancy;
                 _reservation.BedPreference = objModel._BedPerferance;
                 _reservation.TotalCost = TotalCost;

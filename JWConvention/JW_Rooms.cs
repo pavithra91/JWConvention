@@ -18,6 +18,7 @@ namespace JWConvention
         public JW_Rooms()
         {
             this.JW_AdditionalRoomRates = new HashSet<JW_AdditionalRoomRates>();
+            this.JW_Reservation = new HashSet<JW_Reservation>();
             this.JW_RoomRate = new HashSet<JW_RoomRate>();
         }
     
@@ -25,9 +26,11 @@ namespace JWConvention
         public Nullable<int> HotelID { get; set; }
         public string RoomType { get; set; }
     
-        public virtual JW_Hotels JW_Hotels { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<JW_AdditionalRoomRates> JW_AdditionalRoomRates { get; set; }
+        public virtual JW_Hotels JW_Hotels { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<JW_Reservation> JW_Reservation { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<JW_RoomRate> JW_RoomRate { get; set; }
     }

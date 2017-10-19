@@ -17,7 +17,7 @@ namespace JWConvention
         public int AUTOID { get; set; }
         public string BookingID { get; set; }
         public string HotelName { get; set; }
-        public string Roomtype { get; set; }
+        public Nullable<int> Roomtype { get; set; }
         public string Occupancy { get; set; }
         public string BedPreference { get; set; }
         public string Basis { get; set; }
@@ -34,5 +34,11 @@ namespace JWConvention
         public Nullable<int> NightBefore { get; set; }
         public Nullable<int> Package { get; set; }
         public Nullable<int> NightAfter { get; set; }
+        public Nullable<bool> BankRespond { get; set; }
+        public Nullable<double> BankRespondValue { get; set; }
+        public string PreHashKey { get; set; }
+        public string PostHashKey { get; set; }
+    
+        public virtual JW_Rooms JW_Rooms { get; set; }
     }
 }

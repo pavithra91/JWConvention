@@ -123,7 +123,8 @@ namespace JWConvention.Controllers
 
                 EmailModel em = new EmailModel();
                 em.FullName = objModel.FullName;
-                em.ClientEmail = ipg.EmailTo;
+                em.EmailTo = ipg.EmailTo;
+                em.ClientEmail = objModel.Email;
                 em.ContactNo = objModel.ContactNo;
                 em.Message = objModel.Message;
                 em.TourName = objModel.TourName.Replace("_", " ");
@@ -134,12 +135,14 @@ namespace JWConvention.Controllers
 
                 EmailModel clientCopy = new EmailModel();
                 clientCopy.FullName = objModel.FullName;
+                em.EmailTo = objModel.Email;
                 clientCopy.ClientEmail = objModel.Email;
                 clientCopy.ContactNo = objModel.ContactNo;
                 clientCopy.Message = objModel.Message;
                 clientCopy.TourName = objModel.TourName.Replace("_", " ");
                 clientCopy.EmailCC = ipg.EmailCC;
                 clientCopy.EmailBCC = ipg.EmailBCC;
+                clientCopy.EmailTo = objModel.Email;
 
                 clientCopy.SendInquiry(clientCopy, "InquiryCustomer");
 
