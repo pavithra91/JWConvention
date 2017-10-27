@@ -215,7 +215,8 @@ namespace JWConvention.Controllers
             _context.Entry(_reservation).State = System.Data.Entity.EntityState.Modified;
             _context.SaveChanges();
 
-            string url = "http://payment.walkerstours.net/Payment/WebPortal";
+            //string url = "http://payment.walkerstours.net/Payment/WebPortal";
+            string url = "https://webportal.walkerstours.com/Events/Payment/WebPortal";
 
             Response.Clear();
             var sb = new System.Text.StringBuilder();

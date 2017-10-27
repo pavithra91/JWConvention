@@ -80,7 +80,18 @@ namespace JWConvention.Controllers.api
                     TotalCost = (double)roomDetails.RoomRate;
                     Allotment = (int)roomDetails.RemainingAllotment;
                 }
-                
+
+                if (_beforeDays > 0)
+                {
+                    double cost = (double)_context.JW_AdditionalRoomRates.Where(w => w.RoomID == RoomId && w.Occupancy == Occupancy).FirstOrDefault().RoomRate;
+                    TotalCost = TotalCost + (cost * _beforeDays);
+                }
+                if (_afterDays > 0)
+                {
+                    double cost = (double)_context.JW_AdditionalRoomRates.Where(w => w.RoomID == RoomId && w.Occupancy == Occupancy).FirstOrDefault().RoomRate;
+                    TotalCost = TotalCost + (cost * _afterDays);
+                }
+
                 return Json(new {BeforeDays = _beforeDays, PackageDays = _packageDays, AfterDays = _afterDays, TotalCost = TotalCost, Allotment = Allotment }, JsonRequestBehavior.AllowGet);
             }
             catch(Exception ex)
