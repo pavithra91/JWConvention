@@ -42,7 +42,7 @@ namespace JWConvention.Controllers.api
 
                 if (_toDate ==_7dayPackage)
                 {
-                    _packageDays += 7;
+                    _packageDays += 6;
                     _afterDays = (_toDate - _7dayPackage).TotalDays;
                     JW_RoomRate roomDetails = _context.JW_RoomRate.Where(w => w.RoomID == RoomId && w.PackageId == 1 && w.Occupancy == Occupancy).FirstOrDefault();
                     TotalCost = (double)roomDetails.RoomRate;
@@ -50,7 +50,7 @@ namespace JWConvention.Controllers.api
                 }
                 else if(_toDate > _7dayPackage && _toDate <= _8dayPackage)
                 {
-                    _packageDays += 8;
+                    _packageDays += 7;
                     _afterDays = (_toDate - _8dayPackage).TotalDays;
                     JW_RoomRate roomDetails = _context.JW_RoomRate.Where(w => w.RoomID == RoomId && w.PackageId == 2 && w.Occupancy == Occupancy).FirstOrDefault();
                     TotalCost = (double)roomDetails.RoomRate;
@@ -58,7 +58,7 @@ namespace JWConvention.Controllers.api
                 }
                 else if (_toDate > _8dayPackage && _toDate <= _9dayPackage)
                 {
-                    _packageDays += 9;
+                    _packageDays += 8;
                     _afterDays = (_toDate - _9dayPackage).TotalDays;
                     JW_RoomRate roomDetails = _context.JW_RoomRate.Where(w => w.RoomID == RoomId && w.PackageId == 3 && w.Occupancy == Occupancy).FirstOrDefault();
                     TotalCost = (double)roomDetails.RoomRate;
@@ -66,7 +66,7 @@ namespace JWConvention.Controllers.api
                 }
                 else if (_toDate > _9dayPackage && _toDate <= _10dayPackage)
                 {
-                    _packageDays += 10;
+                    _packageDays += 9;
                     _afterDays = (_toDate - _10dayPackage).TotalDays;
                     JW_RoomRate roomDetails = _context.JW_RoomRate.Where(w => w.RoomID == RoomId && w.PackageId == 4 && w.Occupancy == Occupancy).FirstOrDefault();
                     TotalCost = (double)roomDetails.RoomRate;
@@ -74,7 +74,7 @@ namespace JWConvention.Controllers.api
                 }
                 else if(_toDate > _10dayPackage)
                 {
-                    _packageDays += 10;
+                    _packageDays += 9;
                     _afterDays = (_toDate - _10dayPackage).TotalDays;
                     JW_RoomRate roomDetails = _context.JW_RoomRate.Where(w => w.RoomID == RoomId && w.PackageId == 4 && w.Occupancy == Occupancy).FirstOrDefault();
                     TotalCost = (double)roomDetails.RoomRate;

@@ -103,35 +103,35 @@ namespace JWConvention.Controllers
 
             if (_toDate == _7dayPackage)
             {
-                _packageDays += 7;
+                _packageDays += 6;
                 _afterDays = (_toDate - _7dayPackage).TotalDays;
                 TotalCost = (double)_context.JW_RoomRate.Where(w => w.PackageId == 1 && w.RoomID == roomType && w.Occupancy == ObjModel._Occupancy).FirstOrDefault().RoomRate;
                 PackageId = 1;
             }
             else if (_toDate > _7dayPackage && _toDate <= _8dayPackage)
             {
-                _packageDays += 8;
+                _packageDays += 7;
                 _afterDays = (_toDate - _8dayPackage).TotalDays;
                 TotalCost = (double)_context.JW_RoomRate.Where(w => w.PackageId == 2 && w.RoomID == roomType && w.Occupancy == ObjModel._Occupancy).FirstOrDefault().RoomRate;
                 PackageId = 2;
             }
             else if (_toDate > _8dayPackage && _toDate <= _9dayPackage)
             {
-                _packageDays += 9;
+                _packageDays += 8;
                 _afterDays = (_toDate - _9dayPackage).TotalDays;
                 TotalCost = (double)_context.JW_RoomRate.Where(w => w.PackageId == 3 && w.RoomID == roomType && w.Occupancy == ObjModel._Occupancy).FirstOrDefault().RoomRate;
                 PackageId = 3;
             }
             else if (_toDate > _9dayPackage && _toDate <= _10dayPackage)
             {
-                _packageDays += 10;
+                _packageDays += 9;
                 _afterDays = (_toDate - _10dayPackage).TotalDays;
                 TotalCost = (double)_context.JW_RoomRate.Where(w => w.PackageId == 4 && w.RoomID == roomType && w.Occupancy == ObjModel._Occupancy).FirstOrDefault().RoomRate;
                 PackageId = 4;
             }
             else if (_toDate > _10dayPackage)
             {
-                _packageDays += 10;
+                _packageDays += 9;
                 _afterDays = (_toDate - _10dayPackage).TotalDays;
                 TotalCost = (double)_context.JW_RoomRate.Where(w => w.PackageId == 4 && w.RoomID == roomType && w.Occupancy == ObjModel._Occupancy).FirstOrDefault().RoomRate;
                 PackageId = 4;

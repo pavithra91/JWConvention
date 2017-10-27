@@ -57,14 +57,14 @@
                                 @Html.DropDownListFor(m => Model._Occupancy, new SelectList(new List<Object> {
                                   new { value = "Single" , text = "Single"  },
                                   new { value = "Double" , text = "Double" },
-                                  new { value = "Triple" , text = "Triple"} }, "value", "text"), "- Please Select Room Category -", new { @name = "drpOccupancy", @class = "form-control", @id = "drpOccupancy" })
+                                  new { value = "Triple" , text = "Triple"} }, "value", "text"), "- Please Select Room Occupancy -", new { @name = "drpOccupancy", @class = "form-control", @id = "drpOccupancy" })
                             }
                             else
                             {
                                 @Html.DropDownListFor(m => Model._Occupancy, new SelectList(new List<Object> {
                                    new { value = "Single" , text = "Single"  },
                                    new { value = "Double" , text = "Double" },
-                                   new { value = "Triple" , text = "Triple"} }, "value", "text"), "- Please Select Room Category -", new { @name = "drpOccupancy", @class = "form-control", @id = "drpOccupancy", @disabled = "disabled" })
+                                   new { value = "Triple" , text = "Triple"} }, "value", "text"), "- Please Select Room Occupancy -", new { @name = "drpOccupancy", @class = "form-control", @id = "drpOccupancy", @disabled = "disabled" })
                             }      
                                 <span class="selectInvalidMsg">Please select a valid item.</span><span class="selectRequiredMsg">Please select an item.</span>
                             </span>
@@ -73,7 +73,7 @@
 
                     <div class="col-md-2 col-sm-2" id="bedPreference" style="display:none">
                         <div class="form-group">
-                            <label>Bed Perferance</label>
+                            <label>Bed Preference</label>
                             <span id="spryselect2">
                             @if (Model._BedPerferance == null)
                             {
@@ -97,7 +97,7 @@
                 <div class="row">
                     <div class="col-md-6 col-sm-6">
                         <div class="form-group">
-                            <label>From</label>
+                            <label>Check In</label>
                             <span id="sprytextfield1">
                             @if (Model._fromDate == null)
                             {
@@ -113,7 +113,7 @@
                     </div>
                     <div class="col-md-6 col-sm-6">
                         <div class="form-group">
-                            <label>To</label>
+                            <label>Check Out</label>
                             <span id="sprytextfield2">
                                 @if (Model._toDate == null)
                                 {
@@ -132,7 +132,7 @@
                 <div class="row">
                     <div class="col-md-2 col-sm-2">
                             <div class="checkbox-inline">
-                                <label>Arrival Transfer  </label>
+                                <label>Arrival</label>
                                 <div style="margin-left: 55px;">
                                     @Html.CheckBoxFor(m=> Model._isArrival, new { @name = "chkArrival", @id = "chkArrival" })
                                 </div>
