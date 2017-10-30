@@ -78,14 +78,14 @@
                             @if (Model._BedPerferance == null)
                             {
                                 @Html.DropDownListFor(m => Model._BedPerferance, new SelectList(new List<Object> {
-                                   new { value = "Double" , text = "Double"  },
-                                   new { value = "Twin" , text = "Twin" } }, "value", "text"), "- Please Select Bed Perferance -", new { @name = "drpPerferences", @class = "form-control", @id = "drpPerferences" })
+                                   new { value = "Double" , text = "King Bed"  },
+                                   new { value = "Twin" , text = "Twin Bed" } }, "value", "text"), "- Please Select Bed Perferance -", new { @name = "drpPerferences", @class = "form-control", @id = "drpPerferences" })
                             }
                             else
                             {
                                 @Html.DropDownListFor(m => Model._BedPerferance, new SelectList(new List<Object> {
-                                   new { value = "Double" , text = "Double"  },
-                                   new { value = "Twin" , text = "Twin" } }, "value", "text"), "- Please Select Bed Perferance -", new { @name = "drpPerferences", @class = "form-control", @id = "drpPerferences", @disabled = "disabled" })
+                                   new { value = "Double" , text = "King Bed"  },
+                                   new { value = "Twin" , text = "Twin Bed" } }, "value", "text"), "- Please Select Bed Perferance -", new { @name = "drpPerferences", @class = "form-control", @id = "drpPerferences", @disabled = "disabled" })
                             }
                                 <span class="selectInvalidMsg">Please select a valid item.</span><span class="selectRequiredMsg">Please select an item.</span>
                             </span>

@@ -66,9 +66,9 @@ $('#datetimepicker3').datetimepicker({
     timepicker: false,
     format: 'd/m/Y',
     formatDate: 'Y/m/d',
-    minDate: '2018/07/08',
-    startDate: '2018/07/08',
-    maxDate: '2018/07/15',
+    minDate: '2018/07/09',
+    startDate: '2018/07/09',
+    maxDate: '2018/07/17',
 });
 $('#datetimepicker4').datetimepicker();
 $('#open').click(function(){
