@@ -105,6 +105,8 @@ namespace JWConvention.Controllers
             {
                 _packageDays += 7;
                 _afterDays = (_toDate - _7dayPackage).TotalDays;
+                _packageDays += (int)_afterDays;
+                _packageDays += (int)_beforeDays;
                 TotalCost = (double)_context.JW_RoomRate.Where(w => w.PackageId == 1 && w.RoomID == roomType && w.Occupancy == ObjModel._Occupancy).FirstOrDefault().RoomRate;
                 PackageId = 1;
             }
@@ -112,6 +114,8 @@ namespace JWConvention.Controllers
             {
                 _packageDays += 8;
                 _afterDays = (_toDate - _8dayPackage).TotalDays;
+                _packageDays += (int)_afterDays;
+                _packageDays += (int)_beforeDays;
                 TotalCost = (double)_context.JW_RoomRate.Where(w => w.PackageId == 2 && w.RoomID == roomType && w.Occupancy == ObjModel._Occupancy).FirstOrDefault().RoomRate;
                 PackageId = 2;
             }
@@ -119,6 +123,8 @@ namespace JWConvention.Controllers
             {
                 _packageDays += 9;
                 _afterDays = (_toDate - _9dayPackage).TotalDays;
+                _packageDays += (int)_afterDays;
+                _packageDays += (int)_beforeDays;
                 TotalCost = (double)_context.JW_RoomRate.Where(w => w.PackageId == 3 && w.RoomID == roomType && w.Occupancy == ObjModel._Occupancy).FirstOrDefault().RoomRate;
                 PackageId = 3;
             }
@@ -126,6 +132,8 @@ namespace JWConvention.Controllers
             {
                 _packageDays += 10;
                 _afterDays = (_toDate - _10dayPackage).TotalDays;
+                _packageDays += (int)_afterDays;
+                _packageDays += (int)_beforeDays;
                 TotalCost = (double)_context.JW_RoomRate.Where(w => w.PackageId == 4 && w.RoomID == roomType && w.Occupancy == ObjModel._Occupancy).FirstOrDefault().RoomRate;
                 PackageId = 4;
             }
@@ -133,6 +141,8 @@ namespace JWConvention.Controllers
             {
                 _packageDays += 10;
                 _afterDays = (_toDate - _10dayPackage).TotalDays;
+                _packageDays += (int)_afterDays;
+                _packageDays += (int)_beforeDays;
                 TotalCost = (double)_context.JW_RoomRate.Where(w => w.PackageId == 4 && w.RoomID == roomType && w.Occupancy == ObjModel._Occupancy).FirstOrDefault().RoomRate;
                 PackageId = 4;
             }

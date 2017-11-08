@@ -79,13 +79,13 @@
                             {
                                 @Html.DropDownListFor(m => Model._BedPerferance, new SelectList(new List<Object> {
                                    new { value = "Double" , text = "King Bed"  },
-                                   new { value = "Twin" , text = "Twin Bed" } }, "value", "text"), "- Please Select Bed Perferance -", new { @name = "drpPerferences", @class = "form-control", @id = "drpPerferences" })
+                                   new { value = "Twin" , text = "Twin Beds" } }, "value", "text"), "- Please Select Bed Preference -", new { @name = "drpPerferences", @class = "form-control", @id = "drpPerferences" })
                             }
                             else
                             {
                                 @Html.DropDownListFor(m => Model._BedPerferance, new SelectList(new List<Object> {
                                    new { value = "Double" , text = "King Bed"  },
-                                   new { value = "Twin" , text = "Twin Bed" } }, "value", "text"), "- Please Select Bed Perferance -", new { @name = "drpPerferences", @class = "form-control", @id = "drpPerferences", @disabled = "disabled" })
+                                   new { value = "Twin" , text = "Twin Beds" } }, "value", "text"), "- Please Select Bed Preference -", new { @name = "drpPerferences", @class = "form-control", @id = "drpPerferences", @disabled = "disabled" })
                             }
                                 <span class="selectInvalidMsg">Please select a valid item.</span><span class="selectRequiredMsg">Please select an item.</span>
                             </span>
@@ -245,11 +245,11 @@
 
             <div class="row">
                 <div class="col-md-12">
-                    <div class="form-group">
+                    @*<div class="form-group">
                         <label>Payment Method</label> <br />
                         <input type="radio" name="rdPaymentMethod" value="Full" checked="checked" style="padding-top:5px;">100% Full Payment<br>
                         <input type="radio" name="rdPaymentMethod" value="Half" style="padding-top:5px;">50% Advanced Payment
-                    </div>
+                    </div>*@
                 </div>
             </div>
 
@@ -269,7 +269,6 @@
 @*<script src="build/jquery.datetimepicker.full.js"></script>*@
 
 <script src="~/scripts/Reservation/Index.js"></script>
-
 
     <script>
         $("#drpOccupancy").change(function () {
@@ -308,6 +307,14 @@
                     debugger;
                     var r = result;
 
+                    if (r.Message == "Failed") {
+                        document.getElementById("save").disabled = true;
+                        document.getElementById('lblTotalCost').innerHTML = "USD : 0";
+                        document.getElementById('lblBefore').style.color = "red";
+                        document.getElementById('lblBefore').innerHTML = "You have to Select Minimum 7 Nights to Continue the Reservation!";
+                        return;
+                    }
+
                     if (r.Allotment == 0) {
                         document.getElementById("save").disabled = true;
                         document.getElementById('lblTotalCost').innerHTML = "USD : 0";
@@ -318,7 +325,8 @@
                         document.getElementById("save").disabled = false;
                         document.getElementById('lblTotalCost').innerHTML = "USD : " + r.TotalCost;
                         document.getElementById('lblBefore').style.color = "black";
-                        document.getElementById('lblBefore').innerHTML = r.BeforeDays + " Additional Nights + " + r.PackageDays + " Night Package + " + r.AfterDays + " Additional Nights";
+                        document.getElementById('lblBefore').innerHTML = r.PackageDays + " Night Package";
+                        //document.getElementById('lblBefore').innerHTML = r.BeforeDays + " Additional Nights + " + r.PackageDays + " Night Package + " + r.AfterDays + " Additional Nights";
                     }
                 },
                 error: function (req, status, err) {
@@ -345,6 +353,15 @@
                 success: function (result) {
                     var r = result;
                     debugger;
+
+                    if (r.Message == "Failed") {
+                        document.getElementById("save").disabled = true;
+                        document.getElementById('lblTotalCost').innerHTML = "USD : 0";
+                        document.getElementById('lblBefore').style.color = "red";
+                        document.getElementById('lblBefore').innerHTML = "You have to Select Minimum 7 Nights to Continue the Reservation!";
+                        return;
+                    }
+
                     if (r.Allotment == 0)
                     {
                         document.getElementById("save").disabled = true;
@@ -357,7 +374,8 @@
                         document.getElementById("save").disabled = false;
                         document.getElementById('lblTotalCost').innerHTML = "USD : " + r.TotalCost;
                         document.getElementById('lblBefore').style.color = "black";
-                        document.getElementById('lblBefore').innerHTML = r.BeforeDays + " Additional Nights + " + r.PackageDays + " Night Package + " + r.AfterDays + " Additional Nights";
+                        document.getElementById('lblBefore').innerHTML = r.PackageDays + " Night Package";
+                        //document.getElementById('lblBefore').innerHTML = r.BeforeDays + " Additional Nights + " + r.PackageDays + " Night Package + " + r.AfterDays + " Additional Nights";
                     }                    
                 },
                 error: function (req, status, err) {
@@ -367,7 +385,55 @@
             });
         });
 
+        $("#drpOccupancy").change(function () {
+            var roomID = $('#drpRoomType').val();
+            var startDate = $('#datetimepicker2').val();
+            var endDate = $('#datetimepicker3').val();
+            var drpOccupancy = $('#drpOccupancy').val();
+            
+            $('#datetimepicker8').val(endDate);
 
+            $.ajax({
+                type: 'GET',
+                url: "http://events.walkerstours.net/Service/DateCheck?fromDate=" + startDate + "&endDate=" + endDate + "&roomID=" + roomID + "&Occupancy=" + drpOccupancy,
+                data: "",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    var r = result;
+                    debugger;
+
+                    if (r.Message == "Failed")
+                    {
+                        document.getElementById("save").disabled = true;
+                        document.getElementById('lblTotalCost').innerHTML = "USD : 0";
+                        document.getElementById('lblBefore').style.color = "red";
+                        document.getElementById('lblBefore').innerHTML = "You have to Select Minimum 7 Nights to Continue the Reservation!";
+                        return;
+                    }
+
+                    if (r.Allotment == 0) {
+                        document.getElementById("save").disabled = true;
+                        document.getElementById('lblTotalCost').innerHTML = "USD : 0";
+                        document.getElementById('lblBefore').style.color = "red";
+                        document.getElementById('lblBefore').innerHTML = "No Allotment Available for above Reservation. Please select different Room type or Hotel.";
+                    }
+                    else {
+                        document.getElementById("save").disabled = false;
+                        document.getElementById('lblTotalCost').innerHTML = "USD : " + r.TotalCost;
+                        document.getElementById('lblBefore').style.color = "black";
+                        document.getElementById('lblBefore').innerHTML = r.PackageDays + " Night Package";
+                        //document.getElementById('lblBefore').innerHTML = r.BeforeDays + " Additional Nights + " + r.PackageDays + " Night Package + " + r.AfterDays + " Additional Nights";
+                    }
+                },
+                error: function (req, status, err) {
+                    debugger;
+                    //alert("Error");
+                }
+            });
+        });
+
+        
     </script>
 
 }

@@ -60,7 +60,7 @@ $('#datetimepicker2').datetimepicker({
     formatDate: 'Y/m/d',
     minDate: '2018/06/25',
     startDate: '2018/06/25',
-    maxDate: '2018/07/02',
+    maxDate: '2018/07/04',
 });
 $('#datetimepicker3').datetimepicker({
     timepicker: false,
