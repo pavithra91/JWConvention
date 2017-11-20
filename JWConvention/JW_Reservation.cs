@@ -22,9 +22,9 @@ namespace JWConvention
         public string BedPreference { get; set; }
         public string Basis { get; set; }
         public Nullable<System.DateTime> CheckInDate { get; set; }
-        public Nullable<System.TimeSpan> CheckInTime { get; set; }
+        public string CheckInTime { get; set; }
         public Nullable<System.DateTime> CheckOutDate { get; set; }
-        public Nullable<System.TimeSpan> CheckOutTime { get; set; }
+        public string CheckOutTime { get; set; }
         public Nullable<bool> IsArrivalTransportRequired { get; set; }
         public Nullable<bool> IsDepartureTransportRequired { get; set; }
         public string ArrivalFlightNo { get; set; }

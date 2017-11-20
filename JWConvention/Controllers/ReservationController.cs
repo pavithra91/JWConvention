@@ -42,8 +42,8 @@ namespace JWConvention.Controllers
 
         public ActionResult Index(string HotelCode)
         {
-            //try
-            //{
+            try
+            {
                 //ReservationModel objModel = new ReservationModel(); 
                 ReservationModel objModel = TempData["ReservationModel"] as ReservationModel;
                 objModel._roomList = new List<JW_Rooms>();
@@ -56,12 +56,14 @@ namespace JWConvention.Controllers
                 objModel._roomList = _context.JW_Rooms.Where(w => w.HotelID == _hotel.HotelID).ToList();
                 objModel._hotelList = _context.JW_Hotels.ToList();
                 
+
                 return View(objModel); 
-            //}
-            //catch(Exception ex)
-            //{
-            //    return null;
-            //}
+            }
+            catch(Exception ex)
+            {
+
+                return null;
+            }
         }
 
         [HttpPost]
@@ -188,9 +190,9 @@ namespace JWConvention.Controllers
             _reservation.ArrivalFlightNo = ObjModel._ArrivalFlightNumber;
             _reservation.DepartureFlightNo = ObjModel._DepartureFlightNumber;
             _reservation.CheckInDate = ArrivalDate;
-           // _reservation.CheckInTime = ObjModel._ArrivalTime;
+            _reservation.CheckInTime = ObjModel._ArrivalTime;
             _reservation.CheckOutDate = DepartureDate;
-            //_reservation.CheckOutTime = objModel._DepartureTime;
+            _reservation.CheckOutTime = ObjModel._DepartureTime;
             _reservation.IsArrivalTransportRequired = ObjModel._isArrival;
             _reservation.IsDepartureTransportRequired = ObjModel._isDeparture;
             _reservation.Roomtype = Convert.ToInt32(ObjModel._roomType);
@@ -275,7 +277,7 @@ namespace JWConvention.Controllers
                 _amount = _decrypt.DecryptString(_amount, "Amount");
 
                 //string _result = "1";
-                //string _orderID = "JW12167";
+                //string _orderID = "JW12177";
                 //string _response = "";
                 //string _currency = "USD";
                 //string _conventionCode = "JWCON";
@@ -325,20 +327,26 @@ namespace JWConvention.Controllers
                     em.RoomCategory = reservation.JW_Rooms.RoomType;
 
                     string Package = "";
+                    int totalNights = 0;
 
                     if(reservation.NightBefore > 0)
                     {
-                        Package += reservation.NightBefore + " Nights Prior + ";
+                        // Package += reservation.Package + " Night Before + ";
+                        totalNights += (int)reservation.NightBefore;
                     }
 
-                    Package += reservation.Package + " Night Package ";
+                    // Package += reservation.Package + " Night Package + ";
+                    totalNights += (int)reservation.Package;
+
 
                     if(reservation.NightAfter > 0)
                     {
-                        Package +=  "+ " + reservation.NightAfter + " Nights (Post Event)";
+                        // Package += reservation.NightAfter + " Night After ";
+                        totalNights +=  (int)reservation.NightAfter;
                     }
 
-                    em.PackageType = Package;
+                    //em.PackageType = Package;
+                    em.PackageType = totalNights.ToString() + " Night Package";
 
                     em.SendEmail(em, "CustomerInvoice");
 

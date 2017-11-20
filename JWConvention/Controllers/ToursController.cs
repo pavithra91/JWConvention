@@ -19,14 +19,14 @@ namespace JWConvention.Controllers
         public ActionResult Colombo_Loving()
         {
             InquiryModel objModel = new InquiryModel();
-
+            objModel.TourName = "Colombo_Loving";
             return View(objModel);
         }
 
         public ActionResult Exotic_Sri_Lanka()
         {
             InquiryModel objModel = new InquiryModel();
-
+            objModel.TourName = "Exotic_Sri_Lanka";
             return View(objModel);
         }
 
@@ -113,7 +113,14 @@ namespace JWConvention.Controllers
             objModel.TourName = "Central_Highlands";
             return View(objModel);
         }
-        
+
+        public ActionResult Maldives_Tours()
+        {
+            InquiryModel objModel = new InquiryModel();
+            objModel.TourName = "Maldives_Tours";
+            return View(objModel);
+        }
+
         [HttpPost]
         public ActionResult SendInquiry(InquiryModel objModel)
         {

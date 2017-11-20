@@ -166,6 +166,7 @@
     <Content Include="css\font-awesome\fonts\fontawesome-webfont.svg" />
     <Content Include="css\reset.css" />
     <Content Include="css\responsive-leyouts.css" />
+    <Content Include="css\style-t.css" />
     <Content Include="css\style.css" />
     <Content Include="Global.asax" />
     <Content Include="images\2018-Final-Logo-1.jpg" />
@@ -179,6 +180,45 @@
     <Content Include="images\Hotels\THC\THC.jpg" />
     <Content Include="images\Hotels\TKH\TKH.jpg" />
     <Content Include="images\Hotels\TSH\TSH.jpg" />
+    <Content Include="images\maldives\Adaaran Club Rannalhi\101564204.jpg" />
+    <Content Include="images\maldives\Adaaran Club Rannalhi\70448164.jpg" />
+    <Content Include="images\maldives\Adaaran Club Rannalhi\70448400.jpg" />
+    <Content Include="images\maldives\Adaaran Prestige Vadoo\92452998.jpg" />
+    <Content Include="images\maldives\Adaaran Prestige Vadoo\92483233.jpg" />
+    <Content Include="images\maldives\Adaaran Prestige Vadoo\92483245.jpg" />
+    <Content Include="images\maldives\Adaaran Select Hudhuranfushi\101059462.jpg" />
+    <Content Include="images\maldives\Adaaran Select Hudhuranfushi\110228830.jpg" />
+    <Content Include="images\maldives\Adaaran Select Hudhuranfushi\110228908.jpg" />
+    <Content Include="images\maldives\Adaaran Select Meedhuppau\63134340.jpg" />
+    <Content Include="images\maldives\Adaaran Select Meedhuppau\76049001.jpg" />
+    <Content Include="images\maldives\Adaaran Select Meedhuppau\76049169.jpg" />
+    <Content Include="images\maldives\Amari Havodda\60716220.jpg" />
+    <Content Include="images\maldives\Amari Havodda\62757182.jpg" />
+    <Content Include="images\maldives\Amari Havodda\63439344.jpg" />
+    <Content Include="images\maldives\Cinnamon Dhonveli\32448819.jpg" />
+    <Content Include="images\maldives\Cinnamon Dhonveli\58523774.jpg" />
+    <Content Include="images\maldives\Cinnamon Dhonveli\75391519.jpg" />
+    <Content Include="images\maldives\Cinnamon Hakuraa Huraa\32450210.jpg" />
+    <Content Include="images\maldives\Cinnamon Hakuraa Huraa\64007229.jpg" />
+    <Content Include="images\maldives\Cinnamon Hakuraa Huraa\75395693.jpg" />
+    <Content Include="images\maldives\Elaidhoo Maldives by Cinnamon\32867254.jpg" />
+    <Content Include="images\maldives\Elaidhoo Maldives by Cinnamon\64006013.jpg" />
+    <Content Include="images\maldives\Elaidhoo Maldives by Cinnamon\75402232.jpg" />
+    <Content Include="images\maldives\Fun Island Resort\17321235.jpg" />
+    <Content Include="images\maldives\Fun Island Resort\17321268.jpg" />
+    <Content Include="images\maldives\Fun Island Resort\17322008.jpg" />
+    <Content Include="images\maldives\Holiday Island Resort &amp; Spa\109614187.jpg" />
+    <Content Include="images\maldives\Holiday Island Resort &amp; Spa\92186442.jpg" />
+    <Content Include="images\maldives\Holiday Island Resort &amp; Spa\92908956.jpg" />
+    <Content Include="images\maldives\Olhuveli Resort &amp; Spa\113855222.jpg" />
+    <Content Include="images\maldives\Olhuveli Resort &amp; Spa\113870878.jpg" />
+    <Content Include="images\maldives\Olhuveli Resort &amp; Spa\114055090.jpg" />
+    <Content Include="images\maldives\Paradise Island Resort\17262918.jpg" />
+    <Content Include="images\maldives\Paradise Island Resort\17262958.jpg" />
+    <Content Include="images\maldives\Paradise Island Resort\66786449.jpg" />
+    <Content Include="images\maldives\Royal Island Resort\92184001.jpg" />
+    <Content Include="images\maldives\Royal Island Resort\92187641.jpg" />
+    <Content Include="images\maldives\Royal Island Resort\94866475.jpg" />
     <Content Include="images\slider\01.png" />
     <Content Include="images\slider\02.png" />
     <Content Include="images\slider\03.png" />
@@ -216,6 +256,7 @@
     <Content Include="js\animations\animations.min.js" />
     <Content Include="js\animations\appear.min.js" />
     <Content Include="js\animations\css\animations.min.css" />
+    <Content Include="js\api.js" />
     <Content Include="js\autohidemenu\navmain.css" />
     <Content Include="js\autohidemenu\navmain.js" />
     <Content Include="js\bootstrap-datepicker.js" />
@@ -439,6 +480,8 @@
     <Content Include="Views\Reservation\PaymentIssue.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Error\InternalServerError.cshtml" />
+    <Content Include="Views\Emails\ErrorView.cshtml" />
+    <Content Include="Views\Tours\Maldives_Tours.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -448,6 +491,19 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="css\Adaaran Club Rannalhi\" />
+    <Folder Include="css\Adaaran Prestige Vadoo\" />
+    <Folder Include="css\Adaaran Select Hudhuranfushi\" />
+    <Folder Include="css\Adaaran Select Meedhuppau\" />
+    <Folder Include="css\Amari Havodda\" />
+    <Folder Include="css\Cinnamon Dhonveli\" />
+    <Folder Include="css\Cinnamon Hakuraa Huraa\" />
+    <Folder Include="css\Elaidhoo Maldives by Cinnamon\" />
+    <Folder Include="css\Fun Island Resort\" />
+    <Folder Include="css\Holiday Island Resort &amp; Spa\" />
+    <Folder Include="css\Olhuveli Resort &amp; Spa\" />
+    <Folder Include="css\Paradise Island Resort\" />
+    <Folder Include="css\Royal Island Resort\" />
     <Folder Include="Views\Service\" />
   </ItemGroup>
   <ItemGroup>

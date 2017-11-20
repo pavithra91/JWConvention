@@ -35,6 +35,10 @@ namespace JWConvention.Models
         public string Message { get; set; }
         public string TourName { get; set; }
 
+        // Error Log
+        public string ErrorMessage { get; set; }
+
+
         public void SendEmail(EmailModel _email, string TemplateName)
         {
             dynamic email = new Postal.Email(TemplateName);
@@ -92,6 +96,27 @@ namespace JWConvention.Models
             email.Message = _email.Message;
             email.TourName = _email.TourName;
             email.Email = _email.ClientEmail;
+
+            email.Send();
+        }
+
+        public void SendError(EmailModel _email, string TemplateName)
+        {
+            dynamic email = new Postal.Email(TemplateName);
+            email.To = _email.EmailTo;
+            email.From = "reservatio@jkintranet.com";// _email.From;
+
+            if (_email.EmailCC != null)
+            {
+                email.Cc = _email.EmailCC;
+            }
+
+            if (_email.EmailBCC != null)
+            {
+                email.Bcc = _email.EmailBCC;
+            }
+
+            email.ErrorMessage = _email.ErrorMessage;
 
             email.Send();
         }

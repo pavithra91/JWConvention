@@ -92,9 +92,9 @@
           <Property Name="BedPreference" Type="varchar" MaxLength="50" />
           <Property Name="Basis" Type="varchar" MaxLength="50" />
           <Property Name="CheckInDate" Type="date" />
-          <Property Name="CheckInTime" Type="time" Precision="7" />
+          <Property Name="CheckInTime" Type="varchar" MaxLength="20" />
           <Property Name="CheckOutDate" Type="date" />
-          <Property Name="CheckOutTime" Type="time" Precision="7" />
+          <Property Name="CheckOutTime" Type="varchar" MaxLength="20" />
           <Property Name="IsArrivalTransportRequired" Type="bit" />
           <Property Name="IsDepartureTransportRequired" Type="bit" />
           <Property Name="ArrivalFlightNo" Type="varchar" MaxLength="100" />
@@ -351,9 +351,9 @@
           <Property Name="BedPreference" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Basis" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="CheckInDate" Type="DateTime" Precision="0" />
-          <Property Name="CheckInTime" Type="Time" Precision="7" />
+          <Property Name="CheckInTime" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="CheckOutDate" Type="DateTime" Precision="0" />
-          <Property Name="CheckOutTime" Type="Time" Precision="7" />
+          <Property Name="CheckOutTime" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="IsArrivalTransportRequired" Type="Boolean" />
           <Property Name="IsDepartureTransportRequired" Type="Boolean" />
           <Property Name="ArrivalFlightNo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
@@ -363,11 +363,11 @@
           <Property Name="NightBefore" Type="Int32" />
           <Property Name="Package" Type="Int32" />
           <Property Name="NightAfter" Type="Int32" />
-          <NavigationProperty Name="JW_Rooms" Relationship="wlakerstoursdbModel.RoomIDfk_Rooms" FromRole="JW_Reservation" ToRole="JW_Rooms" />
           <Property Name="BankRespond" Type="Boolean" />
           <Property Name="BankRespondValue" Type="Double" />
           <Property Name="PreHashKey" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="PostHashKey" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="JW_Rooms" Relationship="wlakerstoursdbModel.RoomIDfk_Rooms" FromRole="JW_Reservation" ToRole="JW_Rooms" />
         </EntityType>
         <EntityType Name="JW_RoomRate">
           <Key>
