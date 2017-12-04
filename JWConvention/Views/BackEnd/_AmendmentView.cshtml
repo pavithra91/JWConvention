@@ -1,0 +1,181 @@
+﻿<div class="row" style="padding-top:30px;">
+    <section class="col col-4">
+        <label>Hotel </label>
+        <span id="spryselect1">
+            <label class="select">
+                <select name="txtCategory" id="txtCategory">
+                    <option value="0" selected="" disabled="">Select Hotel</option>
+                    <option value="1">Cinnamon Grand - Colombo</option>
+                    <option value="2">Cinnamon Red - Colombo</option>
+                    <option value="3">OZO - Colombo</option>
+                </select>
+                <i></i>
+            </label>
+            <span class="selectRequiredMsg">Please select an item.</span>
+        </span>
+    </section>
+
+
+
+    <section class="col col-4">
+        <label>Room Type </label>
+        <span id="spryselect2">
+            <label class="select">
+                <select name="txtRooms" id="txtRooms">
+                    <option value="0" selected="" disabled="">Select Room Type</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                </select>
+                <i></i>
+            </label>
+            <span class="selectRequiredMsg">Please select an item.</span>
+        </span>
+    </section>
+
+    <section class="col col-4">
+        <label>Occupancy</label>
+        <span id="spryselect3">
+            <label class="select">
+                <select name="txtNights" id="txtNights">
+                    <option value="0" selected="" disabled="">Select Occupancy</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                </select>
+                <i></i>
+            </label>
+            <span class="selectRequiredMsg">Please select an item.</span>
+        </span>
+    </section>
+
+</div>
+
+<div class="row">
+
+    <section class="col col-4">
+        <label>Check In Date </label>
+        <span id="sprytextfield1">
+            <input type="text" id="datetimepicker2" style="width:98%; height:39px; padding-left:10px; border: thin solid #e5e5e5;">
+            <span class="textfieldRequiredMsg">A value is required.</span>
+        </span>
+    </section>
+
+
+
+
+    <section class="col col-4">
+        <label>Check Out Date </label>
+        <span id="sprytextfield2">
+            <input type="text" id="datetimepicker1" style="width:98%; height:39px; padding-left:10px; border: thin solid #e5e5e5;">
+            <span class="textfieldRequiredMsg">A value is required.</span>
+        </span>
+    </section>
+
+
+
+</div>
+
+<div class="row" style="padding-top:30px;">
+
+
+    <section class="col col-2">
+        <label>Arrival </label><br />
+        <input name="" type="checkbox" value=""></span>
+    </section>
+
+    <section class="col col-2">
+        <label>Date </label>
+        <input type="text" id="datetimepicker55" style="width:98%; height:39px; padding-left:10px; border: thin solid #e5e5e5;">
+    </section>
+
+
+    <section class="col col-2">
+        <label>Time </label>
+        <input type="text" id="datetimepicker66" style="width:98%; height:39px; padding-left:10px; border: thin solid #e5e5e5;">
+    </section>
+
+
+    <section class="col col-4">
+        <label>Flight Number </label>
+        <input type="text" style="width:98%; height:39px; padding-left:10px; border: thin solid #e5e5e5;">
+    </section>
+
+</div>
+
+<div class="row">
+    <section class="col col-2">
+        <label>Departure </label><br />
+        <input name="" type="checkbox" value=""></span>
+    </section>
+
+    <section class="col col-2">
+        <label>Date </label>
+        <input type="text" id="datetimepicker22" style="width:98%; height:39px; padding-left:10px; border: thin solid #e5e5e5;">
+    </section>
+
+
+    <section class="col col-2">
+        <label>Time </label>
+        <input type="text" id="datetimepicker44" style="width:98%; height:39px; padding-left:10px; border: thin solid #e5e5e5;">
+    </section>
+
+
+    <section class="col col-4">
+        <label>Flight Number </label>
+        <input type="text" style="width:98%; height:39px; padding-left:10px; border: thin solid #e5e5e5;">
+    </section>
+
+</div>
+
+<div class="row" style="padding-top:30px;">
+    <section class="col col-3">
+        <label>Booking Cost </label>
+        <input type="text" style="width:98%; height:39px; padding-left:10px; border: thin solid #e5e5e5;">
+    </section>
+
+
+    <section class="col col-3">
+        <label>Balance Due  </label>
+        <input type="text" style="width:98%; height:39px; padding-left:10px; border: thin solid #e5e5e5;">
+    </section>
+
+    <section class="col col-3">
+        <label>Payment Received  </label>
+        <input type="text" style="width:98%; height:39px; padding-left:10px; border: thin solid #e5e5e5;">
+    </section>
+
+    <section class="col col-3">
+        <label> Details  </label><br />
+        <label for="chkPassport">
+            <input type="checkbox" id="chkPassport" onclick="ShowHideDiv(this)" />
+
+        </label>
+    </section></br></br>
+    <div id="dvPassport" style="display: none;">
+        <section style="padding-top:50px;">
+            <label class="textarea">
+
+                <textarea name="commnts" id="commnts" cols="45" rows="5" placeholder="Comments" autocomplete="off"></textarea>
+            </label>
+        </section>
+    </div>
+</div>
+
+<div class="row" style="padding-top:30px;">
+
+    <section>
+        <label class="textarea">
+            <label>Remarks </label>
+
+            <textarea name="commnts" id="commnts" cols="45" rows="5" placeholder="Comments" autocomplete="off"></textarea>
+        </label>
+    </section>
+
+</div>

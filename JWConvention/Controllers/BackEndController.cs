@@ -74,5 +74,12 @@ namespace JWConvention.Controllers
                 return RedirectToAction("Login", "BackEnd");
             }
         }
+
+
+        public ActionResult Amendments()
+        {
+            ReservationModel objModel = new ReservationModel();
+            return View(objModel);
+        }
     }
 }

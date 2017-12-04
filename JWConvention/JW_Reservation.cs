@@ -38,6 +38,8 @@ namespace JWConvention
         public Nullable<double> BankRespondValue { get; set; }
         public string PreHashKey { get; set; }
         public string PostHashKey { get; set; }
+        public Nullable<System.DateTime> ArrivalDate { get; set; }
+        public Nullable<System.DateTime> DepartureDate { get; set; }
     
         public virtual JW_Rooms JW_Rooms { get; set; }
     }

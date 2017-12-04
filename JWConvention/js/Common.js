@@ -139,11 +139,15 @@ $('#datetimepicker2').datetimepicker({
     timepicker: false,
     format: 'd/m/Y',
     formatDate: 'Y/m/d',
-
+    scrollMonth: false,
+    scrollInput: false,
 
 });
 $('#datetimepicker3').datetimepicker({
-    inline: true
+    inline: true,
+    scrollMonth: false,
+    scrollInput: false,
+
 });
 $('#datetimepicker4').datetimepicker();
 $('#open').click(function () {

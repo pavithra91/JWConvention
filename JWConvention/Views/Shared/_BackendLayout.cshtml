@@ -1,0 +1,354 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    @*<meta name="viewport" content="width=device-width" />*@
+    <link rel="stylesheet" type="text/css" href="~/jquery.datetimepicker.css" />
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title>Customer Registration | Walkers Tours Payments</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="http://www.walkerstours.com/wp-content/themes/walkerstours/favicon.ico">
+
+
+    <!-- Google fonts - witch you want to use - (rest you can just remove) -->
+    <link href='http://fonts.googleapis.com/css?family=Raleway:400,500,600,700,800,900,300,200,100' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--  CSS STYLES  -->
+    <link rel="stylesheet" href="~/css/backendcss/reset.css" type="text/css" />
+    <link rel="stylesheet" href="~/css/backendcss/style.css" type="text/css" />
+    <link rel="stylesheet" href="~/css/backendcss/font-awesome/css/font-awesome.min.css">
+
+    <!-- responsive devices styles -->
+    <link rel="stylesheet" media="screen" href="~/css/backendcss/responsive-leyouts.css" type="text/css" />
+
+
+
+    <!-- animations -->
+    <link href="~/js/backendjs/animations/css/animations.min.css" rel="stylesheet" type="text/css" media="all" />
+
+
+
+    <!-- forms -->
+    <link rel="stylesheet" href="~/js/backendjs/form/css/sky-forms.css" type="text/css" media="all">
+
+    <link rel="stylesheet" media="screen" href="~/js/backendjs/style-switcher/color-switcher.css" />
+    <!-- style switcher colors -->
+    <link rel="alternate stylesheet" type="text/css" href="~/css/colors/red.css" title="red" />
+    <link rel="alternate stylesheet" type="text/css" href="~/css/colors/orange.css" title="orange" />
+    <link rel="alternate stylesheet" type="text/css" href="~/css/colors/olive.css" title="olive" />
+    <link rel="alternate stylesheet" type="text/css" href="~/css/colors/green.css" title="green" />
+    <link rel="alternate stylesheet" type="text/css" href="~/css/colors/pink.css" title="pink" />
+    <link rel="alternate stylesheet" type="text/css" href="~/css/colors/violet.css" title="violet" />
+    <link rel="alternate stylesheet" type="text/css" href="~/css/colors/sea.css" title="sea" />
+    <link rel="alternate stylesheet" type="text/css" href="~/css/colors/lightblue.css" title="lightblue" />
+    <link rel="alternate stylesheet" type="text/css" href="~/css/colors/lightgreen.css" title="lightgreen" />
+
+
+    <script src="~/SpryAssets/backend/SpryValidationTextField.js" type="text/javascript"></script>
+    <script src="~/SpryAssets/backend/SpryValidationSelect.js" type="text/javascript"></script>
+    <script src="~/SpryAssets/backend/SpryValidationTextarea.js" type="text/javascript"></script>
+    <link href="~/SpryAssets/backend/SpryValidationTextField.css" rel="stylesheet" type="text/css">
+    <link href="~/SpryAssets/backend/SpryValidationSelect.css" rel="stylesheet" type="text/css">
+    <link href="~/SpryAssets/backend/SpryValidationTextarea.css" rel="stylesheet" type="text/css">
+
+    <script type="text/javascript">
+        function ShowHideDiv(chkPassport) {
+            var dvPassport = document.getElementById("dvPassport");
+            dvPassport.style.display = chkPassport.checked ? "block" : "none";
+        }
+    </script>
+
+    <script src="~/jquery.js"></script>
+    <script src="~/build/jquery.datetimepicker.full.js"></script>
+    <script>
+/*
+window.onerror = function(errorMsg) {
+	$('#console').html($('#console').html()+'<br>'+errorMsg)
+}*/
+
+$.datetimepicker.setLocale('en');
+
+$('#datetimepicker_format').datetimepicker({value:'2015/04/15', format: $("#datetimepicker_format_value").val()});
+console.log($('#datetimepicker_format').datetimepicker('getValue'));
+
+$("#datetimepicker_format_change").on("click", function(e){
+	$("#datetimepicker_format").data('xdsoft_datetimepicker').setOptions({format: $("#datetimepicker_format_value").val()});
+});
+$("#datetimepicker_format_locale").on("change", function(e){
+	$.datetimepicker.setLocale($(e.currentTarget).val());
+});
+
+$('#datetimepicker').datetimepicker({
+dayOfWeekStart : 1,
+lang:'en',
+disabledDates:['1986/01/08','1986/01/09','1986/01/10'],
+startDate:	'1986/01/05'
+});
+$('#datetimepicker').datetimepicker({value:'2015/04/15 05:03',step:10});
+
+$('.some_class').datetimepicker();
+
+$('#default_datetimepicker').datetimepicker({
+	formatTime:'H:i',
+	formatDate:'d.m.Y',
+	//defaultDate:'8.12.1986', // it's my birthday
+	defaultDate:'+03.01.1970', // it's my birthday
+	defaultTime:'10:00',
+	timepickerScrollbar:false
+});
+
+$('#datetimepicker10').datetimepicker({
+	step:5,
+	inline:true
+});
+$('#datetimepicker_mask').datetimepicker({
+	mask:'9999/19/39 29:59'
+});
+
+$('#datetimepicker1').datetimepicker({
+	timepicker:false,
+	format:'d/m/Y',
+	formatDate:'Y/m/d',
+
+
+});
+$('#datetimepicker2').datetimepicker({
+	timepicker:false,
+	format:'d/m/Y',
+	formatDate:'Y/m/d',
+});
+
+$('#datetimepicker22').datetimepicker({
+	timepicker:false,
+	format:'d/m/Y',
+	formatDate:'Y/m/d',
+});
+
+$('#datetimepicker44').datetimepicker({
+	datepicker:false,
+});
+
+
+$('#datetimepicker55').datetimepicker({
+	timepicker:false,
+	format:'d/m/Y',
+	formatDate:'Y/m/d',
+});
+
+$('#datetimepicker66').datetimepicker({
+	datepicker:false,
+});
+
+$('#datetimepicker3').datetimepicker({
+	inline:true
+});
+$('#datetimepicker4').datetimepicker();
+$('#open').click(function(){
+	$('#datetimepicker4').datetimepicker('hide');
+});
+$('#close').click(function(){
+	$('#datetimepicker4').datetimepicker('hide');
+});
+$('#reset').click(function(){
+	$('#datetimepicker4').datetimepicker('reset');
+});
+$('#datetimepicker5').datetimepicker({
+	datepicker:true,
+	allowDates:['1986/01/08','1986/01/09','1986/01/10'],
+
+});
+$('#datetimepicker6').datetimepicker();
+$('#destroy').click(function(){
+	if( $('#datetimepicker6').data('xdsoft_datetimepicker') ){
+		$('#datetimepicker6').datetimepicker('destroy');
+		this.value = 'create';
+	}else{
+		$('#datetimepicker6').datetimepicker();
+		this.value = 'destroy';
+	}
+});
+var logic = function( currentDateTime ){
+	if (currentDateTime && currentDateTime.getDay() == 6){
+		this.setOptions({
+			minTime:'11:00'
+		});
+	}else
+		this.setOptions({
+			minTime:'8:00'
+		});
+};
+$('#datetimepicker7').datetimepicker({
+	onChangeDateTime:logic,
+	onShow:logic
+});
+$('#datetimepicker8').datetimepicker({
+	onGenerate:function( ){
+		$(this).find('.xdsoft_date')
+			.toggleClass('xdsoft_disabled');
+	},
+	minDate:'-1970/01/2',
+	maxDate:'+1970/01/2',
+	timepicker:false
+});
+$('#datetimepicker9').datetimepicker({
+	onGenerate:function( ct ){
+		$(this).find('.xdsoft_date.xdsoft_weekend')
+			.addClass('xdsoft_disabled');
+	},
+	weekends:['01.01.2014','02.01.2014','03.01.2014','04.01.2014','05.01.2014','06.01.2014'],
+	timepicker:false
+});
+var dateToDisable = new Date();
+	dateToDisable.setDate(dateToDisable.getDate() + 2);
+$('#datetimepicker11').datetimepicker({
+	beforeShowDay: function(date) {
+		if (date.getMonth() == dateToDisable.getMonth() && date.getDate() == dateToDisable.getDate()) {
+			return [false, ""]
+		}
+
+		return [true, ""];
+	}
+});
+$('#datetimepicker12').datetimepicker({
+	beforeShowDay: function(date) {
+		if (date.getMonth() == dateToDisable.getMonth() && date.getDate() == dateToDisable.getDate()) {
+			return [true, "custom-date-style"];
+		}
+
+		return [true, ""];
+	}
+});
+$('#datetimepicker_dark').datetimepicker({theme:'dark'})
+
+
+    </script>
+</head>
+<body>
+
+    <div class="preloader">
+        <div class="status"></div>
+    </div>
+    <!-- end page loader -->
+    <div class="site_wrapper">
+
+        <!-- header -->
+        <header>
+            <!-- Top header bar -->
+            <div id="topHeader">
+                <div class="wrapper">
+                    <div class="top_nav">
+                        <div class="container">
+                            <ul class="left"></ul>
+                            <ul class="right-nav"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end top navigation -->
+
+            <div class="scrollto_sticky">
+                <div class="container">
+
+                    <!-- Logo -->
+                    <div class="logo"><a href="index.html" id="logo"></a></div>
+
+                    <!-- Menu -->
+                    <!-- end menu -->
+                </div>
+            </div>
+        </header>
+        <div class="clearfix"></div>
+        <section class="header-section">
+            <div class="page_header two">
+                <div class="container">
+                    <h2 class="align_center pagetitle">JW Reservation Amendments</h2>
+                    <div class="pagenation">Annual Conference and Meetings 2018 / July</div>
+                </div>
+            </div>
+        </section>
+        <!-- end page header -->
+        <div class="clearfix"></div>
+
+        <div>
+            @RenderBody()
+        </div>
+
+    </div>
+    <!-- end section 1 -->
+    <div class="clearfix"></div>
+
+    <section class="section11"></section>
+    <!-- end section 6 -->
+    <div class="clearfix"></div>
+
+
+
+    <div class="copyrights">
+        <div class="container">
+            <div class="one_half"><span>© Walkers Tours Ltd.</span></div>
+            <div class="one_half last">
+
+            </div>
+        </div>
+    </div>
+    <!--end copyrights-->
+    @*</footer>
+    </div>*@
+    <!--end sitewraper-->
+    <!-- end style switcher -->
+
+    <a href="#" class="scrollup"></a>
+    <!-- end scroll to top of the page-->
+    <!-- ######### JS FILES ######### -->
+    <!-- get jQuery from the google apis -->
+    <script type="text/javascript" src="~/js/universal/jquery.js"></script>
+
+    <!-- page loder -->
+    <script>
+// makes sure the whole site is loaded
+
+(function($) {
+  "use strict";
+jQuery(window).load(function() {
+	"use strict";
+        // will first fade out the loading animation
+	jQuery(".status").fadeOut();
+        // will fade out the whole DIV that covers the website.
+	jQuery(".preloader").delay(1000).fadeOut("slow");
+})
+
+})(jQuery);
+    </script>
+
+    <script src="~/js/backendjs/jquery.js"></script>
+
+    <!-- scroll up -->
+    <script src="~/js/backendjs/scrolltotop/totop.js" type="text/javascript"></script>
+
+
+    <!-- progress bar -->
+    <script src="~/js/backendjs/progressbar/progress.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+var spryselect1 = new Spry.Widget.ValidationSelect("spryselect1");
+var spryselect2 = new Spry.Widget.ValidationSelect("spryselect2");
+var spryselect3 = new Spry.Widget.ValidationSelect("spryselect3");
+var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1");
+var sprytextfield2 = new Spry.Widget.ValidationTextField("sprytextfield2");
+    </script>
+</body>
+</html>

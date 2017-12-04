@@ -27,6 +27,7 @@
           <Property Name="RespondType" Type="varchar" MaxLength="10" />
           <Property Name="Link" Type="varchar" MaxLength="200" />
           <Property Name="EmailTo" Type="varchar" MaxLength="200" />
+          <Property Name="EncryptionType" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="JW_AdditionalRoomRates">
           <Key>
@@ -108,6 +109,8 @@
           <Property Name="BankRespondValue" Type="float" />
           <Property Name="PreHashKey" Type="varchar" MaxLength="200" />
           <Property Name="PostHashKey" Type="varchar" MaxLength="200" />
+          <Property Name="ArrivalDate" Type="date" />
+          <Property Name="DepartureDate" Type="date" />
         </EntityType>
         <EntityType Name="JW_RoomRate">
           <Key>
@@ -284,6 +287,7 @@
           <Property Name="RespondType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="Link" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="EmailTo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="EncryptionType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="JW_AdditionalRoomRates">
           <Key>
@@ -368,6 +372,8 @@
           <Property Name="PreHashKey" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="PostHashKey" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="JW_Rooms" Relationship="wlakerstoursdbModel.RoomIDfk_Rooms" FromRole="JW_Reservation" ToRole="JW_Rooms" />
+          <Property Name="ArrivalDate" Type="DateTime" Precision="0" />
+          <Property Name="DepartureDate" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="JW_RoomRate">
           <Key>
@@ -474,6 +480,7 @@
           <EntitySetMapping Name="IPGConfigs">
             <EntityTypeMapping TypeName="wlakerstoursdbModel.IPGConfig">
               <MappingFragment StoreEntitySet="IPGConfig">
+                <ScalarProperty Name="EncryptionType" ColumnName="EncryptionType" />
                 <ScalarProperty Name="EmailTo" ColumnName="EmailTo" />
                 <ScalarProperty Name="Link" ColumnName="Link" />
                 <ScalarProperty Name="RespondType" ColumnName="RespondType" />
@@ -555,6 +562,8 @@
           <EntitySetMapping Name="JW_Reservation">
             <EntityTypeMapping TypeName="wlakerstoursdbModel.JW_Reservation">
               <MappingFragment StoreEntitySet="JW_Reservation">
+                <ScalarProperty Name="DepartureDate" ColumnName="DepartureDate" />
+                <ScalarProperty Name="ArrivalDate" ColumnName="ArrivalDate" />
                 <ScalarProperty Name="PostHashKey" ColumnName="PostHashKey" />
                 <ScalarProperty Name="PreHashKey" ColumnName="PreHashKey" />
                 <ScalarProperty Name="BankRespondValue" ColumnName="BankRespondValue" />

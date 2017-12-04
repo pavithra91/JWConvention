@@ -32,5 +32,6 @@ namespace JWConvention
         public string RespondType { get; set; }
         public string Link { get; set; }
         public string EmailTo { get; set; }
+        public string EncryptionType { get; set; }
     }
 }

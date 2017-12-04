@@ -90,9 +90,9 @@ namespace JWConvention.Controllers
             double _afterDays = 0;
             double TotalCost = 0;
 
-            DateTime _StartingDate = DateTime.ParseExact("02/07/2018", "dd/MM/yyyy", null);
+            DateTime _StartingDate = DateTime.ParseExact("04/07/2018", "dd/MM/yyyy", null);
             TimeSpan t = _StartingDate - _fromDate;
-            _beforeDays = t.TotalDays;
+            //_beforeDays = t.TotalDays;
 
             DateTime _7dayPackage = DateTime.ParseExact("09/07/2018", "dd/MM/yyyy", null);
             DateTime _8dayPackage = DateTime.ParseExact("10/07/2018", "dd/MM/yyyy", null);
@@ -103,64 +103,77 @@ namespace JWConvention.Controllers
 
             int roomType = Convert.ToInt32(ObjModel._roomType);
 
-            if (_toDate == _7dayPackage)
+            _packageDays = (int)(_toDate - _fromDate).TotalDays;
+            JW_RoomRate roomDetails = _context.JW_RoomRate.Where(w => w.RoomID == roomType && w.PackageId == 1 && w.Occupancy == ObjModel._Occupancy).FirstOrDefault();
+            if (roomDetails != null)
             {
-                _packageDays += 7;
-                _afterDays = (_toDate - _7dayPackage).TotalDays;
-                _packageDays += (int)_afterDays;
-                _packageDays += (int)_beforeDays;
-                TotalCost = (double)_context.JW_RoomRate.Where(w => w.PackageId == 1 && w.RoomID == roomType && w.Occupancy == ObjModel._Occupancy).FirstOrDefault().RoomRate;
-                PackageId = 1;
+                TotalCost = (double)(roomDetails.RoomRate / 7) * _packageDays;
+                //Allotment = (int)roomDetails.RemainingAllotment;
             }
-            else if (_toDate > _7dayPackage && _toDate <= _8dayPackage)
+            else
             {
-                _packageDays += 8;
-                _afterDays = (_toDate - _8dayPackage).TotalDays;
-                _packageDays += (int)_afterDays;
-                _packageDays += (int)_beforeDays;
-                TotalCost = (double)_context.JW_RoomRate.Where(w => w.PackageId == 2 && w.RoomID == roomType && w.Occupancy == ObjModel._Occupancy).FirstOrDefault().RoomRate;
-                PackageId = 2;
-            }
-            else if (_toDate > _8dayPackage && _toDate <= _9dayPackage)
-            {
-                _packageDays += 9;
-                _afterDays = (_toDate - _9dayPackage).TotalDays;
-                _packageDays += (int)_afterDays;
-                _packageDays += (int)_beforeDays;
-                TotalCost = (double)_context.JW_RoomRate.Where(w => w.PackageId == 3 && w.RoomID == roomType && w.Occupancy == ObjModel._Occupancy).FirstOrDefault().RoomRate;
-                PackageId = 3;
-            }
-            else if (_toDate > _9dayPackage && _toDate <= _10dayPackage)
-            {
-                _packageDays += 10;
-                _afterDays = (_toDate - _10dayPackage).TotalDays;
-                _packageDays += (int)_afterDays;
-                _packageDays += (int)_beforeDays;
-                TotalCost = (double)_context.JW_RoomRate.Where(w => w.PackageId == 4 && w.RoomID == roomType && w.Occupancy == ObjModel._Occupancy).FirstOrDefault().RoomRate;
-                PackageId = 4;
-            }
-            else if (_toDate > _10dayPackage)
-            {
-                _packageDays += 10;
-                _afterDays = (_toDate - _10dayPackage).TotalDays;
-                _packageDays += (int)_afterDays;
-                _packageDays += (int)_beforeDays;
-                TotalCost = (double)_context.JW_RoomRate.Where(w => w.PackageId == 4 && w.RoomID == roomType && w.Occupancy == ObjModel._Occupancy).FirstOrDefault().RoomRate;
-                PackageId = 4;
+                TotalCost = 0;
+                //Allotment = 0;
             }
 
-            
+            //if (_toDate == _7dayPackage)
+            //{
+            //    _packageDays += 7;
+            //    _afterDays = (_toDate - _7dayPackage).TotalDays;
+            //    _packageDays += (int)_afterDays;
+            //    _packageDays += (int)_beforeDays;
+            //    TotalCost = (double)_context.JW_RoomRate.Where(w => w.PackageId == 1 && w.RoomID == roomType && w.Occupancy == ObjModel._Occupancy).FirstOrDefault().RoomRate;
+            //    PackageId = 1;
+            //}
+            //else if (_toDate > _7dayPackage && _toDate <= _8dayPackage)
+            //{
+            //    _packageDays += 8;
+            //    _afterDays = (_toDate - _8dayPackage).TotalDays;
+            //    _packageDays += (int)_afterDays;
+            //    _packageDays += (int)_beforeDays;
+            //    TotalCost = (double)_context.JW_RoomRate.Where(w => w.PackageId == 2 && w.RoomID == roomType && w.Occupancy == ObjModel._Occupancy).FirstOrDefault().RoomRate;
+            //    PackageId = 2;
+            //}
+            //else if (_toDate > _8dayPackage && _toDate <= _9dayPackage)
+            //{
+            //    _packageDays += 9;
+            //    _afterDays = (_toDate - _9dayPackage).TotalDays;
+            //    _packageDays += (int)_afterDays;
+            //    _packageDays += (int)_beforeDays;
+            //    TotalCost = (double)_context.JW_RoomRate.Where(w => w.PackageId == 3 && w.RoomID == roomType && w.Occupancy == ObjModel._Occupancy).FirstOrDefault().RoomRate;
+            //    PackageId = 3;
+            //}
+            //else if (_toDate > _9dayPackage && _toDate <= _10dayPackage)
+            //{
+            //    _packageDays += 10;
+            //    _afterDays = (_toDate - _10dayPackage).TotalDays;
+            //    _packageDays += (int)_afterDays;
+            //    _packageDays += (int)_beforeDays;
+            //    TotalCost = (double)_context.JW_RoomRate.Where(w => w.PackageId == 4 && w.RoomID == roomType && w.Occupancy == ObjModel._Occupancy).FirstOrDefault().RoomRate;
+            //    PackageId = 4;
+            //}
+            //else if (_toDate > _10dayPackage)
+            //{
+            //    _packageDays += 10;
+            //    _afterDays = (_toDate - _10dayPackage).TotalDays;
+            //    _packageDays += (int)_afterDays;
+            //    _packageDays += (int)_beforeDays;
+            //    TotalCost = (double)_context.JW_RoomRate.Where(w => w.PackageId == 4 && w.RoomID == roomType && w.Occupancy == ObjModel._Occupancy).FirstOrDefault().RoomRate;
+            //    PackageId = 4;
+            //}
 
-            if(_beforeDays > 0)
-            {
-                double cost = (double)_context.JW_AdditionalRoomRates.Where(w=>w.RoomID == roomType && w.Occupancy == ObjModel._Occupancy).FirstOrDefault().RoomRate;
-                TotalCost = TotalCost + (cost * _beforeDays);
-            }
-            if(_afterDays > 0)
-            {
-                double cost = (double)_context.JW_AdditionalRoomRates.Where(w=> w.RoomID == roomType && w.Occupancy == ObjModel._Occupancy).FirstOrDefault().RoomRate;
-                TotalCost = TotalCost + (cost * _afterDays);
-            }
+
+
+            //if(_beforeDays > 0)
+            //{
+            //    double cost = (double)_context.JW_AdditionalRoomRates.Where(w=>w.RoomID == roomType && w.Occupancy == ObjModel._Occupancy).FirstOrDefault().RoomRate;
+            //    TotalCost = TotalCost + (cost * _beforeDays);
+            //}
+            //if(_afterDays > 0)
+            //{
+            //    double cost = (double)_context.JW_AdditionalRoomRates.Where(w=> w.RoomID == roomType && w.Occupancy == ObjModel._Occupancy).FirstOrDefault().RoomRate;
+            //    TotalCost = TotalCost + (cost * _afterDays);
+            //}
 
             JW_Delegates _delegate = new JW_Delegates();
             _delegate.BookingID = ObjModel.BookingID;
@@ -179,6 +192,9 @@ namespace JWConvention.Controllers
 
 
 
+            DateTime CheckInDate = DateTime.ParseExact(ObjModel._fromDate, "dd/MM/yyyy", null);
+            DateTime CheckOutDate = DateTime.ParseExact(ObjModel._toDate, "dd/MM/yyyy", null);
+
             DateTime ArrivalDate = DateTime.ParseExact(ObjModel._ArrivalDate, "dd/MM/yyyy", null);
             DateTime DepartureDate = DateTime.ParseExact(ObjModel._DepartureDate, "dd/MM/yyyy", null);
 
@@ -189,9 +205,11 @@ namespace JWConvention.Controllers
             _reservation.BookingID = ObjModel.BookingID;
             _reservation.ArrivalFlightNo = ObjModel._ArrivalFlightNumber;
             _reservation.DepartureFlightNo = ObjModel._DepartureFlightNumber;
-            _reservation.CheckInDate = ArrivalDate;
+            _reservation.CheckInDate = CheckInDate;
             _reservation.CheckInTime = ObjModel._ArrivalTime;
-            _reservation.CheckOutDate = DepartureDate;
+            _reservation.CheckOutDate = CheckOutDate;
+            _reservation.ArrivalDate = ArrivalDate;
+            _reservation.DepartureDate = DepartureDate;
             _reservation.CheckOutTime = ObjModel._DepartureTime;
             _reservation.IsArrivalTransportRequired = ObjModel._isArrival;
             _reservation.IsDepartureTransportRequired = ObjModel._isDeparture;
@@ -277,11 +295,11 @@ namespace JWConvention.Controllers
                 _amount = _decrypt.DecryptString(_amount, "Amount");
 
                 //string _result = "1";
-                //string _orderID = "JW12177";
+                //string _orderID = "JW14624";
                 //string _response = "";
                 //string _currency = "USD";
                 //string _conventionCode = "JWCON";
-                //string _amount = "1";
+                //string _amount = "1700";
 
                 if (_result == "1")
                 {
@@ -317,7 +335,7 @@ namespace JWConvention.Controllers
                     em.ClientEmail = del.Email;
                     em.ClientName = del.DelegeteName;
                     em.InvoiceNo = _orderID;
-                    em.DateofPayment = DateTime.Today;
+                    em.DateofPayment = DateTime.Today;//DateTime.ParseExact("21/11/2017", "dd/MM/yyyy", null);//DateTime.Today;
                     em.CheckIn = reservation.CheckInDate.GetValueOrDefault().ToString("dd/MMMM/yyyy");
                     em.CheckOut = reservation.CheckOutDate.GetValueOrDefault().ToString("dd/MMMM/yyyy");
                     em.EmailCC = _ipgConfig.EmailCC;

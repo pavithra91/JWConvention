@@ -61,6 +61,8 @@ $('#datetimepicker2').datetimepicker({
     minDate: '2018/06/25',
     startDate: '2018/06/25',
     maxDate: '2018/07/04',
+    scrollMonth: false,
+    scrollInput: false,
 });
 $('#datetimepicker3').datetimepicker({
     timepicker: false,
@@ -69,6 +71,9 @@ $('#datetimepicker3').datetimepicker({
     minDate: '2018/07/09',
     startDate: '2018/07/09',
     maxDate: '2018/07/17',
+    scrollMonth: false,
+    scrollInput: false,
+
 });
 $('#datetimepicker4').datetimepicker();
 $('#open').click(function(){
@@ -109,11 +114,15 @@ $('#datetimepicker7').datetimepicker({
     timepicker: false,
     format: 'd/m/Y',
     formatDate: 'Y/m/d',
+    scrollMonth: false,
+    scrollInput: false,
 });
 $('#datetimepicker8').datetimepicker({
     timepicker: false,
     format: 'd/m/Y',
     formatDate: 'Y/m/d',
+    scrollMonth: false,
+    scrollInput: false,
 });
 $('#datetimepicker9').datetimepicker({
     timepicker: false,

@@ -1,0 +1,150 @@
+﻿@model JWConvention.Models.ReservationModel
+@{
+    ViewBag.Title = "Amendments";
+    Layout = "~/Views/Shared/_BackendLayout.cshtml";
+}
+
+
+<section class="common_section">
+    <div class="container">
+        <div class="reg_form">
+            <form id="checkout1-form" FORM NAME="frmRegister" METHOD="POST" ACTION="register.php" class="sky-form">
+                <header>Hotel Amendments</header>
+                <p>
+                </p><fieldset>
+                    <div class="row" style="background-color:#EBEBEB;">
+
+                        <section class="col col-4">
+                            <section>
+                                <label>Name</label>
+                                <label class="input">
+                                    <input type="text" name="txtName" id="txtName">
+                                </label>
+                            </section>
+                        </section>
+
+                        <section class="col col-4">
+                            <label>Hotel</label>
+                            <label class="input">
+                                <input type="text" name="Email" id="Email">
+                            </label>
+                        </section>
+
+                        <section class="col col-4">
+                            <label>Room Category</label>
+                            <label class="input">
+                                <input type="text" name="txtTelephone">
+                            </label>
+                        </section>
+                    </div>
+
+                    <div class="row" style="background-color:#EBEBEB;">
+                        <section class="col col-4">
+                            <section>
+                                <label>E-mail</label>
+                                <label class="input">
+                                    <input type="text" name="txtName" id="txtName">
+                                </label>
+                            </section>
+                        </section>
+
+                        <section class="col col-4">
+                            <label>Occupancy</label>
+                            <label class="input">
+                                <input type="text" name="Email" id="Email">
+                            </label>
+                        </section>
+
+                        <section class="col col-2">
+                            <label>Check In</label>
+                            <label class="input">
+                                <input type="text" name="txtTelephone">
+                            </label>
+                        </section>
+
+                        <section class="col col-2">
+                            <label>Check Out</label>
+                            <label class="input">
+                                <input type="text" name="txtTelephone">
+                            </label>
+                        </section>
+                    </div>
+
+                    <div class="row" style="background-color:#EBEBEB;">
+                        <section class="col col-4">
+                            <label>Arrival Date</label>
+                            <label class="input">
+                                <input type="text" name="Email" id="Email">
+                            </label>
+                        </section>
+
+                        <section class="col col-2">
+                            <label>Time</label>
+                            <label class="input">
+                                <input type="text" name="txtTelephone">
+                            </label>
+                        </section>
+
+                        <section class="col col-2">
+                            <label>Flight Number</label>
+                            <label class="input">
+                                <input type="text" name="txtTelephone">
+                            </label>
+                        </section>
+                    </div>
+
+                    <div class="row" style="background-color:#EBEBEB;">
+                        <section class="col col-4">
+                            <section>
+                                <label> Departure Date</label>
+                                <label class="input">
+                                    <input type="text" name="txtName" id="txtName">
+                                </label>
+                            </section>
+                        </section>
+
+                        <section class="col col-2">
+                            <label>Time</label>
+                            <label class="input">
+                                <input type="text" name="txtTelephone">
+                            </label>
+                        </section>
+
+                        <section class="col col-2">
+                            <label>Flight Number</label>
+                            <label class="input">
+                                <input type="text" name="txtTelephone">
+                            </label>
+                        </section>
+
+                    </div>
+
+
+                    <div class="row" style="padding-top:30px;">
+
+
+                        <section class="col col-4">
+                            <section>
+                                <label>JW Reference </label>
+                                <label class="input">
+                                    <input type="text" name="txtName" id="txtName">
+                                </label>
+                            </section>
+                        </section>
+
+                        <section class="col col-2">
+                            <button type="submit" name="Submit" class="btn button">Search</button>
+                        </section>
+                        
+                    </div>
+
+                @Html.Partial("_AmendmentView", Model)
+
+                </fieldset>
+                <footer>
+                    <button type="submit" name="Submit" class="btn button">Submit</button>
+                </footer>
+            </form>
+        </div>
+</div>
+</section>
