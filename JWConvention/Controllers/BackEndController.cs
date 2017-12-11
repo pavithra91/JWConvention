@@ -76,10 +76,33 @@ namespace JWConvention.Controllers
         }
 
 
-        public ActionResult Amendments()
+        public ActionResult Amendments(ReservationModel objModel)
+        {
+            //objModel = null;
+            return View(objModel);
+        }
+
+        [HttpPost]
+        public ActionResult SearchAmendments(string BookingID)
         {
             ReservationModel objModel = new ReservationModel();
-            return View(objModel);
+
+            var _jwBooking = _context.JW_Reservation.Where(w => w.BookingID == BookingID).FirstOrDefault();
+
+            if(_jwBooking != null)
+            {
+                objModel.BookingID = BookingID;
+                objModel.PackageCost = (double)_jwBooking.TotalCost;
+                objModel._hotel = _context.JW_Hotels.Where(w => w.HotelName == _jwBooking.HotelName).FirstOrDefault();
+                objModel._ArrivalDate = _jwBooking.ArrivalDate.GetValueOrDefault().ToShortDateString();
+                objModel._DepartureDate = _jwBooking.DepartureDate.GetValueOrDefault().ToShortDateString();
+                objModel._fromDate = _jwBooking.CheckInDate.GetValueOrDefault().ToShortDateString();
+                objModel._toDate = _jwBooking.CheckOutDate.GetValueOrDefault().ToShortDateString();
+
+                return View(objModel);
+            }
+
+            return View();
         }
     }
 }

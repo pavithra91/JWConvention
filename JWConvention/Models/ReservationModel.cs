@@ -36,7 +36,7 @@ namespace JWConvention.Models
         public string Remarks { get; set; }
 
 
-        public float PackageCost { get; set; }
+        public double PackageCost { get; set; }
         public float AdditionalACCost { get; set; }
         public float TotalCost { get; set; }
         public bool isAdvancedPayment { get; set; }

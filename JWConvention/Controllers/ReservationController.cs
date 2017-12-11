@@ -280,26 +280,26 @@ namespace JWConvention.Controllers
         {
             try
             {
-                string _result = (Request.Form["_result"]).ToString();
-                string _orderID = (Request.Form["_orderID"]).ToString();
-                string _response = (Request.Form["_response"]).ToString();
-                string _currency = (Request.Form["_currency"]).ToString();
-                string _conventionCode = (Request.Form["_conventionCode"]).ToString();
-                string _amount = (Request.Form["_amount"]).ToString();
+                //string _result = (Request.Form["_result"]).ToString();
+                //string _orderID = (Request.Form["_orderID"]).ToString();
+                //string _response = (Request.Form["_response"]).ToString();
+                //string _currency = (Request.Form["_currency"]).ToString();
+                //string _conventionCode = (Request.Form["_conventionCode"]).ToString();
+                //string _amount = (Request.Form["_amount"]).ToString();
 
-                Encryption _decrypt = new Encryption();
-                _result = _decrypt.DecryptString(_result, "Result");
-                _orderID = _decrypt.DecryptString(_orderID, "CustomerRef");
-                _response = _decrypt.DecryptString(_response, "ResponseString");
-                _conventionCode = _decrypt.DecryptString(_conventionCode, "ConventionCode");
-                _amount = _decrypt.DecryptString(_amount, "Amount");
+                //Encryption _decrypt = new Encryption();
+                //_result = _decrypt.DecryptString(_result, "Result");
+                //_orderID = _decrypt.DecryptString(_orderID, "CustomerRef");
+                //_response = _decrypt.DecryptString(_response, "ResponseString");
+                //_conventionCode = _decrypt.DecryptString(_conventionCode, "ConventionCode");
+                //_amount = _decrypt.DecryptString(_amount, "Amount");
 
-                //string _result = "1";
-                //string _orderID = "JW14624";
-                //string _response = "";
-                //string _currency = "USD";
-                //string _conventionCode = "JWCON";
-                //string _amount = "1700";
+                string _result = "1";
+                string _orderID = "JW18722";
+                string _response = "";
+                string _currency = "USD";
+                string _conventionCode = "JWCON";
+                string _amount = "1705";
 
                 if (_result == "1")
                 {
@@ -335,7 +335,7 @@ namespace JWConvention.Controllers
                     em.ClientEmail = del.Email;
                     em.ClientName = del.DelegeteName;
                     em.InvoiceNo = _orderID;
-                    em.DateofPayment = DateTime.Today;//DateTime.ParseExact("21/11/2017", "dd/MM/yyyy", null);//DateTime.Today;
+                    em.DateofPayment = DateTime.ParseExact("04/12/2017", "dd/MM/yyyy", null);//DateTime.Today;
                     em.CheckIn = reservation.CheckInDate.GetValueOrDefault().ToString("dd/MMMM/yyyy");
                     em.CheckOut = reservation.CheckOutDate.GetValueOrDefault().ToString("dd/MMMM/yyyy");
                     em.EmailCC = _ipgConfig.EmailCC;
